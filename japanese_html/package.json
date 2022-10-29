@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "npx nodemon index.js",
+    "start": "ENVIRONMENT=production node index.js",
+    "dev": "ENVIRONMENT=local npx nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

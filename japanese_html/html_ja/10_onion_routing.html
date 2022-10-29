@@ -1,0 +1,2023 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="generator" content="Asciidoctor 2.0.16" />
+<title>オニオンルーティング</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700" />
+<style>
+/*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
+/* Uncomment the following line when using as a custom stylesheet */
+/* @import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700"; */
+html{font-family:sans-serif;-webkit-text-size-adjust:100%}
+a{background:none}
+a:focus{outline:thin dotted}
+a:active,a:hover{outline:0}
+h1{font-size:2em;margin:.67em 0}
+b,strong{font-weight:bold}
+abbr{font-size:.9em}
+abbr[title]{cursor:help;border-bottom:1px dotted #dddddf;text-decoration:none}
+dfn{font-style:italic}
+hr{height:0}
+mark{background:#ff0;color:#000}
+code,kbd,pre,samp{font-family:monospace;font-size:1em}
+pre{white-space:pre-wrap}
+q{quotes:"\201C" "\201D" "\2018" "\2019"}
+small{font-size:80%}
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+sup{top:-.5em}
+sub{bottom:-.25em}
+img{border:0}
+svg:not(:root){overflow:hidden}
+figure{margin:0}
+audio,video{display:inline-block}
+audio:not([controls]){display:none;height:0}
+fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
+legend{border:0;padding:0}
+button,input,select,textarea{font-family:inherit;font-size:100%;margin:0}
+button,input{line-height:normal}
+button,select{text-transform:none}
+button,html input[type=button],input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer}
+button[disabled],html input[disabled]{cursor:default}
+input[type=checkbox],input[type=radio]{padding:0}
+button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
+textarea{overflow:auto;vertical-align:top}
+table{border-collapse:collapse;border-spacing:0}
+*,::before,::after{box-sizing:border-box}
+html,body{font-size:100%}
+body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;line-height:1;position:relative;cursor:auto;-moz-tab-size:4;-o-tab-size:4;tab-size:4;word-wrap:anywhere;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}
+a:hover{cursor:pointer}
+img,object,embed{max-width:100%;height:auto}
+object,embed{height:100%}
+img{-ms-interpolation-mode:bicubic}
+.left{float:left!important}
+.right{float:right!important}
+.text-left{text-align:left!important}
+.text-right{text-align:right!important}
+.text-center{text-align:center!important}
+.text-justify{text-align:justify!important}
+.hide{display:none}
+img,object,svg{display:inline-block;vertical-align:middle}
+textarea{height:auto;min-height:50px}
+select{width:100%}
+.subheader,.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{line-height:1.45;color:#7a2518;font-weight:400;margin-top:0;margin-bottom:.25em}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0}
+a{color:#2156a5;text-decoration:underline;line-height:inherit}
+a:hover,a:focus{color:#1d4b8f}
+a img{border:0}
+p{line-height:1.6;margin-bottom:1.25em;text-rendering:optimizeLegibility}
+p aside{font-size:.875em;line-height:1.35;font-style:italic}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{font-family:"Open Sans","DejaVu Sans",sans-serif;font-weight:300;font-style:normal;color:#ba3925;text-rendering:optimizeLegibility;margin-top:1em;margin-bottom:.5em;line-height:1.0125em}
+h1 small,h2 small,h3 small,#toctitle small,.sidebarblock>.content>.title small,h4 small,h5 small,h6 small{font-size:60%;color:#e99b8f;line-height:0}
+h1{font-size:2.125em}
+h2{font-size:1.6875em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.375em}
+h4,h5{font-size:1.125em}
+h6{font-size:1em}
+hr{border:solid #dddddf;border-width:1px 0 0;clear:both;margin:1.25em 0 1.1875em}
+em,i{font-style:italic;line-height:inherit}
+strong,b{font-weight:bold;line-height:inherit}
+small{font-size:60%;line-height:inherit}
+code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;color:rgba(0,0,0,.9)}
+ul,ol,dl{line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
+ul,ol{margin-left:1.5em}
+ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0}
+ul.square li ul,ul.circle li ul,ul.disc li ul{list-style:inherit}
+ul.square{list-style-type:square}
+ul.circle{list-style-type:circle}
+ul.disc{list-style-type:disc}
+ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
+dl dt{margin-bottom:.3125em;font-weight:bold}
+dl dd{margin-bottom:1.25em}
+blockquote{margin:0 0 1.25em;padding:.5625em 1.25em 0 1.1875em;border-left:1px solid #ddd}
+blockquote,blockquote p{line-height:1.6;color:rgba(0,0,0,.85)}
+@media screen and (min-width:768px){h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2}
+h1{font-size:2.75em}
+h2{font-size:2.3125em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.6875em}
+h4{font-size:1.4375em}}
+table{background:#fff;margin-bottom:1.25em;border:1px solid #dedede;word-wrap:normal}
+table thead,table tfoot{background:#f7f8f7}
+table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:.5em .625em .625em;font-size:inherit;color:rgba(0,0,0,.8);text-align:left}
+table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
+table tr.even,table tr.alt{background:#f8f8f7}
+table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{line-height:1.6}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
+h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
+.center{margin-left:auto;margin-right:auto}
+.stretch{width:100%}
+.clearfix::before,.clearfix::after,.float-group::before,.float-group::after{content:" ";display:table}
+.clearfix::after,.float-group::after{clear:both}
+:not(pre).nobreak{word-wrap:normal}
+:not(pre).nowrap{white-space:nowrap}
+:not(pre).pre-wrap{white-space:pre-wrap}
+:not(pre):not([class^=L])>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background:#f7f7f8;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed}
+pre{color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;line-height:1.45;text-rendering:optimizeSpeed}
+pre code,pre pre{color:inherit;font-size:inherit;line-height:inherit}
+pre>code{display:block}
+pre.nowrap,pre.nowrap pre{white-space:pre;word-wrap:normal}
+em em{font-style:normal}
+strong strong{font-weight:400}
+.keyseq{color:rgba(51,51,51,.8)}
+kbd{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;display:inline-block;color:rgba(0,0,0,.8);font-size:.65em;line-height:1.45;background:#f7f7f7;border:1px solid #ccc;border-radius:3px;box-shadow:0 1px 0 rgba(0,0,0,.2),inset 0 0 0 .1em #fff;margin:0 .15em;padding:.2em .5em;vertical-align:middle;position:relative;top:-.1em;white-space:nowrap}
+.keyseq kbd:first-child{margin-left:0}
+.keyseq kbd:last-child{margin-right:0}
+.menuseq,.menuref{color:#000}
+.menuseq b:not(.caret),.menuref{font-weight:inherit}
+.menuseq{word-spacing:-.02em}
+.menuseq b.caret{font-size:1.25em;line-height:.8}
+.menuseq i.caret{font-weight:bold;text-align:center;width:.45em}
+b.button::before,b.button::after{position:relative;top:-1px;font-weight:400}
+b.button::before{content:"[";padding:0 3px 0 2px}
+b.button::after{content:"]";padding:0 2px 0 3px}
+p a>code:hover{color:rgba(0,0,0,.9)}
+#header,#content,#footnotes,#footer{width:100%;margin:0 auto;max-width:62.5em;*zoom:1;position:relative;padding-left:.9375em;padding-right:.9375em}
+#header::before,#header::after,#content::before,#content::after,#footnotes::before,#footnotes::after,#footer::before,#footer::after{content:" ";display:table}
+#header::after,#content::after,#footnotes::after,#footer::after{clear:both}
+#content{margin-top:1.25em}
+#content::before{content:none}
+#header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
+#header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #dddddf}
+#header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
+#header .details{border-bottom:1px solid #dddddf;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:flex;flex-flow:row wrap}
+#header .details span:first-child{margin-left:-.125em}
+#header .details span.email a{color:rgba(0,0,0,.85)}
+#header .details br{display:none}
+#header .details br+span::before{content:"\00a0\2013\00a0"}
+#header .details br+span.author::before{content:"\00a0\22c5\00a0";color:rgba(0,0,0,.85)}
+#header .details br+span#revremark::before{content:"\00a0|\00a0"}
+#header #revnumber{text-transform:capitalize}
+#header #revnumber::after{content:"\00a0"}
+#content>h1:first-child:not([class]){color:rgba(0,0,0,.85);border-bottom:1px solid #dddddf;padding-bottom:8px;margin-top:0;padding-top:1rem;margin-bottom:1.25rem}
+#toc{border-bottom:1px solid #e7e7e9;padding-bottom:.5em}
+#toc>ul{margin-left:.125em}
+#toc ul.sectlevel0>li>a{font-style:italic}
+#toc ul.sectlevel0 ul.sectlevel1{margin:.5em 0}
+#toc ul{font-family:"Open Sans","DejaVu Sans",sans-serif;list-style-type:none}
+#toc li{line-height:1.3334;margin-top:.3334em}
+#toc a{text-decoration:none}
+#toc a:active{text-decoration:underline}
+#toctitle{color:#7a2518;font-size:1.2em}
+@media screen and (min-width:768px){#toctitle{font-size:1.375em}
+body.toc2{padding-left:15em;padding-right:0}
+#toc.toc2{margin-top:0!important;background:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #e7e7e9;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
+#toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
+#toc.toc2>ul{font-size:.9em;margin-bottom:0}
+#toc.toc2 ul ul{margin-left:0;padding-left:1em}
+#toc.toc2 ul.sectlevel0 ul.sectlevel1{padding-left:0;margin-top:.5em;margin-bottom:.5em}
+body.toc2.toc-right{padding-left:0;padding-right:15em}
+body.toc2.toc-right #toc.toc2{border-right-width:0;border-left:1px solid #e7e7e9;left:auto;right:0}}
+@media screen and (min-width:1280px){body.toc2{padding-left:20em;padding-right:0}
+#toc.toc2{width:20em}
+#toc.toc2 #toctitle{font-size:1.375em}
+#toc.toc2>ul{font-size:.95em}
+#toc.toc2 ul ul{padding-left:1.25em}
+body.toc2.toc-right{padding-left:0;padding-right:20em}}
+#content #toc{border:1px solid #e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;border-radius:4px}
+#content #toc>:first-child{margin-top:0}
+#content #toc>:last-child{margin-bottom:0}
+#footer{max-width:none;background:rgba(0,0,0,.8);padding:1.25em}
+#footer-text{color:hsla(0,0%,100%,.8);line-height:1.44}
+#content{margin-bottom:.625em}
+.sect1{padding-bottom:.625em}
+@media screen and (min-width:768px){#content{margin-bottom:1.25em}
+.sect1{padding-bottom:1.25em}}
+.sect1:last-child{padding-bottom:0}
+.sect1+.sect1{border-top:1px solid #e7e7e9}
+#content h1>a.anchor,h2>a.anchor,h3>a.anchor,#toctitle>a.anchor,.sidebarblock>.content>.title>a.anchor,h4>a.anchor,h5>a.anchor,h6>a.anchor{position:absolute;z-index:1001;width:1.5ex;margin-left:-1.5ex;display:block;text-decoration:none!important;visibility:hidden;text-align:center;font-weight:400}
+#content h1>a.anchor::before,h2>a.anchor::before,h3>a.anchor::before,#toctitle>a.anchor::before,.sidebarblock>.content>.title>a.anchor::before,h4>a.anchor::before,h5>a.anchor::before,h6>a.anchor::before{content:"\00A7";font-size:.85em;display:block;padding-top:.1em}
+#content h1:hover>a.anchor,#content h1>a.anchor:hover,h2:hover>a.anchor,h2>a.anchor:hover,h3:hover>a.anchor,#toctitle:hover>a.anchor,.sidebarblock>.content>.title:hover>a.anchor,h3>a.anchor:hover,#toctitle>a.anchor:hover,.sidebarblock>.content>.title>a.anchor:hover,h4:hover>a.anchor,h4>a.anchor:hover,h5:hover>a.anchor,h5>a.anchor:hover,h6:hover>a.anchor,h6>a.anchor:hover{visibility:visible}
+#content h1>a.link,h2>a.link,h3>a.link,#toctitle>a.link,.sidebarblock>.content>.title>a.link,h4>a.link,h5>a.link,h6>a.link{color:#ba3925;text-decoration:none}
+#content h1>a.link:hover,h2>a.link:hover,h3>a.link:hover,#toctitle>a.link:hover,.sidebarblock>.content>.title>a.link:hover,h4>a.link:hover,h5>a.link:hover,h6>a.link:hover{color:#a53221}
+details,.audioblock,.imageblock,.literalblock,.listingblock,.stemblock,.videoblock{margin-bottom:1.25em}
+details{margin-left:1.25rem}
+details>summary{cursor:pointer;display:block;position:relative;line-height:1.6;margin-bottom:.625rem;-webkit-tap-highlight-color:transparent}
+details>summary::before{content:"";border:solid transparent;border-left:solid;border-width:.3em 0 .3em .5em;position:absolute;top:.5em;left:-1.25rem;transform:translateX(15%)}
+details[open]>summary::before{border:solid transparent;border-top:solid;border-width:.5em .3em 0;transform:translateY(15%)}
+details>summary::after{content:"";width:1.25rem;height:1em;position:absolute;top:.3em;left:-1.25rem}
+.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{text-rendering:optimizeLegibility;text-align:left;font-family:"Noto Serif","DejaVu Serif",serif;font-size:1rem;font-style:italic}
+table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
+.paragraph.lead>p,#preamble>.sectionbody>[class=paragraph]:first-of-type p{font-size:1.21875em;line-height:1.6;color:rgba(0,0,0,.85)}
+.admonitionblock>table{border-collapse:separate;border:0;background:none;width:100%}
+.admonitionblock>table td.icon{text-align:center;width:80px}
+.admonitionblock>table td.icon img{max-width:none}
+.admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
+.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #dddddf;color:rgba(0,0,0,.6);word-wrap:anywhere}
+.admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
+.exampleblock>.content{border:1px solid #e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;border-radius:4px}
+.exampleblock>.content>:first-child{margin-top:0}
+.exampleblock>.content>:last-child{margin-bottom:0}
+.sidebarblock{border:1px solid #dbdbd6;margin-bottom:1.25em;padding:1.25em;background:#f3f3f2;border-radius:4px}
+.sidebarblock>:first-child{margin-top:0}
+.sidebarblock>:last-child{margin-bottom:0}
+.sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
+.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
+.literalblock pre,.listingblock>.content>pre{border-radius:4px;overflow-x:auto;padding:1em;font-size:.8125em}
+@media screen and (min-width:768px){.literalblock pre,.listingblock>.content>pre{font-size:.90625em}}
+@media screen and (min-width:1280px){.literalblock pre,.listingblock>.content>pre{font-size:1em}}
+.literalblock pre,.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class=highlight],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
+.literalblock.output pre{color:#f7f7f8;background:rgba(0,0,0,.9)}
+.listingblock>.content{position:relative}
+.listingblock code[data-lang]::before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:inherit;opacity:.5}
+.listingblock:hover code[data-lang]::before{display:block}
+.listingblock.terminal pre .command::before{content:attr(data-prompt);padding-right:.5em;color:inherit;opacity:.5}
+.listingblock.terminal pre .command:not([data-prompt])::before{content:"$"}
+.listingblock pre.highlightjs{padding:0}
+.listingblock pre.highlightjs>code{padding:1em;border-radius:4px}
+.listingblock pre.prettyprint{border-width:0}
+.prettyprint{background:#f7f7f8}
+pre.prettyprint .linenums{line-height:1.45;margin-left:2em}
+pre.prettyprint li{background:none;list-style-type:inherit;padding-left:0}
+pre.prettyprint li code[data-lang]::before{opacity:1}
+pre.prettyprint li:not(:first-child) code[data-lang]::before{display:none}
+table.linenotable{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.linenotable td[class]{color:inherit;vertical-align:top;padding:0;line-height:inherit;white-space:normal}
+table.linenotable td.code{padding-left:.75em}
+table.linenotable td.linenos{border-right:1px solid;opacity:.35;padding-right:.5em}
+pre.pygments .lineno{border-right:1px solid;opacity:.35;display:inline-block;margin-right:.75em}
+pre.pygments .lineno::before{content:"";margin-right:-.125em}
+.quoteblock{margin:0 1em 1.25em 1.5em;display:table}
+.quoteblock:not(.excerpt)>.title{margin-left:-1.5em;margin-bottom:.75em}
+.quoteblock blockquote,.quoteblock p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
+.quoteblock blockquote{margin:0;padding:0;border:0}
+.quoteblock blockquote::before{content:"\201c";float:left;font-size:2.75em;font-weight:bold;line-height:.6em;margin-left:-.6em;color:#7a2518;text-shadow:0 1px 2px rgba(0,0,0,.1)}
+.quoteblock blockquote>.paragraph:last-child p{margin-bottom:0}
+.quoteblock .attribution{margin-top:.75em;margin-right:.5ex;text-align:right}
+.verseblock{margin:0 1em 1.25em}
+.verseblock pre{font-family:"Open Sans","DejaVu Sans",sans-serif;font-size:1.15rem;color:rgba(0,0,0,.85);font-weight:300;text-rendering:optimizeLegibility}
+.verseblock pre strong{font-weight:400}
+.verseblock .attribution{margin-top:1.25rem;margin-left:.5ex}
+.quoteblock .attribution,.verseblock .attribution{font-size:.9375em;line-height:1.45;font-style:italic}
+.quoteblock .attribution br,.verseblock .attribution br{display:none}
+.quoteblock .attribution cite,.verseblock .attribution cite{display:block;letter-spacing:-.025em;color:rgba(0,0,0,.6)}
+.quoteblock.abstract blockquote::before,.quoteblock.excerpt blockquote::before,.quoteblock .quoteblock blockquote::before{display:none}
+.quoteblock.abstract blockquote,.quoteblock.abstract p,.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{line-height:1.6;word-spacing:0}
+.quoteblock.abstract{margin:0 1em 1.25em;display:block}
+.quoteblock.abstract>.title{margin:0 0 .375em;font-size:1.15em;text-align:center}
+.quoteblock.excerpt>blockquote,.quoteblock .quoteblock{padding:0 0 .25em 1em;border-left:.25em solid #dddddf}
+.quoteblock.excerpt,.quoteblock .quoteblock{margin-left:0}
+.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{color:inherit;font-size:1.0625rem}
+.quoteblock.excerpt .attribution,.quoteblock .quoteblock .attribution{color:inherit;font-size:.85rem;text-align:left;margin-right:0}
+p.tableblock:last-child{margin-bottom:0}
+td.tableblock>.content{margin-bottom:1.25em;word-wrap:anywhere}
+td.tableblock>.content>:last-child{margin-bottom:-1.25em}
+table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
+table.grid-all>*>tr>*{border-width:1px}
+table.grid-cols>*>tr>*{border-width:0 1px}
+table.grid-rows>*>tr>*{border-width:1px 0}
+table.frame-all{border-width:1px}
+table.frame-ends{border-width:1px 0}
+table.frame-sides{border-width:0 1px}
+table.frame-none>colgroup+*>:first-child>*,table.frame-sides>colgroup+*>:first-child>*{border-top-width:0}
+table.frame-none>:last-child>:last-child>*,table.frame-sides>:last-child>:last-child>*{border-bottom-width:0}
+table.frame-none>*>tr>:first-child,table.frame-ends>*>tr>:first-child{border-left-width:0}
+table.frame-none>*>tr>:last-child,table.frame-ends>*>tr>:last-child{border-right-width:0}
+table.stripes-all tr,table.stripes-odd tr:nth-of-type(odd),table.stripes-even tr:nth-of-type(even),table.stripes-hover tr:hover{background:#f8f8f7}
+th.halign-left,td.halign-left{text-align:left}
+th.halign-right,td.halign-right{text-align:right}
+th.halign-center,td.halign-center{text-align:center}
+th.valign-top,td.valign-top{vertical-align:top}
+th.valign-bottom,td.valign-bottom{vertical-align:bottom}
+th.valign-middle,td.valign-middle{vertical-align:middle}
+table thead th,table tfoot th{font-weight:bold}
+tbody tr th{background:#f7f8f7}
+tbody tr th,tbody tr th p,tfoot tr th,tfoot tr th p{color:rgba(0,0,0,.8);font-weight:bold}
+p.tableblock>code:only-child{background:none;padding:0}
+p.tableblock{font-size:1em}
+ol{margin-left:1.75em}
+ul li ol{margin-left:1.5em}
+dl dd{margin-left:1.125em}
+dl dd:last-child,dl dd:last-child>:last-child{margin-bottom:0}
+ol>li p,ul>li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
+ul.checklist,ul.none,ol.none,ul.no-bullet,ol.no-bullet,ol.unnumbered,ul.unstyled,ol.unstyled{list-style-type:none}
+ul.no-bullet,ol.no-bullet,ol.unnumbered{margin-left:.625em}
+ul.unstyled,ol.unstyled{margin-left:0}
+ul.checklist>li>p:first-child{margin-left:-1em}
+ul.checklist>li>p:first-child>.fa-square-o:first-child,ul.checklist>li>p:first-child>.fa-check-square-o:first-child{width:1.25em;font-size:.8em;position:relative;bottom:.125em}
+ul.checklist>li>p:first-child>input[type=checkbox]:first-child{margin-right:.25em}
+ul.inline{display:flex;flex-flow:row wrap;list-style:none;margin:0 0 .625em -1.25em}
+ul.inline>li{margin-left:1.25em}
+.unstyled dl dt{font-weight:400;font-style:normal}
+ol.arabic{list-style-type:decimal}
+ol.decimal{list-style-type:decimal-leading-zero}
+ol.loweralpha{list-style-type:lower-alpha}
+ol.upperalpha{list-style-type:upper-alpha}
+ol.lowerroman{list-style-type:lower-roman}
+ol.upperroman{list-style-type:upper-roman}
+ol.lowergreek{list-style-type:lower-greek}
+.hdlist>table,.colist>table{border:0;background:none}
+.hdlist>table>tbody>tr,.colist>table>tbody>tr{background:none}
+td.hdlist1,td.hdlist2{vertical-align:top;padding:0 .625em}
+td.hdlist1{font-weight:bold;padding-bottom:1.25em}
+td.hdlist2{word-wrap:anywhere}
+.literalblock+.colist,.listingblock+.colist{margin-top:-.5em}
+.colist td:not([class]):first-child{padding:.4em .75em 0;line-height:1;vertical-align:top}
+.colist td:not([class]):first-child img{max-width:none}
+.colist td:not([class]):last-child{padding:.25em 0}
+.thumb,.th{line-height:0;display:inline-block;border:4px solid #fff;box-shadow:0 0 0 1px #ddd}
+.imageblock.left{margin:.25em .625em 1.25em 0}
+.imageblock.right{margin:.25em 0 1.25em .625em}
+.imageblock>.title{margin-bottom:0}
+.imageblock.thumb,.imageblock.th{border-width:6px}
+.imageblock.thumb>.title,.imageblock.th>.title{padding:0 .125em}
+.image.left,.image.right{margin-top:.25em;margin-bottom:.25em;display:inline-block;line-height:0}
+.image.left{margin-right:.625em}
+.image.right{margin-left:.625em}
+a.image{text-decoration:none;display:inline-block}
+a.image object{pointer-events:none}
+sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
+sup.footnote a,sup.footnoteref a{text-decoration:none}
+sup.footnote a:active,sup.footnoteref a:active{text-decoration:underline}
+#footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
+#footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em;border-width:1px 0 0}
+#footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;margin-bottom:.2em}
+#footnotes .footnote a:first-of-type{font-weight:bold;text-decoration:none;margin-left:-1.05em}
+#footnotes .footnote:last-of-type{margin-bottom:0}
+#content #footnotes{margin-top:-.625em;margin-bottom:0;padding:.75em 0}
+.gist .file-data>table{border:0;background:#fff;width:100%;margin-bottom:0}
+.gist .file-data>table td.line-data{width:99%}
+div.unbreakable{page-break-inside:avoid}
+.big{font-size:larger}
+.small{font-size:smaller}
+.underline{text-decoration:underline}
+.overline{text-decoration:overline}
+.line-through{text-decoration:line-through}
+.aqua{color:#00bfbf}
+.aqua-background{background:#00fafa}
+.black{color:#000}
+.black-background{background:#000}
+.blue{color:#0000bf}
+.blue-background{background:#0000fa}
+.fuchsia{color:#bf00bf}
+.fuchsia-background{background:#fa00fa}
+.gray{color:#606060}
+.gray-background{background:#7d7d7d}
+.green{color:#006000}
+.green-background{background:#007d00}
+.lime{color:#00bf00}
+.lime-background{background:#00fa00}
+.maroon{color:#600000}
+.maroon-background{background:#7d0000}
+.navy{color:#000060}
+.navy-background{background:#00007d}
+.olive{color:#606000}
+.olive-background{background:#7d7d00}
+.purple{color:#600060}
+.purple-background{background:#7d007d}
+.red{color:#bf0000}
+.red-background{background:#fa0000}
+.silver{color:#909090}
+.silver-background{background:#bcbcbc}
+.teal{color:#006060}
+.teal-background{background:#007d7d}
+.white{color:#bfbfbf}
+.white-background{background:#fafafa}
+.yellow{color:#bfbf00}
+.yellow-background{background:#fafa00}
+span.icon>.fa{cursor:default}
+a span.icon>.fa{cursor:inherit}
+.admonitionblock td.icon [class^="fa icon-"]{font-size:2.5em;text-shadow:1px 1px 2px rgba(0,0,0,.5);cursor:default}
+.admonitionblock td.icon .icon-note::before{content:"\f05a";color:#19407c}
+.admonitionblock td.icon .icon-tip::before{content:"\f0eb";text-shadow:1px 1px 2px rgba(155,155,0,.8);color:#111}
+.admonitionblock td.icon .icon-warning::before{content:"\f071";color:#bf6900}
+.admonitionblock td.icon .icon-caution::before{content:"\f06d";color:#bf3400}
+.admonitionblock td.icon .icon-important::before{content:"\f06a";color:#bf0000}
+.conum[data-value]{display:inline-block;color:#fff!important;background:rgba(0,0,0,.8);border-radius:50%;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
+.conum[data-value] *{color:#fff!important}
+.conum[data-value]+b{display:none}
+.conum[data-value]::after{content:attr(data-value)}
+pre .conum[data-value]{position:relative;top:-.125em}
+b.conum *{color:inherit!important}
+.conum:not([data-value]):empty{display:none}
+dt,th.tableblock,td.content,div.footnote{text-rendering:optimizeLegibility}
+h1,h2,p,td.content,span.alt,summary{letter-spacing:-.01em}
+p strong,td.content strong,div.footnote strong{letter-spacing:-.005em}
+p,blockquote,dt,td.content,span.alt,summary{font-size:1.0625rem}
+p{margin-bottom:1.25rem}
+.sidebarblock p,.sidebarblock dt,.sidebarblock td.content,p.tableblock{font-size:1em}
+.exampleblock>.content{background:#fffef7;border-color:#e0e0dc;box-shadow:0 1px 4px #e0e0dc}
+.print-only{display:none!important}
+@page{margin:1.25cm .75cm}
+@media print{*{box-shadow:none!important;text-shadow:none!important}
+html{font-size:80%}
+a{color:inherit!important;text-decoration:underline!important}
+a.bare,a[href^="#"],a[href^="mailto:"]{text-decoration:none!important}
+a[href^="http:"]:not(.bare)::after,a[href^="https:"]:not(.bare)::after{content:"(" attr(href) ")";display:inline-block;font-size:.875em;padding-left:.25em}
+abbr[title]{border-bottom:1px dotted}
+abbr[title]::after{content:" (" attr(title) ")"}
+pre,blockquote,tr,img,object,svg{page-break-inside:avoid}
+thead{display:table-header-group}
+svg{max-width:100%}
+p,blockquote,dt,td.content{font-size:1em;orphans:3;widows:3}
+h2,h3,#toctitle,.sidebarblock>.content>.title{page-break-after:avoid}
+#header,#content,#footnotes,#footer{max-width:none}
+#toc,.sidebarblock,.exampleblock>.content{background:none!important}
+#toc{border-bottom:1px solid #dddddf!important;padding-bottom:0!important}
+body.book #header{text-align:center}
+body.book #header>h1:first-child{border:0!important;margin:2.5em 0 1em}
+body.book #header .details{border:0!important;display:block;padding:0!important}
+body.book #header .details span:first-child{margin-left:0!important}
+body.book #header .details br{display:block}
+body.book #header .details br+span::before{content:none!important}
+body.book #toc{border:0!important;text-align:left!important;padding:0!important;margin:0!important}
+body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-break-before:always}
+.listingblock code[data-lang]::before{display:block}
+#footer{padding:0 .9375em}
+.hide-on-print{display:none!important}
+.print-only{display:block!important}
+.hide-for-print{display:none!important}
+.show-for-print{display:inherit!important}}
+@media amzn-kf8,print{#header>h1:first-child{margin-top:1.25rem}
+.sect1{padding:0!important}
+.sect1+.sect1{border:0}
+#footer{background:none}
+#footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
+@media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
+</style>
+</head>
+<body class="article">
+<div id="header">
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="onion_routing">オニオンルーティング</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>この章では、ライトニング・ネットワークのオニオン・ルーティングの仕組みについて説明します。オニオン<em>ルーティングの</em>発明は、ライトニングネットワークより25年も前なのですオニオンルーティングは、米国海軍の研究者によって通信セキュリティプロトコルとして発明されました。オニオンルーティングは、研究者、活動家、諜報員、その他すべての人が個人的かつ匿名でインターネットを利用できるオニオンルーティングのインターネットオーバーレイであるTorで最も有名に使用されています。</p>
+</div>
+<div class="paragraph">
+<p>この章では、Lightningプロトコル・アーキテクチャの「ソースベースオニオンルーティング（SPHINX）」の部分に焦点を当て、<a href="#LN_protocol_onion_highlight">Lightningプロトコル群のオニオンルーティングの</a>中心（ルーティング層）でアウトラインを強調しています。</p>
+</div>
+<div id="LN_protocol_onion_highlight" class="imageblock">
+<div class="content">
+<img src="images/mtln_1001.png" alt="Onion routing in the Lightning protocol suite" />
+</div>
+<div class="title">図1.Lightning プロトコルスイートにおけるオニオンルーティング</div>
+</div>
+<div class="paragraph">
+<p>オニオンルーティングとは、暗号化通信の手法の一つで、メッセージ送信者が暗号の<em>層を次々と入れ子状に</em>作り、それを各中間ノードが「はぎ取り」、一番内側の層が目的の受信者に届けられるというもの。オニオンルーティング」という名称は、タマネギの皮のように一度に1層ずつ剥がされる層状暗号の使い方を表している。</p>
+</div>
+<div class="paragraph">
+<p>各中間ノードは1つのレイヤーを「剥がす」だけで、通信経路の次のレイヤーが誰かを知ることができる。オニオンルーティングは、送信者以外の誰も宛先や通信路の長さを知らないことを保証する。各中間ノードが知っているのは、前のホップと次のホップだけである。</p>
+</div>
+<div class="paragraph">
+<p>ライトニング・ネットワークは、George DanezisとIan Goldbergが2009年に開発した<em>Sphinx</em><sup class="footnote">[<a id="_footnoteref_1" class="footnote" href="#_footnotedef_1" title="View footnote.">1</a></sup>]をベースにしたオニオン・ルーティング・プロトコルの実装を使用しています。</p>
+</div>
+<div class="paragraph">
+<p>ライトニングネットワークにおけるオニオンルーティングの実装は、「<a href="https://github.com/lightningnetwork/lightning-rfc/blob/master/04-onion-routing.md">BOLT #4: Onion Routing Protocol</a>」で定義されています。</p>
+</div>
+<div class="sect2">
+<h3 id="_a_physical_example_illustrating_onion_routing">Onion Routingを説明する物理的な例</h3>
+<div class="paragraph">
+<p>オニオンルーティングを説明する方法はたくさんあるが、最も簡単な方法の1つは、封をした封筒に相当する物理的なものを使うことである。封筒は暗号化のレイヤーを表し、指定された受信者だけが封筒を開けて中身を読むことができる。</p>
+</div>
+<div class="paragraph">
+<p>アリスがディナに秘密の手紙を、いくつかの仲介者を介して間接的に送りたいとします。</p>
+</div>
+<div class="sect3">
+<h4 id="_selecting_a_path">パスの選択</h4>
+<div class="paragraph">
+<p>ライトニング・ネットワークは<em>ソース・ルーティングを</em>採用しており、支払い経路は送信者のみが選択・指定することができます。この例では、アリスからディナへの秘密の手紙が支払いに相当することになります。この手紙がディナに届くように、アリスはボブとチャンを仲介して、アリスからディナへの経路を作成します。</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">チップ</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>アリスがディナに到達することが可能な経路は多数存在する可能性がある。<em>最適な</em>経路を選択する過程は、<a href="#path_finding">[path_finding]</a>で説明します。とりあえず、アリスが選択した経路は、ボブとチャンを仲介してディナに到達すると仮定します。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph pagebreak-before">
+<p>注意点として、アリスが選択した経路を<a href="#alice_dina_path">Pathに</a>示す。<a href="#alice_dina_path">アリス→ボブ→チャン→ディナ</a></p>
+</div>
+<div id="alice_dina_path" class="imageblock">
+<div class="content">
+<img src="images/mtln_1002.png" alt="Alice to Bob to Chan to Dina" />
+</div>
+<div class="title">図2.パスアリス→ボブ→チャン→ディナ</div>
+</div>
+<div class="paragraph">
+<p>アリスが仲介者のボブとチャンに情報を明かすことなく、この経路を使う方法を見てみましょう。</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">ソースベースルーチング</div>
+<div class="paragraph">
+<p>ソースベースのルーティングは、初期にはソースルーティングが可能でしたが、今日インターネット上で一般的にパケットがルーティングされる方法ではありません。
+インターネットルーティングは、各中間ルーティングノードでの<em>パケットスイッチングに基づいて</em>います。例えば、IPv4パケットには送信者と受信者のIPアドレスが含まれており、他のすべてのIPルーティングノードが各パケットを宛先に向けてどのように転送するかを決定する。
+しかし、このようなルーティングメカニズムでは、すべての中間ノードが送信者と受信者を確認するため、プライバシーが確保できず、決済ネットワークに使用するには適していない。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_building_the_layers">レイヤーの構築</h4>
+<div class="paragraph">
+<p>アリスはまず、ディナに秘密の手紙を書きます。  そして、その手紙を封筒の中に封印し、外側に「To Dina」と書きます（封筒に<a href="#dina_envelope">封印されたDinaの秘密の</a>手紙を参照）。封筒はDinaの公開鍵による暗号化を表し、Dinaだけが封筒を開けて手紙を読むことができるようになっています。</p>
+</div>
+<div id="dina_envelope" class="imageblock">
+<div class="content">
+<img src="images/mtln_1003.png" alt="Dina&#8217;s secret letter, sealed in an envelope" />
+</div>
+<div class="title">図3.封筒に封印されたディナの密書</div>
+</div>
+<div class="paragraph">
+<p>ディナの手紙は、"道 "でディナのすぐ前にいるチャンがディナに届けてくれることになる。そこでアリスはディナの封筒をチャン宛の封筒の中に入れる（<a href="#chan_envelope">ディナの封書が入ったチャンの封筒を</a>参照）。チャンが読めるのは宛先（経路指示）の部分だけである。"ディナへ"これをChan宛の封筒に封入することは、Chanの公開鍵で暗号化し、Chanだけが封筒の宛先を読めるようにすることを意味します。しかし、ChanはDinaの封筒を開けることができません。彼が見ることができるのは、外側に書かれた指示（住所）だけだ。</p>
+</div>
+<div id="chan_envelope" class="imageblock">
+<div class="content">
+<img src="images/mtln_1004.png" alt="Chan&#8217;s envelope, containing Dina&#8217;s sealed envelope" />
+</div>
+<div class="title">図4.Dinaの封書が入ったChanの封筒</div>
+</div>
+<div class="paragraph">
+<p>さて、この手紙はボブによってChanに届けられることになる。そこで、アリスはそれをボブ宛の封筒の中に入れます(<a href="#bob_envelope">Chanの封書を入れたボブの封筒を</a>参照)。前と同じく、封筒はボブだけに暗号化されたメッセージを表し、ボブだけが読むことができます。ボブはChanの封筒の外側(住所)しか読めないので、 Chanに送ることがわかります。</p>
+</div>
+<div id="bob_envelope" class="imageblock">
+<div class="content">
+<img src="images/mtln_1005.png" alt="Bob&#8217;s envelope, containing Chan&#8217;s sealed envelope" />
+</div>
+<div class="title">図5．ボブの封筒、チャンの封書が入った封筒</div>
+</div>
+<div class="paragraph">
+<p>ここで、封筒を透視すると（X線を使って！）、「<a href="#nested_envelopes">封筒の</a>入れ子」のように、封筒が1枚ずつ入れ子になっているのがわかります。 </p>
+</div>
+<div id="nested_envelopes" class="imageblock">
+<div class="content">
+<img src="images/mtln_1006.png" alt="Nested envelopes" />
+</div>
+<div class="title">図6.ネストされたエンベロープ</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_peeling_the_layers">レイヤーを剥がす</h4>
+<div class="paragraph">
+<p>アリスは今、外側に "To Bob "と書かれた封筒を持っています。これはボブだけが開ける(復号する)ことのできる暗号化されたメッセージを表しています。アリスはこれをボブに送って、処理を始めます。全体のプロセスは<a href="#sending_nested_envelopes">Sending the envelopeに</a>示されています。</p>
+</div>
+<div id="sending_nested_envelopes" class="imageblock">
+<div class="content">
+<img src="images/mtln_1007.png" alt="Sending the envelopes" />
+</div>
+<div class="title">図7.エンベロープの送信</div>
+</div>
+<div class="paragraph">
+<p>見てわかるように、ボブはアリスから封筒を受け取ります。彼はそれがアリスから来たことは知っていますが、アリスが最初の送り主なのか、それとも封筒を転送しているだけの人なのかはわかりません。彼はそれを開けて、中に "To Chan "と書かれた封筒を見つける。これはチャンに宛てたものなので、ボブはそれを開けることができない。彼はその中身を知らないし、Chanが手紙を受け取っているのか、それとも別の封筒を転送しているのかも知らない。ボブは、Chanが最終的な受取人であるかどうか分からない。ボブは封筒をChanに転送する。</p>
+</div>
+<div class="paragraph">
+<p>ChanはBobから封筒を受け取る。彼はそれがアリスから来たものであることを知らない。彼はボブが仲介者なのか手紙の差出人なのかわからない。Chanが封筒を開けると、中には「To Dina」と書かれた別の封筒が入っていた。ChanはそれをDinaに転送するが、Dinaが最終的な受取人であるかどうかは分からない。</p>
+</div>
+<div class="paragraph">
+<p>DinaはChanから封筒を受け取る。封筒を開けると手紙が入っており、このメッセージの受取人が自分であることがわかる。仲介者は誰もこの手紙の出所を知らないし、誰も自分の秘密の手紙を読んでいないことを知りながら、彼女はその手紙を読むのだった!</p>
+</div>
+<div class="paragraph">
+<p>これがオニオンルーティングの本質である。送信者はメッセージをレイヤーで包み、それがどのようにルーティングされるかを正確に指定し、仲介者が経路やペイロードに関する情報を得るのを防ぐ。各中継者は1つのレイヤーを剥がし、転送アドレスだけを確認し、パスの前のホップと次のホップ以外は何も知らない。</p>
+</div>
+<div class="paragraph">
+<p>では、Lightning Networkにおけるオニオンルーティングの実装の詳細を見ていきましょう。</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_introduction_to_onion_routing_of_htlcs">HTLCのオニオンルーティングの紹介</h3>
+<div class="paragraph">
+<p>ライトニングネットワークのオニオンルーティングは一見複雑に見えますが、基本的な考え方を理解すれば、実にシンプルなものです。</p>
+</div>
+<div class="paragraph">
+<p>実用的な観点からは、アリスはパスの次のノードと設定するHTLCをすべての中間ノードに伝えています。</p>
+</div>
+<div class="paragraph">
+<p>最初のノード(この例ではAlice)は、<em>元のノードと</em>呼ばれる。  最後のノード（この例ではDina）は、<em>最終ノードと</em>呼ばれます。</p>
+</div>
+<div class="paragraph">
+<p>各中間ノード、この例ではBobとChanは<em>ホップと</em>呼ばれる。すべてのホップは次のホップへの<em>発信 HTLC</em>をセットアップしなければなりません。アリスが各ホップに伝える情報は、<em>ホップペイロード</em>または<em>ホップ</em>データと呼ばれます。アリスからディナにルーティングされるメッセージは<em>オニオンと</em>呼ばれ、各ホップに暗号化された<em>ホップペイロード</em>または<em>ホップデータメッセージで</em>構成されています。</p>
+</div>
+<div class="paragraph">
+<p>ライトニングオニオンルーチングで使われる用語がわかったところで、アリスのタスクを 再現してみましょう。アリスはホップデータでオニオンを構築し、最終ノード(Dina)に支払いを送るための送信 HTLC を構築する方法を各ホップに伝えなければなりません。</p>
+</div>
+<div class="sect3">
+<h4 id="_alice_selects_the_path">アリスが道を選ぶ</h4>
+<div class="paragraph">
+<p><a href="#routing">ルーティング]</a>から、AliceはBobとChanを介してDinaに5万satoshiの支払いを送ることが分かっている。この支払いは、<a href="#alice_dina_htlc_path">AliceからDinaへのHTLCを使った支払い経路</a>に示すように、一連のHTLCを介して送信される。</p>
+</div>
+<div id="alice_dina_htlc_path" class="imageblock">
+<div class="content">
+<img src="images/mtln_1008.png" alt="Payment path with HTLCs from Alice to Dina" />
+</div>
+<div class="title">図8.アリスからディナへのHTLCを用いた支払い経路</div>
+</div>
+<div class="paragraph">
+<p><a href="#gossip">gossip]</a>で説明するように、ライトニングノードはライトニングゴシッププロトコルを使用してライトニングネットワーク全体にチャンネルを発表するため、アリスはディナへのこのパスを構築することができます。最初のチャンネル発表の後、ボブとチャンはそれぞれ、支払いルーティングのためのルーティング料とタイムロックの予想を記載した追加の<code>channel_update</code>メッセージを送りました。</p>
+</div>
+<div class="paragraph">
+<p>発表と更新から、アリスはボブ、チャン、ディナの間のチャネルについて以下の情報を知っている。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>各チャンネルの short_channel_id (短いチャンネル ID) で、アリスがパスを構築する際にチャンネルを参照するために使用します。</p>
+</li>
+<li>
+<p>cltv_expiry_delta（タイムロックデルタ）、これはアリスが各HTLCの有効期限に追加することができます。</p>
+</li>
+<li>
+<p>fee_base_msatとfee_proportional_millionthsで、Aliceがそのチャンネルでリレーするためにそのノードが期待するルーティングフィーの合計を計算するために使うことができる。</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>実際には、チャネルが伝送する最大<code>（htlc_maximum_msat</code>）と最小<code>（htlc_minimum_msat</code>）のHTLCなど、他の情報も交換されますが、これらは前述のフィールドほど、オニオンルート構築時に直接使用されるわけではありません。</p>
+</div>
+<div class="paragraph">
+<p>この情報は、アリスが次の詳細経路のノード、チャネル、料金、タイムロックを特定するために使用されます。<a href="#alice_dina_path_detail">ゴシップされたチャネルとノードの情報から構築された詳細経路（A detailed path constructed from gossiped channel and node information</a>）。</p>
+</div>
+<div id="alice_dina_path_detail" class="imageblock">
+<div class="content">
+<img src="images/mtln_1009.png" alt="A path constructed from gossiped channel and node information" />
+</div>
+<div class="title">図9.ゴシップされたチャネルとノード情報から構築された詳細なパス</div>
+</div>
+<div class="paragraph">
+<p>アリスはすでにボブへの自分のチャンネルを知っているので、パスを構築するためにこの情報を必要としません。また、アリスはディナからのチャンネル更新を必要としませんでした。なぜなら、パスの最後のチャンネルに対するチャンからの更新があったからです。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_alice_constructs_the_payloads">アリスがペイロードを構築する</h4>
+<div class="paragraph">
+<p>それは、<em>ホップ</em>データと呼ばれるレガシーな固定長フォーマットと、<em>ホップペイロードと</em>呼ばれるより柔軟な Type-Length-Value (TLV) ベースのフォーマットです。TLVメッセージフォーマットは<a href="#tlv">[tlv]</a>でより詳細に説明されています。これは、プロトコルにフィールドを自由に追加することができる柔軟性を提供します。</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">備考</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>どちらの形式も<a href="https://github.com/lightningnetwork/lightning-rfc/blob/master/04-onion-routing.md#packet-structure">BOLT #4: Onion Routing Protocol, Packet Structureで</a>規定されています。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>アリスはパスの終端から逆算してホップデータの構築を開始します。Dina、Chan、Bobの順です。</p>
+</div>
+<div class="sect4">
+<h5 id="_final_node_payload_for_dina">Dinaの最終ノードペイロード</h5>
+<div class="paragraph">
+<p>Aliceはまず、Dinaに配信されるペイロードを構築する。Dinaは最終ノードであり、支払い受取人であるため、「送信HTLC」を構築することはない。このため、Dinaのペイロードは他のすべてのペイロードと異なるが(<code>short_channel_idに</code>すべてゼロを使用)、オニオンの最も内側の層で暗号化されるのでDinaだけがこれを知ることができる。基本的に、これは物理的な封筒の例で見た「Dina への秘密の手紙」である。</p>
+</div>
+<div class="paragraph">
+<p>Dinaのホップペイロードは、DinaがAliceのために生成した請求書の情報と一致しなければならず、TLV形式で以下のフィールドを（少なくとも）含むことになる。</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">amt_to_forward</dt>
+<dd>
+<p>この支払額をミリサトシで表示します。これがマルチパートペイメントの一部分である場合、金額は合計より少なくなります。そうでなければ、これは単一の全額支払いであり、請求書の金額と total_msat の値に等しくなります。</p>
+</dd>
+<dt class="hdlist1">outgoing_cltv_value</dt>
+<dd>
+<p>請求書のmin_final_cltv_expiryの値に設定された支払い期限タイムロック。</p>
+</dd>
+<dt class="hdlist1">ペイメントシークレット</dt>
+<dd>
+<p>請求書から256ビットの特別な秘密値を取得し、Dinaがこの着信支払いを認識できるようにします。また、これまでゼロバリュー請求書が安全でなかったプロービングの一種を防ぐことができます。この値は受信<em>者のみに</em>暗号化されるため、中間ノードによるプロービングは軽減されます。つまり、中間ノードは「正規に見える」最終パケットを再構築することができません。</p>
+</dd>
+<dt class="hdlist1">トータルミサット</dt>
+<dd>
+<p>請求書と一致する合計金額。部品が1つだけの場合は省略可能で、その場合はamt_to_forwardと一致するものとし、請求書の金額と同じでなければならない。</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>アリスがディナから受け取った請求書には、金額が50,000サトシ（50,000,000ミリサトシ）と明記されていた。Dinaは支払いの最小有効期限min_final_cltv_expiryを18ブロック（ビットコインブロックの平均で10分とすると3時間）と指定した。アリスが支払いを行おうとした時点で、ビットコインのブロックチェーンは70万ブロックを記録しているとします。そこでアリスはoutgoing_cltv_valueを<em>最小</em>ブロック高である700,018に設定しなければならない。</p>
+</div>
+<div class="paragraph">
+<p>アリスはディナに対するホップペイロードを以下のように構築する。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>amt_to_forward : 50,000,000
+アウトゴーイング_cltv_value：700,018
+payment_secret: fb53d94b7b65580f75b98f10...03521bdab6d519143cd521d1b3826
+トータルミサット：50,000,000</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>に示すように、アリスはそれをTLV形式でシリアライズする（簡略化）。<a href="#dina_onion_payload">ディナのペイロードはアリスによって構築</a>される。</p>
+</div>
+<div id="dina_onion_payload" class="imageblock">
+<div class="content">
+<img src="images/mtln_1010.png" alt="Dina&#8217;s payload is constructed by Alice" />
+</div>
+<div class="title">図10.DinaのペイロードはAliceによって構築される</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_hop_payload_for_chan">Chan のホップペイロード</h5>
+<div class="paragraph">
+<p>次に、アリスはChanのためにホップペイロードを構築する。これはChanにDinaへの送信HTLCをどのようにセットアップするかを伝える。</p>
+</div>
+<div class="paragraph">
+<p>Chanのホップペイロードは、short_channel_id、amt_to_forward、outgoing_cltv_valueの3つのフィールドを含む。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>short_channel_id:010002010a42be
+転送量: 50,000,000
+アウトゴーイング_cltv_value：700,018</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>アリスはこのペイロードをTLV形式でシリアライズします。（簡略化）<a href="#chan_onion_payload">Chanのペイロードはアリスによって構築</a>されます。</p>
+</div>
+<div id="chan_onion_payload" class="imageblock">
+<div class="content">
+<img src="images/mtln_1011.png" alt="Chan&#8217;s payload is constructed by Alice" />
+</div>
+<div class="title">図11.ChanのペイロードはAliceによって構築される</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_hop_payload_for_bob">Bob 用のホップペイロード</h5>
+<div class="paragraph">
+<p>最後に、アリスはボブに対するホップペイロードを構築する。これは、チャンに対するホップペイロードと同じ3つのフィールドを含むが、異なる値を持つ。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>short_channel_id:000004040a61f0
+amt_to_forward：50,100,000円
+アウトゴーイング_cltv_value：700,038</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>ご覧のように、amt_to_forwardフィールドは50,100,000ミリサトシ、つまり50,100サトシとなっています。これは、ChanがDinaへの支払いをルーティングするために100サトシの手数料を期待しているからです。チャンがその送金手数料を「稼ぐ」ためには，チャンの受信側HTLCがチャンの送信側HTLCより100サトシ多くなければならない。Chanの受信HTCはBobの送信HTCであるから、Bobへの指示はChanが獲得した手数料を反映する。簡単に言えば、BobはChanに50,100 satoshiを送るように指示する必要があり、そうすればChanは50,000 satoshiを送り、100 satoshiを保つことができる。</p>
+</div>
+<div class="paragraph">
+<p>同様に、Chanは20ブロックのタイムロック・デルタを期待し ている。従って、Chanの受信するHTLCは、Chanの送信するHTLCより20ブロック<em>後に</em>期限切れ にならなければならない。これを達成するために、アリスはボブに対し、チャンへの送信 HTLCの有効期限を、チャンからディナへのHTLCより20ブロック遅いブロック高 700,038にするように指示する。</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">チップ</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>チャネルに対する料金およびタイムロックデルタの期待値は、受信 HTLC と送信 HTLC の差によって設定される。受信 HTLC は<em>先行ノードによって</em>作成されるので、その先行ノードへのオニオンペイロードに料金 とタイムロックのデルタが設定される。Bob は Chan の料金とタイムロックの期待値に見合う HTLC を作る方法を教えられる。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>アリスはこのペイロードをTLV形式でシリアライズする。（簡略化）<a href="#bob_onion_payload">ボブのペイロードはアリスによって構築</a>されるに示すように。</p>
+</div>
+<div id="bob_onion_payload" class="imageblock">
+<div class="content">
+<img src="images/mtln_1012.png" alt="Bob&#8217;s payload is constructed by Alice" />
+</div>
+<div class="title">図12.ボブのペイロードはアリスによって構築される</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_finished_hop_payloads">フィニッシュホップペイロード</h5>
+<div class="paragraph">
+<p>アリスはこれで、タマネギに包まれる3つのホップのペイロードを構築しました。ペイロードの簡略図は、<a href="#onion_hop_payloads">すべてのホップのペイロードに</a>示されています。 </p>
+</div>
+<div id="onion_hop_payloads" class="imageblock">
+<div class="content">
+<img src="images/mtln_1013.png" alt="Hop payloads for all the hops" />
+</div>
+<div class="title">図 13.全ホップのペイロードの推移</div>
+</div>
+</div>
+</div>
+<div class="sect3 pagebreak-before less_space">
+<h4 id="_key_generation">キージェネレーション</h4>
+<div class="paragraph">
+<p>アリスは次に、タマネギの様々な層を暗号化するのに使われるいくつかの鍵を生成しなければならない。</p>
+</div>
+<div class="paragraph">
+<p>これらの鍵によって、アリスは高度なプライバシーと完全性を達成することができる。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>アリスはタマネギの各層を暗号化し、意図した受信者だけが読めるようにすることができます。</p>
+</li>
+<li>
+<p>すべての仲介者は、メッセージが変更されていないことを確認することができます。</p>
+</li>
+<li>
+<p>この玉ねぎを誰が送ったのか、どこに行くのか、経路上の誰も知らない。アリスは送り主である自分の身元も、支払いの受取人であるディナの身元も明かさない。</p>
+</li>
+<li>
+<p>各ホップは前のホップと次のホップについてのみ学習します。</p>
+</li>
+<li>
+<p>道のりの長さも、道のりのどこにいるのかも、誰も知ることはできない。</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<div class="title">警告</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>刻んだタマネギのように、以下の技術的な詳細は、あなたの目に涙をもたらすかもしれません。もし混乱したら、遠慮なく次のセクションに飛んでください。もっと詳しく知りたい方は、「<a href="https://github.com/lightningnetwork/lightning-rfc/blob/master/04-onion-routing.md#packet-construction">BOLT #4: Onion Routing, Packet</a> Construction」を読んでから、ここに戻ってきてください。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>オニオンで使われる鍵の基本は、アリスとボブが楕円曲線ディフィー・ヘルマン(ECDH)アルゴリズムを用いて独自に生成できる<em>共有秘密(Shared Secret</em>)である。共有秘密(ss)から、彼らは独立してrho, mu, um, padと名付けられた4つの追加の鍵を生成することができる。</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">ロー</dt>
+<dd>
+<p>ストリーム暗号からランダムバイトストリームを生成するために使用される（CSPRNGとして使用される
+CSPRNGとして使用）。これらのバイトはメッセージボディの暗号化/復号化に使われるだけでなく、Sphinxのパケット処理中に
+フィラーゼロバイトと同様に、Sphinxのパケット処理に使用されます。</p>
+</dd>
+<dt class="hdlist1">μ</dt>
+<dd>
+<p>完全性/真正性検証のためのハッシュベースメッセージ認証コード（HMAC）で使用されます。</p>
+</dd>
+<dt class="hdlist1">えー</dt>
+<dd>
+<p>エラー報告で使用される。</p>
+</dd>
+<dt class="hdlist1">パッド</dt>
+<dd>
+<p>オニオンを固定長にパディングするためのフィラーバイトを生成するために使用される。</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>各種鍵の関係や生成方法は、<a href="#onion_keygen">Onionの鍵生成で</a>図解されている。</p>
+</div>
+<div id="onion_keygen" class="imageblock">
+<div class="content">
+<img src="images/mtln_1014.png" alt="Onion Key Generation" />
+</div>
+<div class="title">図 14.オニオンキーの生成</div>
+</div>
+<div class="sect4">
+<h5 id="session_key">アリスのセッションキー</h5>
+<div class="paragraph">
+<p>自分の身元を明らかにしないように、アリスは自分のノードの公開鍵を オニオンを構築するのに使用しない。その代わりに、アリスは<em>セッション秘密</em>鍵と対応する<em>セッション公開 鍵と</em>呼ばれる、一時的な32バイト(256ビット)の鍵を作成する。これは<em>このオニオンだけの</em>一時的な「アイデンティティ」と鍵の 役割を果たします。このセッション鍵から、アリスはこのオニオンで使われる他のすべての鍵を 作成します。</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="keygen_details">キージェネレーションの詳細</h5>
+<div class="paragraph">
+<p>鍵の生成、ランダムバイトの生成、エフェメラルキー、そしてパケット構築での使用方法については、BOLT#4の3つのセクションで規定されています。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/lightningnetwork/lightning-rfc/blob/master/04-onion-routing.md#key-generation">キージェネレーション</a></p>
+</li>
+<li>
+<p><a href="https://github.com/lightningnetwork/lightning-rfc/blob/master/04-onion-routing.md#pseudo-random-byte-stream">ランダムバイトストリーム</a></p>
+</li>
+<li>
+<p><a href="https://github.com/lightningnetwork/lightning-rfc/blob/master/04-onion-routing.md#packet-construction">パケット構築</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>簡単な説明と技術的なことを避けるために、これらの詳細は本書には記載していません。内部構造をご覧になりたい方は、前出のリンク先をご覧ください。</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="shared_secret">共有秘密生成</h5>
+<div class="paragraph">
+<p>魔法のように見える重要な点は、アリスが他のノードの公開鍵を知っているだけで、そのノードと<em>共有の秘密を</em>作ることができる点です。これは、暗号技術に革命をもたらした1970年代のDiffie-Hellman鍵交換（DH）の発明が元になっています。Lightningオニオンルーティングは、Bitcoinのsecp256k1曲線上の楕円曲線Diffie-Hellman（ECDH）を使用しています。これはとてもクールなトリックなので、<a href="#ecdh_explained">Elliptic Curve Diffie-Hellman Explainedで</a>分かりやすく説明するようにしています。</p>
+</div>
+<div id="ecdh_explained" class="sidebarblock">
+<div class="content">
+<div class="title">楕円曲線Diffie-Hellmanの説明</div>
+<div class="paragraph">
+<p>楕円曲線を使って、アリスとボブはそれぞれ秘密鍵に生成点<em>Gを掛けて</em>、公開鍵<em>A</em>、<em>Bを</em>生成する。</p>
+</div>
+<ul class="simplelist">
+<li><em>A</em>=<em>aG</em></li>
+<li><em>B</em>=<em>bG</em></li>
+</ul>
+<div class="paragraph">
+<p>今、アリスとボブは<em>楕円曲線ディフィー-ヘルマン鍵交換を使って</em>、共有秘密<em>ssを</em>作成することができます。</p>
+</div>
+<div class="paragraph">
+<p>共有秘密<em>ssは</em>、それぞれが自分の秘密鍵と<em>相手の</em>公開鍵を掛け合わせることで、次のように算出される。</p>
+</div>
+<ul class="simplelist">
+<li><em>ss</em>=<em>aB</em>=<em>bA</em></li>
+</ul>
+<div class="paragraph">
+<p>しかし、なぜこの2つの掛け算は同じ値の<em>ssに</em>なるのでしょうか？
+これが可能であることを証明する計算をお見せしますから、どうぞお付き合いください。</p>
+</div>
+<ul class="simplelist">
+<li><em>遅効性</em></li>
+<li>=<em>aB</em></li>
+</ul>
+<div class="paragraph">
+<p><em>a</em>(秘密鍵)と<em>b</em>(ボブ公開鍵)を知っているアリスによって計算される</p>
+</div>
+<ul class="simplelist">
+<li>=<em>a</em><em>(bG</em>)</li>
+</ul>
+<div class="paragraph">
+<p>というのは、<em>B</em>=<em>bG</em> がわかっているので、次のように代入します。</p>
+</div>
+<ul class="simplelist">
+<li>=<em>(ab</em><em>)G</em></li>
+</ul>
+<div class="paragraph">
+<p>というのは、連想性のために、括弧を移動させることができます。</p>
+</div>
+<ul class="simplelist">
+<li>=<em>(ba</em><em>)G</em></li>
+</ul>
+<div class="paragraph">
+<p><em>xy</em>=<em>yx</em>なので（曲線は abelian 群である）</p>
+</div>
+<ul class="simplelist">
+<li>=<em>b</em><em>(aG</em>)</li>
+</ul>
+<div class="paragraph">
+<p>というのは、連想性のために、括弧を移動させることができます。</p>
+</div>
+<ul class="simplelist">
+<li>=<em>bA</em></li>
+</ul>
+<div class="paragraph">
+<p>となり、<em>aGを</em> <em>Aで</em>代用することができる。</p>
+</div>
+<div class="paragraph">
+<p><em>bAという</em>結果は、<em>b</em>（自分の秘密鍵）と<em>A</em>（アリスの公開鍵）を知っているボブが独自に計算することができる。</p>
+</div>
+<div class="paragraph">
+<p>そのため、次のように示しました。</p>
+</div>
+<ul class="simplelist">
+<li><em>ss</em>=<em>aB</em>(アリスはこれを計算できる)</li>
+<li><em>ss</em>=<em>bA</em>(ボブはこれを計算できる)</li>
+</ul>
+<div class="paragraph">
+<p>したがって、2人はそれぞれ独立して<em>ssを</em>計算することができ、それを共有鍵として、共有秘密を伝えることなく2人の間で秘密を対称に暗号化することができる。</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>SphinxのMix-netパケットフォーマットとしてのユニークな特徴は、経路上の各ホップに個別のセッションキーを含めるのではなく、Mix-netパケットのサイズを劇的に増加させる、巧妙な<em>ブラインド</em>スキームを使用して、各ホップのセッションキーを決定論的にランダム化することである。</p>
+</div>
+<div class="paragraph">
+<p>実際には、この小さな仕掛けによって、望ましいセキュリティ特性を保ちつつ、オニオンパケットをできるだけコンパクトにすることができる。</p>
+</div>
+<div class="paragraph">
+<p>ホップ<code>iの</code>セッションキーは、ノードの公開キーとホップ<code>i - 1の</code>共有シークレットを用いて導き出される。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>session_key_i = session_key_{i-1} * SHA-256(node_pubkey_{i-1} || shared_secret_{i-1})</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>つまり、前のホップのセッションキーを取り出し、そのホップの公開キーと派生した共有シークレットから得られる値を乗算する。</p>
+</div>
+<div class="paragraph">
+<p>楕円曲線乗算は秘密鍵を知らなくても公開鍵で実行できるため、各ホップは次のホップのセッション鍵を決定論的に再ランダム化することができるのです。</p>
+</div>
+<div class="paragraph">
+<p>オニオンパケットの作成者は、共有された秘密をすべて知っているので（パケットをホップごとに一意に暗号化しているため）、すべての盲点を導き出すことができるのです。</p>
+</div>
+<div class="paragraph">
+<p>この知識により、パケット生成時に前もって使用されるすべてのセッションキーを導き出すことができるのです。</p>
+</div>
+<div class="paragraph">
+<p>最初のホップは、生成されたオリジナルのセッションキーを使用することに注 意。このキーは、後続の各ホップによるセッションキーのブラインドのキックオフに 使用されるからである。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="wrapping_the_onion">オニオンレイヤーを包む</h3>
+<div class="paragraph">
+<p>オニオンを包むプロセスは、「<a href="https://github.com/lightningnetwork/lightning-rfc/blob/master/04-onion-routing.md#packet-construction">BOLT #4: Onion Routing, Packet Construction</a>」で詳しく説明しています。</p>
+</div>
+<div class="paragraph">
+<p>この章では、このプロセスを高いレベルで、やや簡略化して説明し、一部の詳細を省略します。</p>
+</div>
+<div class="sect3">
+<h4 id="fixed_length_onions">固定長玉ねぎ</h4>
+<div class="paragraph">
+<p>ホップ」ノードのいずれも、パスの長さやパスの中の位置を知らないという事実は、これまで述べてきました。なぜこのようなことが可能なのでしょうか？</p>
+</div>
+<div class="paragraph">
+<p>もし、暗号化された道順があったとしても、道順のリストの<em>どこに</em>いるかを見るだけで、始点や終点までの距離を知ることはできないのでしょうか？</p>
+</div>
+<div class="paragraph">
+<p>オニオンルーティングで使われるトリックは、パス（方向のリスト）をどのノードでも常に同じ長さにすることである。これは、オニオンパケットの長さをステップごとに同じにすることで実現される。</p>
+</div>
+<div class="paragraph">
+<p>各ホップでは、ホップペイロードがオニオンペイロードの最初に現れ、さらに19個のホップペイロードと<em>思わ</em>れるものが続く。すべてのホップは、自分自身を20のホップのうちの最初のホップと見なす。</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">チップ</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>オニオンのペイロードは1,300byte。各ホップペイロードは65バイト以下(65バイト以下の場合は65バイトにパディングされる)。したがって、オニオンの総ペイロードは20ホップのペイロードを収めることができる(1300 = 20 &times; 65)。したがって、オニオンの最大経路は20ホップである。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>各層が「剥がされる」ごとに、オニオンペイロードの最後にさらにフィラーデータ（本質的にはジャンク）が追加されるため、次のホップは同じサイズのオニオンを取得し、再びオニオン内の「最初のホップ」となる。</p>
+</div>
+<div class="paragraph">
+<p>オニオンサイズは1,366バイトで、<a href="#onion_packet">The onion packetに</a>示すような構造になっています。</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">1バイト</dt>
+<dd>
+<p>バージョンバイト</p>
+</dd>
+<dt class="hdlist1">33バイト</dt>
+<dd>
+<p>アリスの身元を明かすことなく、ホップ毎の共有秘密<a href="#shared_secret">（共有秘密生成</a>）を生成できる圧縮公開セッション鍵<a href="#session_key">（アリスのセッション鍵</a>）。</p>
+</dd>
+<dt class="hdlist1">1,300バイト</dt>
+<dd>
+<p>各ホップの指示を含む実際の<em>オニオンペイロード</em></p>
+</dd>
+<dt class="hdlist1">32バイト</dt>
+<dd>
+<p>HMACの整合性チェックサム</p>
+</dd>
+</dl>
+</div>
+<div id="onion_packet" class="imageblock">
+<div class="content">
+<img src="images/mtln_1015.png" alt="mtln 1015" />
+</div>
+<div class="title">図15.オニオンパケット</div>
+</div>
+<div class="paragraph">
+<p>Sphinxのユニークな特徴は、Mix-netのパケットフォーマットとして、ルートの各ホップに個別のセッションキーを含めるのではなく、その代わりに、各ホップのセッションキーを決定論的にランダムにする巧妙な<em>ブラインド</em>スキームが使用されていることで、劇的にMix-netパケットのサイズを増加させます。</p>
+</div>
+<div class="paragraph">
+<p>実際には、この小さな仕掛けによって、望ましいセキュリティ特性を保ちつつ、オニオンパケットをできるだけコンパクトにすることができる。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_wrapping_the_onion_outlined">タマネギを包む（アウトライン化）</h4>
+<div class="paragraph">
+<p>次に、タマネギを包む工程を説明します。このリストを見ながら、それぞれのステップを実際の例で探ってみましょう。</p>
+</div>
+<div class="paragraph">
+<p>各ホップについて、送信者（アリス）は同じ処理を繰り返す。</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>アリスはホップごとの共有秘密と、rho、mu、padの各鍵を生成する。</p>
+</li>
+<li>
+<p>アリスは1,300バイトのフィラーを生成し、このフィラーで1,300バイトのオニオンペイロードフィールドを埋め尽くす。</p>
+</li>
+<li>
+<p>アリスはホップペイロードのHMACを計算する(最終ホップにはゼロを使用)。</p>
+</li>
+<li>
+<p>アリスはホップペイロードの長さ＋HMAC＋長さそのものを保存するスペースを計算する。</p>
+</li>
+<li>
+<p>アリスは、ホップのペイロードを収めるために必要な計算されたスペースだけ、 オニオンのペイロードを<em>右シフト</em>する。右端の「フィラー」データは破棄され、ペイロードのための十分なスペースが左側に作られる。</p>
+</li>
+<li>
+<p>アリスは、ペイロードフィールドの先頭に、長さ＋ホップペイロード＋HMACを、フィラーをシフトしたスペースに挿入する。</p>
+</li>
+<li>
+<p>アリスはrhoキーを使って、1,300バイトのワンタイムパッドを生成する。</p>
+</li>
+<li>
+<p>アリスは、rhoから生成されたバイトとXORすることで、onionペイロード全体を難読化する。</p>
+</li>
+<li>
+<p>アリスはミューキーを使って、オニオンペイロードのHMACを計算する。</p>
+</li>
+<li>
+<p>アリスはセッション公開鍵を追加する(ホップが共有秘密を計算できるようにするため)。</p>
+</li>
+<li>
+<p>アリスはバージョン番号を追加します。</p>
+</li>
+<li>
+<p>アリスは、共有秘密と前のホップの公開鍵をハッシュ化した値を使用して、セッション鍵を決定的に再ブラインドする。</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>次に、アリスはこの処理を繰り返す。新しい鍵が計算され、オニオンペイロードがシフトされ(ジャンクをさらに落とす)、新しいホップのペイロードが前に追加され、オニオンペイロード全体が次のホップのためのrhoバイトストリームで暗号化される。</p>
+</div>
+<div class="paragraph">
+<p>最終ホップでは、ステップ#3で平文命令に含まれるHMACが、実際には<em>すべてゼロ</em>である。
+最終ホップはこの信号を用いて、自分が本当に経路の最終ホップであることを判断する。
+あるいは、「次のホップ」を示すペイロードに含まれる<code>short_chan_idが</code>すべてゼロであるという事実も同様に使用できる。</p>
+</div>
+<div class="paragraph">
+<p>各フェーズで、<em>暗号化された</em>(ペイロードを処理するノードの観点から)オニオンパケットと、暗号化の1つのレイヤーを取り除いたパケットのコンテンツに対してHMACを生成するために、ミュー鍵が使用されることに注意すること。
+この外側のHMACによって、パケットを処理するノードはオニオンパケットの完全性(変更されたバイトがない)を確認することができる。
+内部HMACはその後、前述した「シフトと暗号化」の逆ルーチンの間に明らかにされ、次のホップの<em>外部</em>HMACとして機能する。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_wrapping_dinas_hop_payload">Dinaのホップペイロードのラッピング</h4>
+<div class="paragraph">
+<p>注意点として、オニオンは最終ノードまたは受信者であるディナからのパスの終端から始まることによってラップされます。そして、送信者であるアリスに戻るまで、経路を逆に構築していきます。</p>
+</div>
+<div class="paragraph">
+<p>Aliceは、空の1,300バイトのフィールド(固定長の<em>onion payload</em>)から開始する。次に、パッドキーから生成される疑似ランダムバイトストリーム「フィラー」でオニオンペイロードを埋める。</p>
+</div>
+<div class="paragraph">
+<p>これは、<a href="#onion_payload_filler">Filling onion payload with random byte</a> stream に示されている。</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">備考</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>ランダムバイトストリーム生成には、CSPRNG（cryptographic secure pseudorandom number generator）としてChaCha20アルゴリズムが使用されています。このようなアルゴリズムは、初期シードから一見ランダムに見えるバイトの決定論的で長い非繰り返しストリームを生成する。詳細は<a href="https://github.com/lightningnetwork/lightning-rfc/blob/master/04-onion-routing.md#pseudo-random-byte-stream">BOLT #4: Onion Routing, Pseudo Random Byte Streamに</a>規定されている。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="onion_payload_filler" class="imageblock">
+<div class="content">
+<img src="images/mtln_1016.png" alt="mtln 1016" />
+</div>
+<div class="title">図16．オニオンペイロードをランダムバイトストリームで埋める</div>
+</div>
+<div class="paragraph">
+<p>アリスはディナのホップペイロードを1300バイトの配列の左側に挿入し、フィラーを右にずらして、オーバーフローするものをすべて破棄することになります。これは<a href="#onion_add_dina">Adding Dina's hop payload</a> で視覚化されています。</p>
+</div>
+<div id="onion_add_dina" class="imageblock">
+<div class="content">
+<img src="images/mtln_1017.png" alt="mtln 1017" />
+</div>
+<div class="title">図17.Dinaのホップペイロードを追加する</div>
+</div>
+<div class="paragraph">
+<p>別の見方をすれば、アリスはディナのホップペイロードの長さを測り、フィラーを右にずらしてオニオンペイロードの左側に同じスペースを作り、そのスペースにディナのペイロードを挿入していることになります。</p>
+</div>
+<div class="paragraph">
+<p>1,300バイトのオニオンペイロードには、Dinaのホップペイロードと、残りのスペースを埋めるフィラーバイトストリームが含まれています。</p>
+</div>
+<div class="paragraph">
+<p>次に、アリスはオニオンペイロード全体を難読化し、<em>ディナだけが</em>読めるようにする。</p>
+</div>
+<div class="paragraph">
+<p>これを行うために、アリスはrhoの鍵(Dinaも知っている)を使ってバイトストリームを生成する。アリスは、オニオンペイロードのビットとrhoから生成されたバイトストリームの間でビット単位の排他的論理和(XOR)を使用する。その結果は、1300バイト長のランダムな（あるいは暗号化された）バイトストリームのように見える。この手順は、「<a href="#onion_obfuscate_dina">Obfuscating the onion payload</a>」に示されている。</p>
+</div>
+<div id="onion_obfuscate_dina" class="imageblock">
+<div class="content">
+<img src="images/mtln_1018.png" alt="mtln 1018" />
+</div>
+<div class="title">図18 オニオンペイロードの難読化オニオンペイロードの難読化</div>
+</div>
+<div class="paragraph">
+<p>XORの特性の1つは、それを2回行うと元のデータに戻るということである。<a href="#bobDeobfuscates">Bob De-Obfuscates His Hop Payloadで</a>見るように、Dinaがrhoから生成されたバイトストリームに同じXOR演算を適用すると、元のonionペイロードが明らかになるのである。</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">チップ</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>XORは<em>不揮発性</em>関数であり、2回適用すると元に戻る。この性質は、共通鍵暗号に広く用いられている。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>アリスとディナだけがrho鍵(アリスとディナの共有秘密から得られる)を 持っているので、彼らだけがこれを実行できる。事実上、これはDinaの目の前でだけ、オニオンペイロードを暗号化する。</p>
+</div>
+<div class="paragraph">
+<p>最後に、アリスはDinaのペイロードに対してハッシュベースのメッセージ認証コード(HMAC)を計算し、その初期化キーとしてミューキーを使用します。これは、<a href="#dina_hop_payload_hmac">DinaのホップペイロードにHMACの整合性チェックサムを</a>追加するで示されています。</p>
+</div>
+<div id="dina_hop_payload_hmac" class="imageblock">
+<div class="content">
+<img src="images/mtln_1019.png" alt="mtln 1019" />
+</div>
+<div class="title">図19.DinaのホップペイロードにHMACインテグリティチェックサムを追加する。</div>
+</div>
+<div class="sect4">
+<h5 id="_onion_routing_replay_protection_and_detection">オニオンルーティングのリプレイ保護と検出</h5>
+<div class="paragraph">
+<p>HMACは安全なチェックサムとして機能し、Dinaがホップペイロードの完全性を検証するのに役立つ。32バイトのHMACはDinaのホップペイロードに付加される。
+HMACは平文データではなく、<em>暗号化された</em>データに対して計算されることに注意してください。
+これは<em>encrypt-then-macとして</em>知られており、<em>平文と</em>暗号文の両方の完全性を提供するため、MACを使用する推奨方法である。</p>
+</div>
+<div class="paragraph">
+<p>最近の認証付き暗号化では、オプションで平文のバイトセットを使用し、<em>関連データとして</em>認証することも可能になっています。
+実際には、これは通常、平文のパケットヘッダやその他の補助的な情報のようなものです。
+この関連データを認証されるペイロードに含めることで、MACの検証者はこの関連データが改ざんされていないことを確認することができます(たとえば、暗号化されたパケットの平文ヘッダーをすり替えるなど)。</p>
+</div>
+<div class="paragraph">
+<p>ライトニング・ネットワークの文脈では、この関連データは、この方式のリプレイプロテクションを<em>強化</em>するために使用されます。
+以下で学ぶように、リプレイ保護は、攻撃者がパケットをネットワークに<em>再送信</em>（リプレイ）し、その結果のパスを観察できないようにするものです。
+その代わり、中間ノードは定義されたリプレイ保護手段を用いて、リプレイされたパケットを検出し、拒否することができます。
+基本的なSphinxのパケットフォーマットは、リプレイを検出するために使用されたすべてのエフェメラルシークレットキーのログを使用します。
+もし秘密鍵が再び使用されることがあれば、ノードはそれを検知してパケットを拒否することができます。</p>
+</div>
+<div class="paragraph">
+<p>ライトニング・ネットワークにおける HTLC の性質上、<em>経済的な</em>インセンティブを追加することで、リ プレイ防止をさらに強化することができます。
+HTLC の支払いハッシュは、一度だけ安全に（完全な支払いに）使用できることを忘れないでください。
+もし支払いハッシュが再び使われ、そのハッシュの支払いシークレットをすでに見ているノードを通過した場合、そのノードは単に資金を引き出し、転送せずに支払い金額全体を回収することができます!
+この事実を利用して、支払い<em>ハッシュを</em>関連データとして HMAC 計算に含めることを義務付けることで、リプレイ防止を強化することができます。
+この追加ステップにより、ionパケットをリプレイしようとすると、送信者は<em>同じ</em>支払いハッシュを使用することを約束する必要があります。
+その結果、通常のリプレイ保護に加えて、攻撃者はリプレイされたHTLCの全量を失うことになります。</p>
+</div>
+<div class="paragraph">
+<p>リプレイ保護用に保存されるセッション・キーのセットが増え続ける中、ノードがこのスペースを取り戻すことができるかどうかという点が考慮されます。
+ライトニング・ネットワークの文脈では、その答えは「イエス」です。
+もう一度言いますが、HTLCの構成はユニークなので、Sphinxの基本プロトコルをさらに改良することができます。
+HTLCは絶対的なブロックの高さに基づく<em>時間ロックされた</em>契約であるため、一旦HTLCが期限切れになると、その契約は事実上永久に終了します。
+その結果、ノードはこのCLTV（CHECKLOCKTIMEVERIFY演算子）の有効期限の高さを指標として、いつアンチリプレイログのエントリをガベージコレクションしても安全かどうかを知ることができます。</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_wrapping_chans_hop_payload">ChanのHopペイロードのラッピング</h4>
+<div class="paragraph">
+<p><a href="#chan_onion_wrapping">Chanのためにオニオンをラップする</a>」では、Chanのホップペイロードをオニオンでラップするために使用されるステップを見ることができます。これらは、アリスがディナのホップペイロードをラップするために使用したのと同じ手順です。</p>
+</div>
+<div id="chan_onion_wrapping" class="imageblock">
+<div class="content">
+<img src="images/mtln_1020.png" alt="mtln 1020" />
+</div>
+<div class="title">図20.ちゃんちゃんこ用の玉ねぎを包む</div>
+</div>
+<div class="paragraph">
+<p>アリスは、Dinaのために作成された1,300オニオンのペイロードから始める。このうち最初の65バイト（またはそれ以下）は難読化されたディナのペイロードで、残りはフィラーです。アリスはディナのペイロードを上書きしないように注意しなければならない。</p>
+</div>
+<div class="paragraph">
+<p>次に、アリスはこのホップのルーティングパケットの前に追加される一時的な公開鍵(各ホップの一番最初に生成された)を見つける必要があります。</p>
+</div>
+<div class="paragraph">
+<p>Sphinxは一意のエフェメラル公開鍵(送信者と中間ノードがECDH操作で共有秘密を生成するために使う)を含むのではなく、各ホップで決定論的にランダムにされる単一のエフェメラル公開鍵を使うことを思い出してください。</p>
+</div>
+<div class="paragraph">
+<p>パケットを処理するとき、Dinaは彼女の共有秘密と公開鍵を使用して、目隠し値<code>（b_dina</code>）を導き出し、それを使ってエフェメラル公開鍵を再ランダム化する。これは、アリスが最初のパケット構築時に行ったのと同じ操作である。</p>
+</div>
+<div class="paragraph">
+<p>アリスは内側のHMACチェックサムをChanのペイロードに追加し、それをオニオンペイロードの 「前」(左側)に挿入し、既存のペイロードを同じ量だけ右にシフトさせる。
+このスキームでは、外側HMACと内側HMACという、事実上<em>2つの</em>HMACが使用されていることに注意。
+この場合、Chanの<em>内側の</em>HMACは、実際にはDinaの<em>外側の</em>HMACである。</p>
+</div>
+<div class="paragraph">
+<p>今、Chanのペイロードはタマネギの前にある。これを見たChanは、前後に何個のペイロードが来たのか見当がつきません。常に20ホップのうちの1ホップのように見えるのだ!</p>
+</div>
+<div class="paragraph">
+<p>次に、アリスはペイロード全体を、アリスとチャンのrho鍵から生成される バイトストリームとのXORによって難読化する。アリスとチャンだけがこのrho鍵を持っており、彼らだけがオニオンを難読化および難読化解除するためのバイトストリームを生成することができる。
+最後に、先の手順で行ったように、Chanの外部HMACを計算する。これは、Chanが暗号化されたオニオンパケットの完全性を検証するために使用するものである。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_wrapping_bobs_hop_payload">Bobのホップペイロードのラッピング</h4>
+<div class="paragraph">
+<p><a href="#bob_onion_wrapping">Wrapping onion for Bobでは</a>、Bobのホップペイロードをオニオンでラップするために使用されるステップを見ることができる。</p>
+</div>
+<div class="paragraph">
+<p>よし、もうこれで楽勝だ!</p>
+</div>
+<div class="paragraph">
+<p>ChanとDinaのホップペイロードを含むオニオンペイロード（難読化）からスタートします。</p>
+</div>
+<div class="paragraph">
+<p>先行ホップによって生成されたブラインドファクターから派生した、このホップのセッションキーを取得する。
+前のホップの外側HMACをこのホップの内側HMACとして含める。
+Bobのホップペイロードを先頭に挿入し、他のすべてを右側にシフトする。Bob-hop-payloadサイズのチャンクを最後から削除する(どのみちフィラーである)。</p>
+</div>
+<div class="paragraph">
+<p>アリスとボブの共有秘密からrhoキーで全体をXORして難読化し、ボブだけがこれを解くことができるようにします。</p>
+</div>
+<div class="paragraph">
+<p>外部HMACを計算し、Bobのホップペイロードの末尾に貼り付ける。</p>
+</div>
+<div id="bob_onion_wrapping" class="imageblock">
+<div class="content">
+<img src="images/mtln_1021.png" alt="mtln 1021" />
+</div>
+<div class="title">図21．ボブのために玉ねぎを包む</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_the_final_onion_packet">ファイナルオニオンパケット</h4>
+<div class="paragraph">
+<p>最終的なオニオンペイロードはBobに送信する準備ができている。アリスはこれ以上ホップペイロードを追加する必要はない。</p>
+</div>
+<div class="paragraph">
+<p>アリスはオニオンペイロードのHMACを計算し、ボブが検証できるチェックサムで暗号的に保護する。</p>
+</div>
+<div class="paragraph">
+<p>アリスは、各ホップが共有秘密とrho、mu、padキーを生成するために使用される33バイトの公開セッションキーを追加します。</p>
+</div>
+<div class="paragraph">
+<p>最後にアリスは、オニオンバージョン番号(現在は0)を前面に置く。これにより、将来のオニオンパケットフォーマットのアップグレードに備えることができます。</p>
+</div>
+<div class="paragraph">
+<p>その結果は、<a href="#onion_packet_2">The onion packetで</a>見ることができます。 </p>
+</div>
+<div id="onion_packet_2" class="imageblock">
+<div class="content">
+<img src="images/mtln_1015.png" alt="mtln 1015" />
+</div>
+<div class="title">図22 オニオンパケットオニオンパケット</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_sending_the_onion">玉ねぎを送る</h3>
+<div class="paragraph">
+<p>ここでは、オニオンパケットがどのように転送され、パスに沿ってHTLCがどのように配置されるかを見ていきます。</p>
+</div>
+<div class="sect3">
+<h4 id="_the_update_add_htlc_message">update_add_htlc メッセージ</h4>
+<div class="paragraph">
+<p>Onionパケットは、update_add_htlcメッセージの一部として送信されます。<a href="#update_add_htlc">update_add_htlc]</a>で思い出したのですが、<a href="#channel_operation">[channel_operation]</a>では、update_add_htlcメッセージの内容は次のようになっていました。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>[チャンネルID:チャンネルID]
+[u64:id]を指定します。
+[u64:amount_msat]です。
+[sha256:payment_hash]です。
+[u32:cltv_expiry]です。
+[1366*バイト:onion_routing_packet]です。</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>このメッセージは、一方のチャネルパートナーが他方のチャネルパートナーに HTLC を追加するよう依頼するために送信されることを思い出すだろう。これは、AliceがDinaに支払うためにBobにHTLCを追加するよう依頼する方法です。これで、最後のフィールドである1,366バイト長のonion_routing_packetの目的を理解できたと思います。これは1,366バイトの長さで、今作った完全なオニオンパケットである。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_alice_sends_the_onion_to_bob">アリスがボブにオニオンを送る</h4>
+<div class="paragraph">
+<p>アリスはボブに update_add_htlc メッセージを送ります。このメッセージが何を含むか見てみましょう。</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">チャネルID</dt>
+<dd>
+<p>このフィールドはアリスとボブのチャンネルIDを含み、この例では 0000031e192ca1 です (<a href="#alice_dina_path_detail">ゴシップされたチャンネルとノード情報から構築された詳細なパス</a> を参照)。</p>
+</dd>
+<dt class="hdlist1">アイド</dt>
+<dd>
+<p>このチャネルのこの HTLC の ID（0 から始まる）。</p>
+</dd>
+<dt class="hdlist1">amount_msat</dt>
+<dd>
+<p>HTLCの量：50,200,000ミリサトシイ。</p>
+</dd>
+<dt class="hdlist1">ペイメントハッシュ</dt>
+<dd>
+<p>RIPEMD160(SHA-256)の支払いハッシュです。</p>
+<div class="paragraph">
+<p>9e017f6767971ed7cea17f98528d5f5c0ccb2c71.</p>
+</div>
+</dd>
+<dt class="hdlist1">cltv_expiry</dt>
+<dd>
+<p>HTLC の有効期限は 700,058 となる。アリスは、ボブがネゴシエートしたcltv_expiry_deltaに従って、ボブのペイロードに設定されている有効期限に20ブロックを追加する。</p>
+</dd>
+<dt class="hdlist1">onion_routing_packet（オニオン・ルーティング・パケット</dt>
+<dd>
+<p>最終的なオニオンパケットAliceは、すべてのホップのペイロードで構成されています。</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_bob_checks_the_onion">ボブはオニオンをチェックする</h4>
+<div class="paragraph">
+<p><a href="#channel_operation">channel_operation]</a>で見たように、ボブはコミットメント・トランザクションにHTLCを追加し、アリスとのチャネルの状態を更新します。</p>
+</div>
+<div class="paragraph">
+<p>ボブはアリスから受け取った玉ねぎを次のように解凍する。</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>ボブはオニオンパケットからセッションキーを取り出し、アリスとボブの共有秘密を導出する。</p>
+</li>
+<li>
+<p>ボブは共有秘密からミューキーを生成し、それを使ってオニオンパケットのHMACチェックサムを検証する。</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Bobは共有鍵を生成し、HMACを検証したので、onionパケット内の1,300バイトのonionペイロードの解凍を開始することができる。目標は、Bobが自分のホップのペイロードを取得し、残りのオニオンを次のホップに転送することである。</p>
+</div>
+<div class="paragraph">
+<p>ボブが自分のホップのペイロードを抽出して削除すると、残りのオニオンは1,300バイトではなく、より短くなる!そのため、次のホップは自分が最初のホップでないことを知り、パスの長さを検知することができる。これを防ぐために、ボブはより多くのフィラーを追加してオニオンを再充填する必要がある。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_bob_generates_filler">ボブがフィラーを生成</h4>
+<div class="paragraph">
+<p>ボブはアリスとは若干異なる方法でフィラーを生成しますが、同じ一般原則に従います。</p>
+</div>
+<div class="paragraph">
+<p>まず、ボブはオニオンペイロードを1,300バイト<em>拡張</em>し、0値で埋め尽くします。これでオニオンパケットは2,600バイトになり、前半はアリスが送ったデータ、 後半は0を含むようになる。この操作は、<a href="#bob_extends">Bob extends the onion payload by 1,300 (zero-filled) bytesで</a>示される。</p>
+</div>
+<div id="bob_extends" class="imageblock">
+<div class="content">
+<img src="images/mtln_1023.png" alt="Bob extends the onion payload by 1,300 (zero-filled) bytes" />
+</div>
+<div class="title">図 23.Bobはオニオンペイロードを1,300バイト（ゼロ埋め）拡張する。</div>
+</div>
+<div class="paragraph">
+<p>この空のスペースは、ボブが自分のホップペイロードを難読化解除するのと同じプロセスで難読化され、「フィラー」に変わります。その仕組みを見てみましょう。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="bobDeobfuscates">ボブがホップペイロードの難読化を解除</h4>
+<div class="paragraph">
+<p>次に、BobはAlice-Bobの共有鍵からrho鍵を生成します。彼はこれを用いて、ChaCha20アルゴリズムで2,600バイトのストリームを生成します。</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">チップ</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Bobが生成したバイトストリームの最初の1,300バイトは、Aliceがrhoキーを使って生成したバイトストリームと全く同じである。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>次に、Bobは、2,600バイトのionのペイロードに、2,600バイトのrhoのバイトストリームをビット単位のXOR演算で適用する。</p>
+</div>
+<div class="paragraph">
+<p>最初の1,300バイトはこのXOR操作によって難読化される。なぜなら、これはアリスが適用したのと同じ操作であり、XORは無法地帯だからである。つまり、ボブは自分のホップペイロードの後に、スクランブルされたようなデータを<em>表示</em>することになります。</p>
+</div>
+<div class="paragraph">
+<p>同時に、オニオンのペイロードに追加された1300個のゼロにrhoバイトストリームを適用すると、一見するとランダムなフィラーデータに変化する。この操作は、<a href="#bob_deobfuscates">Bob de-obfuscates the onion, obfuscates the fillerに</a>示されている。</p>
+</div>
+<div id="bob_deobfuscates" class="imageblock">
+<div class="content">
+<img src="images/mtln_1024.png" alt="Bob de-obfuscates the onion, obfuscates the filler" />
+</div>
+<div class="title">図24．ボブはタマネギの難読化を解除し、フィラーを難読化する。</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_bob_extracts_the_outer_hmac_for_the_next_hop">ボブは次のホップの外側のHMACを抽出する</h4>
+<div class="paragraph">
+<p>各ホップには inner HMAC が含まれ、それが<em>次の</em>ホップの outer HMAC となることを覚えておいてほしい。
+この場合、ボブは内側のHMACを取り出し(彼はすでに外側のHMACで暗号化されたパケットの完全性を検証している)、それを脇に置いておく。なぜなら、彼は難読化されたパケットにそれを追加し、Chanが彼の暗号化パケットのHMACを検証できるようにするためである。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_bob_removes_his_payload_and_left_shifts_the_onion">ボブはペイロードを外し、オニオンを左遷する。</h4>
+<div class="paragraph">
+<p>ここで、Bobはオニオンの前面から自分のホップペイロードを削除し、残りのデータを左シフトすることができる。後半の1,300バイトのフィラーから、ボブのホップペイロードに等しい量のデータが、オニオンのペイロードスペースにシフトすることになる。これは、<a href="#bob_removes_shifts">Bobがホップペイロードを削除し、残りを左シフトして、ギャップを新しいフィラーで</a>埋めることを示している。</p>
+</div>
+<div class="paragraph">
+<p>これで、ボブは前半の1,300バイトを残し、拡張（フィラー）の1,300バイトを捨てることができる。</p>
+</div>
+<div class="paragraph">
+<p>ボブは今、ネクストホップに送る1,300バイトのオニオンパケットを持っている。これは、アリスがチャンのために作成したオニオンペイロードとほとんど同じだが、最後の65バイトほどのフィラーがボブによって入れられたため、異なるものになることを除けば、である。</p>
+</div>
+<div id="bob_removes_shifts" class="imageblock">
+<div class="content">
+<img src="images/mtln_1025.png" alt="Bob removes the hop payload and left-shifts the rest, filling the gap with new filler" />
+</div>
+<div class="title">図25．ボブはホップのペイロードを削除し、残りを左シフトして、新しいフィラーでギャップを埋める</div>
+</div>
+<div class="paragraph pagebreak-before">
+<p>アリスが置いたフィラーとボブが置いたフィラーを区別することは誰にもできません。フィラーはフィラーです!どうせ全部ランダムなバイトなんだから。ボブ(またはボブの他の別名)がルート上の2つの異なる場所に存在する場合、基本プロトコルはルート全体で常に同じ支払いハッシュを使用するので、彼らはその違いを見分けることができることに注意してください。アトミックマルチパスペイメント(AMP)とポイントタイムロックコントラクト(PTLC)は、各ルート/ホップ間で支払い識別子をランダム化することによって、相関ベクトルを排除します。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_bob_constructs_the_new_onion_packet">ボブは新しいオニオンパケットを構築する</h4>
+<div class="paragraph">
+<p>Bobは次に、onionペイロードをonionパケットにコピーし、chanの外側のHMACを追加し、楕円曲線乗算演算でセッション鍵を再ランダム化(送信者のAliceと同じ方法)して、新しいバージョンバイトを追加する。</p>
+</div>
+<div class="paragraph">
+<p>セッションキーを再ランダム化するために、Bobはまず、自分のノード公開キーと彼が導き出した共有秘密を使用して、自分のホップの目隠し係数を計算する。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>b_bob = SHA-256(P_bob || shared_secret_bob)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>このように生成されたセッション鍵を用いて、Bobは自分のセッション鍵とblinding factorを用いたECの乗算を行うことで、セッション鍵を再ランダム化する。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>session_key_chan = session_key_bob * b_bob</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>そして、<code>session_key_chanの</code>公開鍵は、Chanが処理するためにonionパケットの先頭に付加される。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_bob_verifies_the_htlc_details">ボブがHTLCの詳細を確認する</h4>
+<div class="paragraph">
+<p>Bobのホップペイロードには、ChanのHTLCを作成するために必要な命令が含まれています。</p>
+</div>
+<div class="paragraph">
+<p>ホップのペイロードで、Bobはshort_channel_id、amt_to_forward、およびcltv_expiryを見つけ る。</p>
+</div>
+<div class="paragraph">
+<p>まず、ボブはその短いIDのチャンネルを持っているかどうか確認します。彼は、Chanとそのようなチャンネルを持っていることを発見しました。</p>
+</div>
+<div class="paragraph">
+<p>次に，ボブは送金額（50,100サトシ）が入金額（50,200サトシ）より少ないことを確認し，ボブの料金の期待に応えた。</p>
+</div>
+<div class="paragraph">
+<p>同様に、Bobは送信cltv_expiryが受信cltv_expiryより小さいことをチェックし、 違反があった場合に受信HTLCを請求するのに十分な時間をBobに提供する。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_bob_sends_the_update_add_htlc_to_chan">Bob が Chan に update_add_htlc を送信する。</h4>
+<div class="paragraph">
+<p>Bobは次に、Chanに送信するHTLCを以下のように構築する。</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">チャネルID</dt>
+<dd>
+<p>このフィールドには、この例では000004040a61f0であるボブ・チャン・チャネルIDが含まれています（「<a href="#alice_dina_path_detail">ゴシップされたチャネルとノード情報から構築された詳細なパス</a>」を参照してください）。</p>
+</dd>
+<dt class="hdlist1">アイド</dt>
+<dd>
+<p>このチャネルのこの HTLC の ID（0 から始まる）。</p>
+</dd>
+<dt class="hdlist1">amount_msat</dt>
+<dd>
+<p>HTLCの量：50,100,000ミリサトシイ。</p>
+</dd>
+<dt class="hdlist1">ペイメントハッシュ</dt>
+<dd>
+<p>RIPEMD160(SHA-256)の支払いハッシュです。</p>
+<div class="paragraph">
+<p>9e017f6767971ed7cea17f98528d5f5c0&amp;#x200b;ccb2c71.</p>
+</div>
+<div class="paragraph">
+<p>これは、アリスのHTLCによる支払いハッシュと同じです。</p>
+</div>
+</dd>
+<dt class="hdlist1">cltv_expiry</dt>
+<dd>
+<p>HTLCの有効期限は700,038となります。</p>
+</dd>
+<dt class="hdlist1">onion_routing_packet（オニオン・ルーティング・パケット</dt>
+<dd>
+<p>オニオンパケットBobは、彼のホップペイロードを除去した後、再構築した。</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_chan_forwards_the_onion">チャン・フォワード・ザ・オニオン</h4>
+<div class="paragraph">
+<p>チャンはボブと全く同じ作業を繰り返す。</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Chan は update_add_htlc を受信し、HTLC 要求を処理し、コミットメント・トランザクションに追加する。</p>
+</li>
+<li>
+<p>ChanはAlice-Chan共有鍵とmuサブキーを生成します。</p>
+</li>
+<li>
+<p>ChanはオニオンパケットのHMACを検証した後、1,300バイトの<span class="keep-together">オニオンペイロードを</span>抽出する。</p>
+</li>
+<li>
+<p>Chanは、オニオンのペイロードを1,300バイト余分に拡張し、ゼロで埋め尽くす。</p>
+</li>
+<li>
+<p>Chanはrhoキーを使って2,600バイトを生成しています。</p>
+</li>
+<li>
+<p>Chanは生成されたバイトストリームを使用して、オニオンペイロードのXOR処理と難読化解除を行う。同時に、XOR演算により、余分な1,300個の0を難読化し、フィラーに変えてしまう。</p>
+</li>
+<li>
+<p>Chanはペイロードの内側のHMACを抽出し、これがDinaの外側のHMACとなる。</p>
+</li>
+<li>
+<p>Chanは自分のホップペイロードを削除し、同じ量だけオニオンペイロードを左シフトする。1,300バイトの拡張バイトで生成されたフィラーの一部は、前半の1,300バイトに移動し、オニオンペイロードの一部となる。</p>
+</li>
+<li>
+<p>ChanはこのオニオンペイロードでDinaのためのオニオンパケットを構築する。</p>
+</li>
+<li>
+<p>ChanはDinaのためにupdate_add_htlcメッセージを作成し、それにonionパケットを挿入する。</p>
+</li>
+<li>
+<p>ChanはDinaにupdate_add_htlcを送信する。</p>
+</li>
+<li>
+<p>Chanは、BobがDinaのために前のホップで行ったように、セッションキーを再ランダム化する。</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_dina_receives_the_final_payload">ディナ、最後のペイロードを受け取る</h4>
+<div class="paragraph">
+<p>DinaはChanからupdate_add_htlcメッセージを受信すると、payment_hashからこれが自分に対する支払いであることがわかる。彼女は自分がオニオンの最後のホップであることを知っている。</p>
+</div>
+<div class="paragraph">
+<p>DinaはBobとChanと全く同じプロセスで、新しいフィラーを構築せず、何も転送しない ことを除いて、オニオンの検証とアンラッピングを行う。その代わり、DinaはChanにupdate_fulfill_htlcで応答し、HTLCを償還する。update_fulfill_htlcはAliceに到達するまで経路を逆向きに流れる。すべての HTLC が償還され、チャネルの残高が更新される。支払いは完了です!</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_returning_errors">エラーを返す</h3>
+<div class="paragraph">
+<p>ここまで、HTLCを確立するオニオンのフォワードプロパゲーションと、支払いが成功した後にHTLCを解除する支払いシークレットのバックワードプロパゲーションについて見てきました。</p>
+</div>
+<div class="paragraph">
+<p>オニオンルーティングには、もう一つ非常に重要な機能として、<em>エラーリターンという</em>ものがある。支払い、オニオン、ホップに問題がある場合、エラーを逆伝播して全ノードに障害を知らせ、あらゆる HTLC を解かなければならない。</p>
+</div>
+<div class="paragraph">
+<p>エラーは一般に、オニオンエラー、ノードエラー、チャネルエラーの3つに分類される。これらはさらに、恒久的なエラーと一時的なエラーに細分化されることがある。最後に、いくつかのエラーは、将来の支払い配送の試行を助けるために、チャネルの更新を含んでいます。</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">備考</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>P2P (peer-to-peer) プロトコル (<a href="https://github.com/lightningnetwork/lightning-rfc/blob/master/02-peer-protocol.md">BOLT #2: Peer Protocol for Channel Management</a> で定義) のメッセージとは異なり、エラーは P2P メッセージとして送信されず、オニオンリターンパケット内にラップされてオニオンパスの逆を辿る (back-propagating) のです。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>エラーの返送については、<a href="https://github.com/lightningnetwork/lightning-rfc/blob/master/04-onion-routing.md#returning-errors">BOLT #4: Onion Routing, Returning Errors</a> で定義されています。</p>
+</div>
+<div class="paragraph">
+<p>エラーは、リターンノード（エラーを発見したノード）が<em>リターンパケットで</em>以下のようにエンコードする。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    [32*バイト:hmac]である。
+    [u16:failure_len]です。
+    [failure_len*byte:failuremsg]である。
+    [u16:pad_len]を指定します。
+    [pad_len*byte:pad]です。</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>リターンパケットのHMAC検証チェックサムは、オニオンで確立された共有秘密から生成されたumキーで計算されます。</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">チップ</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>umキーはmuキーと逆の名前であり、同じ用途でも逆方向（バックプロパゲーション）に使用されることを示す。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>次に、返送ノードがammag（「γ」の逆数）キーを生成し、ammagから生成されたバイトストリームとのXOR演算により返送パケットを難読化する。</p>
+</div>
+<div class="paragraph">
+<p>最後に、リターンノードは、元のオニオンを受信したホップにリターンパケットを送信する。</p>
+</div>
+<div class="paragraph">
+<p>エラーを受け取った各ホップはammagキーを生成し、ammagからのバイトストリームとのXOR演算を使用してリターンパケットを再度難読化します。</p>
+</div>
+<div class="paragraph">
+<p>最終的に、送信者（オリジンノード）はリターンパケットを受信する。そして、各ホップに対してammagキーとumキーを生成し、リターンパケットを明らかにするまで繰り返しリターンエラーのXOR難読化を解除することになる。</p>
+</div>
+<div class="sect3">
+<h4 id="failure_messages">故障のメッセージ</h4>
+<div class="paragraph">
+<p>failuremsgは<a href="https://github.com/lightningnetwork/lightning-rfc/blob/master/04-onion-routing.md#failure-messages">BOLT #4: Onion Routing, Failure Messagesで</a>定義されています。</p>
+</div>
+<div class="paragraph">
+<p>故障メッセージは、2 バイトの故障コードと、その故障タイプに該当するデータで構成される。</p>
+</div>
+<div class="paragraph">
+<p>failure_code の最上位バイトは、(2 進 OR で)結合可能なバイナリフラグの集合である。</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">0x8000<code>（バドニョン）</code></dt>
+<dd>
+<p>送信側で暗号化されたパース不能なオニオン</p>
+</dd>
+<dt class="hdlist1">0x4000<code>(PERM</code>)</dt>
+<dd>
+<p>永久故障（それ以外は一過性）</p>
+</dd>
+<dt class="hdlist1">0x2000<code>(NODE</code>)</dt>
+<dd>
+<p>ノード障害（それ以外のチャネル）</p>
+</dd>
+<dt class="hdlist1">0x1000<code>(UPDATE</code>)</dt>
+<dd>
+<p>新チャンネルアップデートを同封</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>現在、<a href="#failure_types_table">Onionのエラー失敗の種類</a>で示される失敗の種類が定義されています。</p>
+</div>
+<table id="failure_types_table" class="tableblock frame-all grid-all stretch">
+<caption class="title">表1.Onionのエラー障害の種類</caption>
+<colgroup>
+<col style="width: 33.3333%;" />
+<col style="width: 33.3333%;" />
+<col style="width: 33.3334%;" />
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">タイプ</th>
+<th class="tableblock halign-left valign-top">シンボリックネーム</th>
+<th class="tableblock halign-left valign-top">意味</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>PERM|1</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">無効領域</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>レルムバイトが</code>処理ノードに理解されなかった</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ノード(NODE|2)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">一時的なノードの失敗</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">処理ノードの一般的な一時的障害</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>PERM|NODE|2（パーム</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">永久ノード故障</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">処理ノードの一般的な永久故障</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>PERM|NODE|3です。</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">required_node_fea&amp;#x2060;ture_&amp;#x200b;missing</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">処理ノードには、このオニオンにはなかった必須機能がある</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>バドニオン|パーム|4</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">無効なオニオンバージョン</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">処理ノードで<code>バージョン</code>バイトが理解されなかった</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>バドニオン|パーム|5</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">無効なオニオン・ハーモニカ</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">オニオンのHMACが処理ノードに到達した時点で不正確だったこと</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>バドニオン|パーム|6</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">無効なオニオンキー</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">エフェメラルキーが処理ノードで解析不能になった</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>UPDATE|7</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">一時的なチャネルと失敗したチャネル</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">処理ノードからのチャネルはこの HTLC を処理することができませんでした。
+が、後で処理できるようになるかもしれない。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>PERM|8</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">パーマネント・チャンネル&amp;#x200b;フェイル&amp;#x2060;ウレ</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">処理ノードからのチャネルは、HTLCを処理することができない</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>PERM|9</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">required_channel_&amp;#x200b;fea&amp;#x2060;ture_missing</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">処理ノードからのチャネルは、オニオンには存在しない機能を必要とします。
+タマネギ</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>パーム|10</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">unknown_next_peer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">オニオンが指定した<code>short_channel_idは</code>、処理ノードから導かれるものと一致しない。
+処理ノードから導かれる</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>UPDATE|11</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">最低額以下</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">からHTLC量がチャネルの<code>htlc_minimum_msatを下回って</code>いた。
+処理ノード</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>UPDATE|12</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fee_insufficient</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">からのチャネルで要求される料金額を下回っていた。
+処理ノード</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>UPDATE|13</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">incorrect_cltv_expiry</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cltv_expiryが</code>処理ノードからのチャネルで要求される<code>cltv_expiry_deltaに</code>適合していない。
+処理ノードからチャネルに要求される</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>UPDATE|14</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">賞味期限切れ</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CLTVの有効期限が現在のブロックの高さに近すぎるため、処理ノードが安全に処理できない
+処理ノードで安全に処理できない。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>PERM|15</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">incor&amp;#x2060;rect_or_unknown_&amp;#x200b;pay&amp;#x2060;ment_details</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>payment_hashが</code>最終ノードに知られていない、<code>payment_secretが</code>payment_hashと一致しない、payment_secretの金額が正しくない、payment_hashが最終ノードに知られていない。
+payment_<code>hashと</code>一致しない、その<code>payment_hashの</code>金額が正しくない、または
+HTLCのCLTVの有効期限が現在のブロック高に近すぎて安全に処理できない。
+処理</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>18</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">final_incor&amp;#x2060;rect_&amp;#x200b;cltv_expiry。</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HTLCのCLTVの有効期限と玉ねぎの値が一致しない</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>19</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">final_incor&amp;#x2060;rect_&amp;#x200b;htlc_amount。</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HTLCの量とタマネギの値が一致しない</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>UPDATE|20</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">channel_disabled</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">処理ノードからのチャネルが無効化された</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>21</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">賞味期限切れの遠方</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HTLCのCLTVの有効期限は、あまりにも遠い将来である</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>PERM|22</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">無効なオニオンペイロード</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">復号化されたオニオンパーホップペイロードは、処理ノードによって理解されなかった
+または不完全である</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>23</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">mpp_timeout</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">マルチパートの支払額の全額を合理的な期間内に受領しなかった場合
+合理的な時間</p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect4">
+<h5 id="stuck_payments">支払い遅延</h5>
+<div class="paragraph">
+<p>現在のライトニング・ネットワークの実装では、決済が完了しない、あるいはエラーでキャンセルされるなど、決済が<em>滞留</em>する可能性があります。これは、仲介ノードのバグ、HTLCの処理中にオフラインになったノード、悪意のあるノードがエラーを報告せずにHTLCを保持することなどが原因で発生します。これら全ての場合において、HTLCは期限切れになるまで解決できない。すべての HTLC に設定されているタイムロック（CLTV）は、この状態（他の可能な HTLC ルーティングとチャネル障害の間）を解決するのに役立ちます。</p>
+</div>
+<div class="paragraph">
+<p>しかし、これはHTLCの送信者が期限切れまで待たなければならないことを意味し、そのHTLCにコミットした資金は、HTLCが期限切れになるまで利用できないままである。さらに、送信者は同じ支払いを<em>再試行することができない</em>。もし再試行すれば、最初の支払いと再試行した支払いの<em>両方が</em>成功するリスクを冒すことになるからである。これは、一度送信された HTLC は、送信者が「キャンセル」することができないためで、失敗するか期限切れになるかのどちらかである。支払い不能になることは稀ですが、ユーザーのウォレットが支払いやキャンセルをできないため、望ましくないユーザー体験を引き起こします。</p>
+</div>
+<div class="paragraph">
+<p>この問題の解決策として提案されているのが<em>スタックレスペイメントと</em>呼ばれるもので、HTLCとは異なる暗号プリミティブ（ハッシュや秘密のプリマージュの代わりに楕円曲線上のポイント加算）を用いた支払い契約であるポイントタイムロック契約（PTLC）に依存するものである。PTLCはECDSAを使うと面倒ですが、先日2021年11月の有効化に向けてロックされたビットコインのTaprootとSchnorrの署名機能を使えばずっと簡単です。これらのビットコインの機能が有効化された後、ライトニングネットワークにPTLCが実装されることが予想されます。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="keysend">キーセンド・スポントペイメント</h3>
+<div class="paragraph">
+<p>前章の支払いフローでは、ディナがアリスから請求書を「帯域外」で受け取る、あるいは何らかの仕組みで入手すると仮定した。
+DinaはAliceから「帯域外」で請求書を受け取るか、プロトコルとは無関係な何らかのメカニズムで請求書を入手したと仮定しました。
+を受け取ったと仮定している（コピー＆ペーストやQRコードスキャンなど）。この特徴
+は、支払いプロセスが常に2つのステップを踏むことを意味します。
+次に、（請求書にエンコードされた）支払いハッシュを使用して、HTLC を正常にルーティングします。
+HTLCのルーティングを成功させることです。支払い前にインボイスを取得するために余分なラウンドトリップが必要なのは、ボトルネックの可能性があります。
+このように、支払い前に請求書を取得するラウンドトリップが必要なことは、Lightmailを使ったマイクロペイメントのストリーミングを含むアプリケーションにおいてボトルネックとなる可能性があります。
+ストリーミングマイクロペイメントを含むアプリケーションのボトルネックになる可能性があります。もし、支払いを "プッシュ "することができたらどうでしょうか。
+を "プッシュ "できたらどうでしょうか？
+どうでしょう？<code>keysend</code>プロトコルは、Lightningのエンドツーエンドの拡張機能（送信者と受信者のみが認識）です。
+プロトコルは、Lightningプロトコルのエンドツーエンド拡張（送信者と受信者のみが認識）であり、自発的なプッシュ型決済を可能にします。
+の支払いを可能にします。</p>
+</div>
+<div class="sect3">
+<h4 id="_custom_onion_tlv_records">カスタムオニオンTLVレコード</h4>
+<div class="paragraph">
+<p>現代のLightningプロトコルは、TLV（Type-Length-Value）エンコードをオニオンで使用します。
+を使用して、各ノードが<em>どこで</em> <em>どのように</em>支払いを転送するかを示す情報をエンコードします。
+転送する情報を暗号化します。TLV形式を活用することで、各ルーティング情報
+(HTLCを渡す次のノードなど）には、特定の型（またはキー）が割り当てられます。
+<code>BigSize</code>可変長整数（最大64ビット整数）としてエンコードされます。
+の整数）としてエンコードされています。これらの「必須」（<code>65536</code>以下の値を反転させた）タイプは、BOLT#4で定義されています。
+BOLT #4 で、残りのオニオンルーティングの詳細と一緒に定義されています。65536以上の値を持つオニオン型は
+<code>65536より</code>大きな値を持つオニオン型は、ウォレットやアプリケーションで「カスタムレコード」として使用されることを想定しています。
+カスタムレコード "として使用されることを意図しています。</p>
+</div>
+<div class="paragraph">
+<p>カスタムレコードを使用すると、決済アプリケーションは、追加のメタデータまたはコンテキストをオニオン内のキー/値ペアとして
+コンテキストを付加することができます。カスタムレコードは他のすべてのホップコンテンツと同様にオニオンペイロード自体に含まれるため
+は、他のすべてのホップコンテンツと同様に、オニオンペイロード自体に含まれるため、そのレコードはエンドツーエンドで暗号化されます。
+レコードはエンドツーエンドで暗号化されます。カスタムレコードは、固定サイズ1300のペイロードの一部を効果的に消費するため
+カスタムレコードは、1300バイトの固定サイズのオニオンパケットの一部を効果的に消費するため、各カスタムレコードの各キーと値をエンコードすることで、その量を減らすことができます。
+各カスタムレコードのキーと値をエンコードすることで、ルートの残りの部分をエンコードするための利用可能な領域が減少します。
+のエンコードに使用できる領域が少なくなる。実際には、カスタムレコードに使用するオニオンスペースが多いほど、経路を短くすることができることを意味する。各HTLC
+パケットが固定サイズであることを考えると、カスタムレコードはHTLCに追加のデータを<em>追加</em>するものではありません。
+むしろ、そうでなければランダムなデータで埋め尽くされていたであろうバイトを再割り当てする。
+そうでなければ</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_sending_and_receiving_keysend_payments">キーセンドペイメントの送受信について</h4>
+<div class="paragraph">
+<p><code>キーエンドペイメントは</code>、HTLCの典型的なフローを反転させるもので、受信者が送信者に秘密のプリ画像を公開します。
+受信者が送信者に秘密のプリ画像を公開する典型的なHTLCの流れを逆転させます。その代わり、送信者はオニオン内に
+その代わり、送信者は受信者に送るオニオンの<em>中に</em>前画像を含め、HTLCを受信者に送る。
+受信機受信者は、オニオンペイロードを復号化し、含まれるプリ画像（支払いと一致する必要がある）を使用する。
+プリ画像(これは HTLC の支払いハッシュと一致<em>しなければ</em>ならない)を使用して、支払いを決済する。
+を使用して決済する。その結果、<code>keyendの</code>支払いは、まず受信者から請求書を受け取ることなく実行できる。
+プリ画像は受信者に「プッシュ」されるため、受信者から請求書を入手することなく、Keyendの支払いを実行することができる。
+その結果、キーエンド決済は、受信者から請求書を受け取ることなく実行できる。<code>キーエンド</code>決済では、TLVカスタムレコードタイプ<code>5482373484</code>
+というTLVカスタムレコードタイプを使用して、32バイトのプリミティブ値をエンコードする。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_keysend_and_custom_records_in_lightning_applications">Lightningアプリケーションのキーセンドとカスタムレコード</h4>
+<div class="paragraph">
+<p>多くのストリーミング・ライトニング・アプリケーションは、<code>キーエンド・</code>プロトコルを使用して、ネットワーク上の公開鍵で特定される宛先に継続的にサトシをストリーミングします。
+ネットワーク上の公開鍵で識別される宛先にサトシを継続的にストリームします。
+通常、アプリケーションには、以下のようなメタデータが含まれます。
+のようなメタデータや、アプリケーションレベルの情報も含まれます。
+<code>を</code>含める。</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_conclusion">結論</h3>
+<div class="paragraph">
+<p>ライトニング・ネットワークのオニオン・ルーティング・プロトコルは、決済ネットワークのニーズによりよく応えるために、スフィンクス・プロトコルを応用したものです。そのため、公開され透明性の高いビットコインブロックチェーンに比べ、プライバシーと監視対策において大きな改善をもたらします。</p>
+</div>
+<div class="paragraph">
+<p><a href="#path_finding">path_finding]</a>では、アリスがソースルーティングとオニオンルーティングの組み合わせで、どのように良いパスを見つけ、ディナに支払いをルーティングするのかを見ることになる。経路を見つけるために、アリスはまずネットワークのトポロジーを知る必要がある。これは<a href="#gossip">[gossip]</a>のトピックである。</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<hr />
+<div class="footnote" id="_footnotedef_1">
+<a href="#_footnoteref_1">1</a>.George Danezis and Ian Goldberg, "Sphinx: A Compact and Provably Secure Mix Format," in<em>IEEE Symposium on Security and Privacy</em>(New York: IEEE, 2009), 269-282.
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+最終更新 2022-10-29 15:50:16 +0400
+</div>
+</div>
+</body>
+</html>

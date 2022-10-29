@@ -35,11 +35,22 @@ const servePages = function (req, res, next) {
 
 const serveIndex = require('serve-index');
 
-app.use(basicAuth({
-    users: { 'admin': 'supersecret' },
-    challenge: true,
-    realm: 'private web site',
-}))
+if (process.env.ENVIRONMENT === 'production') {
+    const AUTH_USER = process.env.AUTH_USER;
+    const AUTH_PASSWORD = process.env.AUTH_PASSWORD;
+    if (AUTH_USER === '') {
+        throw Error("AUTH_USER not defined")
+    }
+    if (AUTH_PASSWORD === '') {
+        throw Error("AUTH_PASSWORD not defined")
+    }
+    app.use(basicAuth({
+        users: { [AUTH_USER]: AUTH_PASSWORD },
+        challenge: true,
+        realm: 'private web site',
+    }))
+}
+
 app.use(serveIndex(rootPath, {
     filter: (filename) => filename != 'images',
     icons: false,
@@ -49,4 +60,5 @@ app.use(servePages)
 
 app.listen(8002, () => {
     console.log('Express Server');
+    console.log('ENVIRONMENT =', process.env.ENVIRONMENT)
 });

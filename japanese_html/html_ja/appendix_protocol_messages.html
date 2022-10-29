@@ -1,0 +1,2011 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="generator" content="Asciidoctor 2.0.16" />
+<title>ワイヤープロトコルメッセージ</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700" />
+<style>
+/*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
+/* Uncomment the following line when using as a custom stylesheet */
+/* @import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700"; */
+html{font-family:sans-serif;-webkit-text-size-adjust:100%}
+a{background:none}
+a:focus{outline:thin dotted}
+a:active,a:hover{outline:0}
+h1{font-size:2em;margin:.67em 0}
+b,strong{font-weight:bold}
+abbr{font-size:.9em}
+abbr[title]{cursor:help;border-bottom:1px dotted #dddddf;text-decoration:none}
+dfn{font-style:italic}
+hr{height:0}
+mark{background:#ff0;color:#000}
+code,kbd,pre,samp{font-family:monospace;font-size:1em}
+pre{white-space:pre-wrap}
+q{quotes:"\201C" "\201D" "\2018" "\2019"}
+small{font-size:80%}
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+sup{top:-.5em}
+sub{bottom:-.25em}
+img{border:0}
+svg:not(:root){overflow:hidden}
+figure{margin:0}
+audio,video{display:inline-block}
+audio:not([controls]){display:none;height:0}
+fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
+legend{border:0;padding:0}
+button,input,select,textarea{font-family:inherit;font-size:100%;margin:0}
+button,input{line-height:normal}
+button,select{text-transform:none}
+button,html input[type=button],input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer}
+button[disabled],html input[disabled]{cursor:default}
+input[type=checkbox],input[type=radio]{padding:0}
+button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
+textarea{overflow:auto;vertical-align:top}
+table{border-collapse:collapse;border-spacing:0}
+*,::before,::after{box-sizing:border-box}
+html,body{font-size:100%}
+body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;line-height:1;position:relative;cursor:auto;-moz-tab-size:4;-o-tab-size:4;tab-size:4;word-wrap:anywhere;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}
+a:hover{cursor:pointer}
+img,object,embed{max-width:100%;height:auto}
+object,embed{height:100%}
+img{-ms-interpolation-mode:bicubic}
+.left{float:left!important}
+.right{float:right!important}
+.text-left{text-align:left!important}
+.text-right{text-align:right!important}
+.text-center{text-align:center!important}
+.text-justify{text-align:justify!important}
+.hide{display:none}
+img,object,svg{display:inline-block;vertical-align:middle}
+textarea{height:auto;min-height:50px}
+select{width:100%}
+.subheader,.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{line-height:1.45;color:#7a2518;font-weight:400;margin-top:0;margin-bottom:.25em}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0}
+a{color:#2156a5;text-decoration:underline;line-height:inherit}
+a:hover,a:focus{color:#1d4b8f}
+a img{border:0}
+p{line-height:1.6;margin-bottom:1.25em;text-rendering:optimizeLegibility}
+p aside{font-size:.875em;line-height:1.35;font-style:italic}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{font-family:"Open Sans","DejaVu Sans",sans-serif;font-weight:300;font-style:normal;color:#ba3925;text-rendering:optimizeLegibility;margin-top:1em;margin-bottom:.5em;line-height:1.0125em}
+h1 small,h2 small,h3 small,#toctitle small,.sidebarblock>.content>.title small,h4 small,h5 small,h6 small{font-size:60%;color:#e99b8f;line-height:0}
+h1{font-size:2.125em}
+h2{font-size:1.6875em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.375em}
+h4,h5{font-size:1.125em}
+h6{font-size:1em}
+hr{border:solid #dddddf;border-width:1px 0 0;clear:both;margin:1.25em 0 1.1875em}
+em,i{font-style:italic;line-height:inherit}
+strong,b{font-weight:bold;line-height:inherit}
+small{font-size:60%;line-height:inherit}
+code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;color:rgba(0,0,0,.9)}
+ul,ol,dl{line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
+ul,ol{margin-left:1.5em}
+ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0}
+ul.square li ul,ul.circle li ul,ul.disc li ul{list-style:inherit}
+ul.square{list-style-type:square}
+ul.circle{list-style-type:circle}
+ul.disc{list-style-type:disc}
+ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
+dl dt{margin-bottom:.3125em;font-weight:bold}
+dl dd{margin-bottom:1.25em}
+blockquote{margin:0 0 1.25em;padding:.5625em 1.25em 0 1.1875em;border-left:1px solid #ddd}
+blockquote,blockquote p{line-height:1.6;color:rgba(0,0,0,.85)}
+@media screen and (min-width:768px){h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2}
+h1{font-size:2.75em}
+h2{font-size:2.3125em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.6875em}
+h4{font-size:1.4375em}}
+table{background:#fff;margin-bottom:1.25em;border:1px solid #dedede;word-wrap:normal}
+table thead,table tfoot{background:#f7f8f7}
+table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:.5em .625em .625em;font-size:inherit;color:rgba(0,0,0,.8);text-align:left}
+table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
+table tr.even,table tr.alt{background:#f8f8f7}
+table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{line-height:1.6}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
+h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
+.center{margin-left:auto;margin-right:auto}
+.stretch{width:100%}
+.clearfix::before,.clearfix::after,.float-group::before,.float-group::after{content:" ";display:table}
+.clearfix::after,.float-group::after{clear:both}
+:not(pre).nobreak{word-wrap:normal}
+:not(pre).nowrap{white-space:nowrap}
+:not(pre).pre-wrap{white-space:pre-wrap}
+:not(pre):not([class^=L])>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background:#f7f7f8;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed}
+pre{color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;line-height:1.45;text-rendering:optimizeSpeed}
+pre code,pre pre{color:inherit;font-size:inherit;line-height:inherit}
+pre>code{display:block}
+pre.nowrap,pre.nowrap pre{white-space:pre;word-wrap:normal}
+em em{font-style:normal}
+strong strong{font-weight:400}
+.keyseq{color:rgba(51,51,51,.8)}
+kbd{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;display:inline-block;color:rgba(0,0,0,.8);font-size:.65em;line-height:1.45;background:#f7f7f7;border:1px solid #ccc;border-radius:3px;box-shadow:0 1px 0 rgba(0,0,0,.2),inset 0 0 0 .1em #fff;margin:0 .15em;padding:.2em .5em;vertical-align:middle;position:relative;top:-.1em;white-space:nowrap}
+.keyseq kbd:first-child{margin-left:0}
+.keyseq kbd:last-child{margin-right:0}
+.menuseq,.menuref{color:#000}
+.menuseq b:not(.caret),.menuref{font-weight:inherit}
+.menuseq{word-spacing:-.02em}
+.menuseq b.caret{font-size:1.25em;line-height:.8}
+.menuseq i.caret{font-weight:bold;text-align:center;width:.45em}
+b.button::before,b.button::after{position:relative;top:-1px;font-weight:400}
+b.button::before{content:"[";padding:0 3px 0 2px}
+b.button::after{content:"]";padding:0 2px 0 3px}
+p a>code:hover{color:rgba(0,0,0,.9)}
+#header,#content,#footnotes,#footer{width:100%;margin:0 auto;max-width:62.5em;*zoom:1;position:relative;padding-left:.9375em;padding-right:.9375em}
+#header::before,#header::after,#content::before,#content::after,#footnotes::before,#footnotes::after,#footer::before,#footer::after{content:" ";display:table}
+#header::after,#content::after,#footnotes::after,#footer::after{clear:both}
+#content{margin-top:1.25em}
+#content::before{content:none}
+#header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
+#header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #dddddf}
+#header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
+#header .details{border-bottom:1px solid #dddddf;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:flex;flex-flow:row wrap}
+#header .details span:first-child{margin-left:-.125em}
+#header .details span.email a{color:rgba(0,0,0,.85)}
+#header .details br{display:none}
+#header .details br+span::before{content:"\00a0\2013\00a0"}
+#header .details br+span.author::before{content:"\00a0\22c5\00a0";color:rgba(0,0,0,.85)}
+#header .details br+span#revremark::before{content:"\00a0|\00a0"}
+#header #revnumber{text-transform:capitalize}
+#header #revnumber::after{content:"\00a0"}
+#content>h1:first-child:not([class]){color:rgba(0,0,0,.85);border-bottom:1px solid #dddddf;padding-bottom:8px;margin-top:0;padding-top:1rem;margin-bottom:1.25rem}
+#toc{border-bottom:1px solid #e7e7e9;padding-bottom:.5em}
+#toc>ul{margin-left:.125em}
+#toc ul.sectlevel0>li>a{font-style:italic}
+#toc ul.sectlevel0 ul.sectlevel1{margin:.5em 0}
+#toc ul{font-family:"Open Sans","DejaVu Sans",sans-serif;list-style-type:none}
+#toc li{line-height:1.3334;margin-top:.3334em}
+#toc a{text-decoration:none}
+#toc a:active{text-decoration:underline}
+#toctitle{color:#7a2518;font-size:1.2em}
+@media screen and (min-width:768px){#toctitle{font-size:1.375em}
+body.toc2{padding-left:15em;padding-right:0}
+#toc.toc2{margin-top:0!important;background:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #e7e7e9;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
+#toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
+#toc.toc2>ul{font-size:.9em;margin-bottom:0}
+#toc.toc2 ul ul{margin-left:0;padding-left:1em}
+#toc.toc2 ul.sectlevel0 ul.sectlevel1{padding-left:0;margin-top:.5em;margin-bottom:.5em}
+body.toc2.toc-right{padding-left:0;padding-right:15em}
+body.toc2.toc-right #toc.toc2{border-right-width:0;border-left:1px solid #e7e7e9;left:auto;right:0}}
+@media screen and (min-width:1280px){body.toc2{padding-left:20em;padding-right:0}
+#toc.toc2{width:20em}
+#toc.toc2 #toctitle{font-size:1.375em}
+#toc.toc2>ul{font-size:.95em}
+#toc.toc2 ul ul{padding-left:1.25em}
+body.toc2.toc-right{padding-left:0;padding-right:20em}}
+#content #toc{border:1px solid #e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;border-radius:4px}
+#content #toc>:first-child{margin-top:0}
+#content #toc>:last-child{margin-bottom:0}
+#footer{max-width:none;background:rgba(0,0,0,.8);padding:1.25em}
+#footer-text{color:hsla(0,0%,100%,.8);line-height:1.44}
+#content{margin-bottom:.625em}
+.sect1{padding-bottom:.625em}
+@media screen and (min-width:768px){#content{margin-bottom:1.25em}
+.sect1{padding-bottom:1.25em}}
+.sect1:last-child{padding-bottom:0}
+.sect1+.sect1{border-top:1px solid #e7e7e9}
+#content h1>a.anchor,h2>a.anchor,h3>a.anchor,#toctitle>a.anchor,.sidebarblock>.content>.title>a.anchor,h4>a.anchor,h5>a.anchor,h6>a.anchor{position:absolute;z-index:1001;width:1.5ex;margin-left:-1.5ex;display:block;text-decoration:none!important;visibility:hidden;text-align:center;font-weight:400}
+#content h1>a.anchor::before,h2>a.anchor::before,h3>a.anchor::before,#toctitle>a.anchor::before,.sidebarblock>.content>.title>a.anchor::before,h4>a.anchor::before,h5>a.anchor::before,h6>a.anchor::before{content:"\00A7";font-size:.85em;display:block;padding-top:.1em}
+#content h1:hover>a.anchor,#content h1>a.anchor:hover,h2:hover>a.anchor,h2>a.anchor:hover,h3:hover>a.anchor,#toctitle:hover>a.anchor,.sidebarblock>.content>.title:hover>a.anchor,h3>a.anchor:hover,#toctitle>a.anchor:hover,.sidebarblock>.content>.title>a.anchor:hover,h4:hover>a.anchor,h4>a.anchor:hover,h5:hover>a.anchor,h5>a.anchor:hover,h6:hover>a.anchor,h6>a.anchor:hover{visibility:visible}
+#content h1>a.link,h2>a.link,h3>a.link,#toctitle>a.link,.sidebarblock>.content>.title>a.link,h4>a.link,h5>a.link,h6>a.link{color:#ba3925;text-decoration:none}
+#content h1>a.link:hover,h2>a.link:hover,h3>a.link:hover,#toctitle>a.link:hover,.sidebarblock>.content>.title>a.link:hover,h4>a.link:hover,h5>a.link:hover,h6>a.link:hover{color:#a53221}
+details,.audioblock,.imageblock,.literalblock,.listingblock,.stemblock,.videoblock{margin-bottom:1.25em}
+details{margin-left:1.25rem}
+details>summary{cursor:pointer;display:block;position:relative;line-height:1.6;margin-bottom:.625rem;-webkit-tap-highlight-color:transparent}
+details>summary::before{content:"";border:solid transparent;border-left:solid;border-width:.3em 0 .3em .5em;position:absolute;top:.5em;left:-1.25rem;transform:translateX(15%)}
+details[open]>summary::before{border:solid transparent;border-top:solid;border-width:.5em .3em 0;transform:translateY(15%)}
+details>summary::after{content:"";width:1.25rem;height:1em;position:absolute;top:.3em;left:-1.25rem}
+.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{text-rendering:optimizeLegibility;text-align:left;font-family:"Noto Serif","DejaVu Serif",serif;font-size:1rem;font-style:italic}
+table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
+.paragraph.lead>p,#preamble>.sectionbody>[class=paragraph]:first-of-type p{font-size:1.21875em;line-height:1.6;color:rgba(0,0,0,.85)}
+.admonitionblock>table{border-collapse:separate;border:0;background:none;width:100%}
+.admonitionblock>table td.icon{text-align:center;width:80px}
+.admonitionblock>table td.icon img{max-width:none}
+.admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
+.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #dddddf;color:rgba(0,0,0,.6);word-wrap:anywhere}
+.admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
+.exampleblock>.content{border:1px solid #e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;border-radius:4px}
+.exampleblock>.content>:first-child{margin-top:0}
+.exampleblock>.content>:last-child{margin-bottom:0}
+.sidebarblock{border:1px solid #dbdbd6;margin-bottom:1.25em;padding:1.25em;background:#f3f3f2;border-radius:4px}
+.sidebarblock>:first-child{margin-top:0}
+.sidebarblock>:last-child{margin-bottom:0}
+.sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
+.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
+.literalblock pre,.listingblock>.content>pre{border-radius:4px;overflow-x:auto;padding:1em;font-size:.8125em}
+@media screen and (min-width:768px){.literalblock pre,.listingblock>.content>pre{font-size:.90625em}}
+@media screen and (min-width:1280px){.literalblock pre,.listingblock>.content>pre{font-size:1em}}
+.literalblock pre,.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class=highlight],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
+.literalblock.output pre{color:#f7f7f8;background:rgba(0,0,0,.9)}
+.listingblock>.content{position:relative}
+.listingblock code[data-lang]::before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:inherit;opacity:.5}
+.listingblock:hover code[data-lang]::before{display:block}
+.listingblock.terminal pre .command::before{content:attr(data-prompt);padding-right:.5em;color:inherit;opacity:.5}
+.listingblock.terminal pre .command:not([data-prompt])::before{content:"$"}
+.listingblock pre.highlightjs{padding:0}
+.listingblock pre.highlightjs>code{padding:1em;border-radius:4px}
+.listingblock pre.prettyprint{border-width:0}
+.prettyprint{background:#f7f7f8}
+pre.prettyprint .linenums{line-height:1.45;margin-left:2em}
+pre.prettyprint li{background:none;list-style-type:inherit;padding-left:0}
+pre.prettyprint li code[data-lang]::before{opacity:1}
+pre.prettyprint li:not(:first-child) code[data-lang]::before{display:none}
+table.linenotable{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.linenotable td[class]{color:inherit;vertical-align:top;padding:0;line-height:inherit;white-space:normal}
+table.linenotable td.code{padding-left:.75em}
+table.linenotable td.linenos{border-right:1px solid;opacity:.35;padding-right:.5em}
+pre.pygments .lineno{border-right:1px solid;opacity:.35;display:inline-block;margin-right:.75em}
+pre.pygments .lineno::before{content:"";margin-right:-.125em}
+.quoteblock{margin:0 1em 1.25em 1.5em;display:table}
+.quoteblock:not(.excerpt)>.title{margin-left:-1.5em;margin-bottom:.75em}
+.quoteblock blockquote,.quoteblock p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
+.quoteblock blockquote{margin:0;padding:0;border:0}
+.quoteblock blockquote::before{content:"\201c";float:left;font-size:2.75em;font-weight:bold;line-height:.6em;margin-left:-.6em;color:#7a2518;text-shadow:0 1px 2px rgba(0,0,0,.1)}
+.quoteblock blockquote>.paragraph:last-child p{margin-bottom:0}
+.quoteblock .attribution{margin-top:.75em;margin-right:.5ex;text-align:right}
+.verseblock{margin:0 1em 1.25em}
+.verseblock pre{font-family:"Open Sans","DejaVu Sans",sans-serif;font-size:1.15rem;color:rgba(0,0,0,.85);font-weight:300;text-rendering:optimizeLegibility}
+.verseblock pre strong{font-weight:400}
+.verseblock .attribution{margin-top:1.25rem;margin-left:.5ex}
+.quoteblock .attribution,.verseblock .attribution{font-size:.9375em;line-height:1.45;font-style:italic}
+.quoteblock .attribution br,.verseblock .attribution br{display:none}
+.quoteblock .attribution cite,.verseblock .attribution cite{display:block;letter-spacing:-.025em;color:rgba(0,0,0,.6)}
+.quoteblock.abstract blockquote::before,.quoteblock.excerpt blockquote::before,.quoteblock .quoteblock blockquote::before{display:none}
+.quoteblock.abstract blockquote,.quoteblock.abstract p,.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{line-height:1.6;word-spacing:0}
+.quoteblock.abstract{margin:0 1em 1.25em;display:block}
+.quoteblock.abstract>.title{margin:0 0 .375em;font-size:1.15em;text-align:center}
+.quoteblock.excerpt>blockquote,.quoteblock .quoteblock{padding:0 0 .25em 1em;border-left:.25em solid #dddddf}
+.quoteblock.excerpt,.quoteblock .quoteblock{margin-left:0}
+.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{color:inherit;font-size:1.0625rem}
+.quoteblock.excerpt .attribution,.quoteblock .quoteblock .attribution{color:inherit;font-size:.85rem;text-align:left;margin-right:0}
+p.tableblock:last-child{margin-bottom:0}
+td.tableblock>.content{margin-bottom:1.25em;word-wrap:anywhere}
+td.tableblock>.content>:last-child{margin-bottom:-1.25em}
+table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
+table.grid-all>*>tr>*{border-width:1px}
+table.grid-cols>*>tr>*{border-width:0 1px}
+table.grid-rows>*>tr>*{border-width:1px 0}
+table.frame-all{border-width:1px}
+table.frame-ends{border-width:1px 0}
+table.frame-sides{border-width:0 1px}
+table.frame-none>colgroup+*>:first-child>*,table.frame-sides>colgroup+*>:first-child>*{border-top-width:0}
+table.frame-none>:last-child>:last-child>*,table.frame-sides>:last-child>:last-child>*{border-bottom-width:0}
+table.frame-none>*>tr>:first-child,table.frame-ends>*>tr>:first-child{border-left-width:0}
+table.frame-none>*>tr>:last-child,table.frame-ends>*>tr>:last-child{border-right-width:0}
+table.stripes-all tr,table.stripes-odd tr:nth-of-type(odd),table.stripes-even tr:nth-of-type(even),table.stripes-hover tr:hover{background:#f8f8f7}
+th.halign-left,td.halign-left{text-align:left}
+th.halign-right,td.halign-right{text-align:right}
+th.halign-center,td.halign-center{text-align:center}
+th.valign-top,td.valign-top{vertical-align:top}
+th.valign-bottom,td.valign-bottom{vertical-align:bottom}
+th.valign-middle,td.valign-middle{vertical-align:middle}
+table thead th,table tfoot th{font-weight:bold}
+tbody tr th{background:#f7f8f7}
+tbody tr th,tbody tr th p,tfoot tr th,tfoot tr th p{color:rgba(0,0,0,.8);font-weight:bold}
+p.tableblock>code:only-child{background:none;padding:0}
+p.tableblock{font-size:1em}
+ol{margin-left:1.75em}
+ul li ol{margin-left:1.5em}
+dl dd{margin-left:1.125em}
+dl dd:last-child,dl dd:last-child>:last-child{margin-bottom:0}
+ol>li p,ul>li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
+ul.checklist,ul.none,ol.none,ul.no-bullet,ol.no-bullet,ol.unnumbered,ul.unstyled,ol.unstyled{list-style-type:none}
+ul.no-bullet,ol.no-bullet,ol.unnumbered{margin-left:.625em}
+ul.unstyled,ol.unstyled{margin-left:0}
+ul.checklist>li>p:first-child{margin-left:-1em}
+ul.checklist>li>p:first-child>.fa-square-o:first-child,ul.checklist>li>p:first-child>.fa-check-square-o:first-child{width:1.25em;font-size:.8em;position:relative;bottom:.125em}
+ul.checklist>li>p:first-child>input[type=checkbox]:first-child{margin-right:.25em}
+ul.inline{display:flex;flex-flow:row wrap;list-style:none;margin:0 0 .625em -1.25em}
+ul.inline>li{margin-left:1.25em}
+.unstyled dl dt{font-weight:400;font-style:normal}
+ol.arabic{list-style-type:decimal}
+ol.decimal{list-style-type:decimal-leading-zero}
+ol.loweralpha{list-style-type:lower-alpha}
+ol.upperalpha{list-style-type:upper-alpha}
+ol.lowerroman{list-style-type:lower-roman}
+ol.upperroman{list-style-type:upper-roman}
+ol.lowergreek{list-style-type:lower-greek}
+.hdlist>table,.colist>table{border:0;background:none}
+.hdlist>table>tbody>tr,.colist>table>tbody>tr{background:none}
+td.hdlist1,td.hdlist2{vertical-align:top;padding:0 .625em}
+td.hdlist1{font-weight:bold;padding-bottom:1.25em}
+td.hdlist2{word-wrap:anywhere}
+.literalblock+.colist,.listingblock+.colist{margin-top:-.5em}
+.colist td:not([class]):first-child{padding:.4em .75em 0;line-height:1;vertical-align:top}
+.colist td:not([class]):first-child img{max-width:none}
+.colist td:not([class]):last-child{padding:.25em 0}
+.thumb,.th{line-height:0;display:inline-block;border:4px solid #fff;box-shadow:0 0 0 1px #ddd}
+.imageblock.left{margin:.25em .625em 1.25em 0}
+.imageblock.right{margin:.25em 0 1.25em .625em}
+.imageblock>.title{margin-bottom:0}
+.imageblock.thumb,.imageblock.th{border-width:6px}
+.imageblock.thumb>.title,.imageblock.th>.title{padding:0 .125em}
+.image.left,.image.right{margin-top:.25em;margin-bottom:.25em;display:inline-block;line-height:0}
+.image.left{margin-right:.625em}
+.image.right{margin-left:.625em}
+a.image{text-decoration:none;display:inline-block}
+a.image object{pointer-events:none}
+sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
+sup.footnote a,sup.footnoteref a{text-decoration:none}
+sup.footnote a:active,sup.footnoteref a:active{text-decoration:underline}
+#footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
+#footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em;border-width:1px 0 0}
+#footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;margin-bottom:.2em}
+#footnotes .footnote a:first-of-type{font-weight:bold;text-decoration:none;margin-left:-1.05em}
+#footnotes .footnote:last-of-type{margin-bottom:0}
+#content #footnotes{margin-top:-.625em;margin-bottom:0;padding:.75em 0}
+.gist .file-data>table{border:0;background:#fff;width:100%;margin-bottom:0}
+.gist .file-data>table td.line-data{width:99%}
+div.unbreakable{page-break-inside:avoid}
+.big{font-size:larger}
+.small{font-size:smaller}
+.underline{text-decoration:underline}
+.overline{text-decoration:overline}
+.line-through{text-decoration:line-through}
+.aqua{color:#00bfbf}
+.aqua-background{background:#00fafa}
+.black{color:#000}
+.black-background{background:#000}
+.blue{color:#0000bf}
+.blue-background{background:#0000fa}
+.fuchsia{color:#bf00bf}
+.fuchsia-background{background:#fa00fa}
+.gray{color:#606060}
+.gray-background{background:#7d7d7d}
+.green{color:#006000}
+.green-background{background:#007d00}
+.lime{color:#00bf00}
+.lime-background{background:#00fa00}
+.maroon{color:#600000}
+.maroon-background{background:#7d0000}
+.navy{color:#000060}
+.navy-background{background:#00007d}
+.olive{color:#606000}
+.olive-background{background:#7d7d00}
+.purple{color:#600060}
+.purple-background{background:#7d007d}
+.red{color:#bf0000}
+.red-background{background:#fa0000}
+.silver{color:#909090}
+.silver-background{background:#bcbcbc}
+.teal{color:#006060}
+.teal-background{background:#007d7d}
+.white{color:#bfbfbf}
+.white-background{background:#fafafa}
+.yellow{color:#bfbf00}
+.yellow-background{background:#fafa00}
+span.icon>.fa{cursor:default}
+a span.icon>.fa{cursor:inherit}
+.admonitionblock td.icon [class^="fa icon-"]{font-size:2.5em;text-shadow:1px 1px 2px rgba(0,0,0,.5);cursor:default}
+.admonitionblock td.icon .icon-note::before{content:"\f05a";color:#19407c}
+.admonitionblock td.icon .icon-tip::before{content:"\f0eb";text-shadow:1px 1px 2px rgba(155,155,0,.8);color:#111}
+.admonitionblock td.icon .icon-warning::before{content:"\f071";color:#bf6900}
+.admonitionblock td.icon .icon-caution::before{content:"\f06d";color:#bf3400}
+.admonitionblock td.icon .icon-important::before{content:"\f06a";color:#bf0000}
+.conum[data-value]{display:inline-block;color:#fff!important;background:rgba(0,0,0,.8);border-radius:50%;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
+.conum[data-value] *{color:#fff!important}
+.conum[data-value]+b{display:none}
+.conum[data-value]::after{content:attr(data-value)}
+pre .conum[data-value]{position:relative;top:-.125em}
+b.conum *{color:inherit!important}
+.conum:not([data-value]):empty{display:none}
+dt,th.tableblock,td.content,div.footnote{text-rendering:optimizeLegibility}
+h1,h2,p,td.content,span.alt,summary{letter-spacing:-.01em}
+p strong,td.content strong,div.footnote strong{letter-spacing:-.005em}
+p,blockquote,dt,td.content,span.alt,summary{font-size:1.0625rem}
+p{margin-bottom:1.25rem}
+.sidebarblock p,.sidebarblock dt,.sidebarblock td.content,p.tableblock{font-size:1em}
+.exampleblock>.content{background:#fffef7;border-color:#e0e0dc;box-shadow:0 1px 4px #e0e0dc}
+.print-only{display:none!important}
+@page{margin:1.25cm .75cm}
+@media print{*{box-shadow:none!important;text-shadow:none!important}
+html{font-size:80%}
+a{color:inherit!important;text-decoration:underline!important}
+a.bare,a[href^="#"],a[href^="mailto:"]{text-decoration:none!important}
+a[href^="http:"]:not(.bare)::after,a[href^="https:"]:not(.bare)::after{content:"(" attr(href) ")";display:inline-block;font-size:.875em;padding-left:.25em}
+abbr[title]{border-bottom:1px dotted}
+abbr[title]::after{content:" (" attr(title) ")"}
+pre,blockquote,tr,img,object,svg{page-break-inside:avoid}
+thead{display:table-header-group}
+svg{max-width:100%}
+p,blockquote,dt,td.content{font-size:1em;orphans:3;widows:3}
+h2,h3,#toctitle,.sidebarblock>.content>.title{page-break-after:avoid}
+#header,#content,#footnotes,#footer{max-width:none}
+#toc,.sidebarblock,.exampleblock>.content{background:none!important}
+#toc{border-bottom:1px solid #dddddf!important;padding-bottom:0!important}
+body.book #header{text-align:center}
+body.book #header>h1:first-child{border:0!important;margin:2.5em 0 1em}
+body.book #header .details{border:0!important;display:block;padding:0!important}
+body.book #header .details span:first-child{margin-left:0!important}
+body.book #header .details br{display:block}
+body.book #header .details br+span::before{content:none!important}
+body.book #toc{border:0!important;text-align:left!important;padding:0!important;margin:0!important}
+body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-break-before:always}
+.listingblock code[data-lang]::before{display:block}
+#footer{padding:0 .9375em}
+.hide-on-print{display:none!important}
+.print-only{display:block!important}
+.hide-for-print{display:none!important}
+.show-for-print{display:inherit!important}}
+@media amzn-kf8,print{#header>h1:first-child{margin-top:1.25rem}
+.sect1{padding:0!important}
+.sect1+.sect1{border:0}
+#footer{background:none}
+#footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
+@media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
+</style>
+</head>
+<body class="article">
+<div id="header">
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="messages">付録A：ワイヤープロトコルメッセージ</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>この付録では、ライトニングP2Pプロトコルで使用される現在定義されているすべてのメッセージタイプをリストアップしています。さらに、各メッセージの構造を示し、プロトコルフローに基づきメッセージを論理的にグループ化します。</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">備考</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Lightning Protocolのメッセージは拡張可能であり、ネットワーク全体のアップグレード時にその構造が変更される可能性があります。信頼できる情報については、<a href="https://github.com/lightningnetwork/lightning-rfc">GitHub Lightning-RFC</a>リポジトリにある最新版のBOLTsを参照してください。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_message_types">メッセージの種類</h3>
+<div class="paragraph">
+<p>現在定義されているメッセージの種類は、「<a href="#apdx_message_types">メッセージの種類</a>」に記載されています。</p>
+</div>
+<table id="apdx_message_types" class="tableblock frame-all grid-all stretch">
+<caption class="title">表1.メッセージの種類</caption>
+<colgroup>
+<col style="width: 33.3333%;" />
+<col style="width: 33.3333%;" />
+<col style="width: 33.3334%;" />
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">整数型</th>
+<th class="tableblock halign-left valign-top">メッセージ名</th>
+<th class="tableblock halign-left valign-top">カテゴリー</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">16</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>イニット</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">接続の確立</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">17</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>失態</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">エラー通信</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">18</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ビュッ</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">コネクション・ライブネス</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">19</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ポン</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">コネクション・ライブネス</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">32</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>オープンチャンネル</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">チャネルファンディング</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">33</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>アクセプトチャンネル</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">チャネルファンディング</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">34</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ファンディングの作成</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">チャネルファンディング</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">35</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>funding_signed</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">チャネルファンディング</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">36</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ファンディングロック</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">チャネルファンディング＋チャネルオペレーション</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">38</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>シャットダウン</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">チャネルクロージング</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">39</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>署名入り</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">チャネルクロージング</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">128</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>update_add_htlc</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">チャンネル操作</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">130</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>update_fulfill_hltc</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">チャンネル操作</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">131</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>update_fail_htlc</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">チャンネル操作</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">132</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>commit_sig</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">チャンネル操作</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">133</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>revoke_and_ack</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">チャンネル操作</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">134</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>更新料</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">チャンネル操作</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">135</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>update_fail_malformed_htlc</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">チャンネル操作</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">136</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>チャネル再確立</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">チャンネル操作</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">256</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>チャネルアナウンス</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">チャンネル発表</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">257</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ノードアナウンス</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">チャンネル発表</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">258</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>チャンネル更新</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">チャンネル発表</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">259</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>アナウンスサインズ</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">チャンネル発表</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">261</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>クエリ_ショート_チャン_イド</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">チャンネルグラフの同期</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">262</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>reply_short_chan_ids_end</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">チャンネルグラフの同期</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">263</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>クエリチャンネルレンジ</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">チャンネルグラフの同期</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">264</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>reply_channel_range</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">チャンネルグラフの同期</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">265</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>gossip_timestamp_range</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">チャンネルグラフの同期</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p><a href="#message_types">message_types]</a>では、<code>Category</code>フィールドによって、プロトコル自体の機能に基づいて、メッセージを素早く分類することができます。
+メッセージは、プロトコル自体の機能に基づいて素早く分類することができます。高いレベルでは
+を含む8つのバケツ（非網羅的）のうちの1つにメッセージを配置します。</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">接続の確立</dt>
+<dd>
+<p>ピアツーピア接続が最初に確立されたときに送信されます。
+確立されたときに送信されます。また、新しい接続でサポートされる機能のセットをネゴシエートするため
+新しい接続でサポートされる機能のセットを交渉するためにも使用されます。</p>
+</dd>
+<dt class="hdlist1">エラー通信</dt>
+<dd>
+<p>ピアがプロトコルレベルのエラーの発生を伝達するために使用する。
+プロトコルレベルのエラーの発生を相互に伝達するためにピアによって使用される。</p>
+</dd>
+<dt class="hdlist1">コネクション・ライブネス</dt>
+<dd>
+<p>ピアが、指定されたトランスポート接続がまだ生きていることを確認するために使用される
+接続がまだ生きていることを確認するためにピアによって使用されます。</p>
+</dd>
+<dt class="hdlist1">チャネルファンディング</dt>
+<dd>
+<p>ピアが新しい決済チャネルを作成するために使用します。この
+このプロセスは、チャネルファンディングプロセスとも呼ばれます。</p>
+</dd>
+<dt class="hdlist1">チャンネル操作</dt>
+<dd>
+<p>オフチェーンで所定のチャンネルを更新する行為。これには
+これには、支払いの送受信や、ネットワーク内での支払いの転送など
+ネットワーク内の</p>
+</dd>
+<dt class="hdlist1">チャンネル発表</dt>
+<dd>
+<p>新しいパブリックチャネルをネットワークに通知するプロセス。
+ルーティングのために使用できるように、より広いネットワークに新しいパブリックチャネルを発表するプロセス。</p>
+</dd>
+<dt class="hdlist1">チャンネルグラフの同期</dt>
+<dd>
+<p>チャネルをダウンロードし、検証するプロセスです。
+グラフを表示します。</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>同じカテゴリーに属するメッセージは、通常、隣接するメッセージタイプも共有することに注意
+隣接する<em>メッセージ・タイプも</em>同様に共有されていることに注意してください。これは、仕様の中で意味的に類似したメッセージをグループ化するため
+これは、意味的に類似したメッセージを仕様自体の中でグループ化するためです。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_message_structure">メッセージの構成</h3>
+<div class="paragraph">
+<p>ここで、各メッセージのカテゴリーを詳しく説明し、LNで定義されたすべてのメッセージの正確な構造と意味を定義する。
+LNプロトコル内で定義されたすべてのメッセージの正確な構造とセマンティクスを定義するために、各メッセージの詳細を説明します。
+プロトコルで定義されたすべてのメッセージの正確な構造とセマンティクスを定義するためです。</p>
+</div>
+<div class="sect3">
+<h4 id="_connection_establishment_messages">接続確立メッセージ</h4>
+<div class="paragraph">
+<p>このカテゴリのメッセージは、トランスポート接続が確立されると、ピア間で送信される最初のメッセー ジである。
+このカテゴリのメッセージは、トランスポート接続を確立したときにピア間で送信される最初のメッセージです。この章を執筆している時点では、このカテゴリのメッセージは1つしか存在しない。
+は、このカテゴリーに属する1つのメッセージ、<code>init</code>メッセージしか存在しません。
+<code>init</code>メッセージは、接続が最初に確立されると、接続の<em>両側から</em>送信される。
+initメッセージは、接続が最初に確立されると、接続の両側から送信されます。他のメッセージは、<code>init</code>メッセージが双方から送信される前に送信されることはありません。
+を送信する前に、他のメッセージを送信することはできません。</p>
+</div>
+<div class="sect4">
+<h5 id="apdx_init_message">initメッセージ</h5>
+<div class="paragraph">
+<p><code>init</code>メッセージの構造は以下のように定義される。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>タイプ16</p>
+</li>
+<li>
+<p>フィールズ</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>uint16</code>:<code>global_features_len</code></p>
+</li>
+<li>
+<p><code>global_features_len*byte</code>:<code>global_features</code></p>
+</li>
+<li>
+<p><code>uint16</code>:<code>features_len</code></p>
+</li>
+<li>
+<p><code>features_len*byte</code>:<code>機能</code></p>
+</li>
+<li>
+<p><code>tlv_stream_tlvs</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>構造的には、<code>init</code>メッセージは2つの可変サイズバイトスライスで構成されています。
+から構成され、それぞれが<em>特徴ビットの</em>セットを格納します。<a href="#feature_bits">feature_bits]</a>で見たように、機能ビットはプロトコル内で使用されるプリミティブで
+プロトコルで使用されるプリミティブで、ノードが理解するプロトコル機能(feature)
+ノードの理解する機能(オプション機能)または要求する機能(必須機能)のセットを宣伝するために、プロトコル内で使用されるプリミティブです。
+機能)を告知するためのプリミティブである。</p>
+</div>
+<div class="paragraph">
+<p>最近のノード実装では、<code>features</code>フィールドのみを使用し、global_featuresベクトル内のアイテムは主に歴史的なものとして使用されることに注意してください。
+項目は、主に<em>歴史的な</em>目的（後方互換性）のために<code>global_features</code>ベクター内に存在します。
+に存在することに注意してください (後方互換性)。</p>
+</div>
+<div class="paragraph">
+<p>コア・メッセージの後に続くのは、将来的に前方および後方互換性のある方法でメッセージを拡張するために使用できる一連のTLV（Type-Length-Value）レコードである。TLVレコードが何であるか、そしてどのように使用されるかについては、この付録の後半で説明する。
+この付録で後ほど説明する。</p>
+</div>
+<div class="paragraph">
+<p><code>init</code>メッセージはその後、ピアによって検査され、オプションの必要な機能のセットに基づいて
+接続が正しく定義されているかどうかを判断します。
+ビットに基づき、接続が適切に定義されているかどうかを判断します。</p>
+</div>
+<div class="paragraph">
+<p>オプション機能とは、ピアはその機能について知っているが、新しい接続の操作に重要でないこと
+新しい接続の操作に重要であるとは考えていないことを意味します。オプション機能の例としては
+例えば、既存のメッセージに新しく追加されたフィールドのセマンティクスを理解する機能などです。
+のセマンティクスを理解する機能などです。</p>
+</div>
+<div class="paragraph">
+<p>一方、必須機能は、相手ピアがその機能を知らない場合、接続がうまく定義されていないことを示します。
+を知らない場合、その接続は十分に定義されていないことを示します。そのような機能の例として
+このような機能の例としては、プロトコル内の理論的な新しいチャネルタイプが挙げられます。
+相手がこの機能を知らない場合、接続を維持することはできません。
+この機能を相手が知らない場合、新しい優先チャネルタイプを開くことができないので、接続を維持することはできません。</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_error_communication_messages">通信エラーメッセージ</h4>
+<div class="paragraph">
+<p>このカテゴリのメッセージは、2つのピア間で接続レベルのエラーを送信するために使用されます。
+このカテゴリのメッセージは、2つのピア間の接続レベルのエラーを送信するために使用されます。プロトコルにはもう一つのタイプのエラーが存在します。
+HTLCフォワーディングレベルエラーです。コネクションレベルエラーは、次のようなことを知らせるかもしれません。
+フィーチャービットの非互換性、<em>強制終了の</em>意図(一方的に最新の署名付きコミットメントをブロードキャスト)
+をブロードキャストする)。</p>
+</div>
+<div class="sect4">
+<h5 id="apdx_error_message">エラーメッセージ</h5>
+<div class="paragraph">
+<p>このカテゴリの唯一のメッセージは、<code>エラーメッセージ</code>です。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>タイプ17</p>
+</li>
+<li>
+<p>フィールズ</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>channel_id</code>:<code>チャンネルID</code></p>
+</li>
+<li>
+<p><code>uint16</code>:<code>data_len</code></p>
+</li>
+<li>
+<p><code>data_len*byte</code>:<code>データ</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><code>エラーメッセージは</code>、特定のチャネルの範囲内で次のように送信できます。
+<code>を</code>そのチャネルの<code>チャネルIDに</code>設定することで、特定のチャネルの範囲内でエラーメッセージを送信することができます。
+を設定することで、特定のチャネルの範囲内でエラーメッセージを送信することができます。あるいは、エラーが接続全体に適用される場合は、channel_id フィールドをすべてゼロに設定する。
+この場合、<code>channel_id</code>フィールドはすべて 0 に設定される。このオールゼロ
+<code>channel_id</code>は、エラーの接続レベル識別子としても知られている。</p>
+</div>
+<div class="paragraph">
+<p>エラーの性質によっては、チャネルを持つピアに<code>エラーメッセージを</code>送信することで、チャネルを継続できないことを示します。
+にエラーメッセージを送信すると、チャネルを継続できないことを示す場合があります。
+そのため、その時点ではチャネルの最新のコミットメント状態をブロードキャストすることで、チャネルを強制終了することが唯一の選択肢となります。
+その時点で唯一の選択肢は、チャネルの最新のコミットメント状態をブロードキャストすることによって、チャネルを強制的に閉じることです。</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_connection_liveness">コネクション・ライブネス</h4>
+<div class="paragraph">
+<p>このセクションのメッセージは、接続がまだ生きているかどうかを調べるために使用されます。
+を調べるために使用されます。LNプロトコルは、メッセージの送信に使用される基礎となるトランスポートをある程度抽象化するため
+LNプロトコルは、メッセージの送信に使用されるトランスポートをある程度抽象化するため、プロトコル・レベルの<code>ping</code>およびpongメッセージのセットが定義されています。
+と<code>pong</code>メッセージが定義されています。</p>
+</div>
+<div class="sect4">
+<h5 id="apdx_ping_message">Pingメッセージ</h5>
+<div class="paragraph">
+<p><code>ping</code>メッセージは、接続中の相手が "ライブ "であるかどうかを確認するために使用されます。以下のフィールドを含む。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>タイプ18</p>
+</li>
+<li>
+<p>フィールズ</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>uint16</code>:<code>num_pong_bytes</code></p>
+</li>
+<li>
+<p><code>uint16</code>:<code>ping_body_len</code></p>
+</li>
+<li>
+<p><code>ping_body_len*bytes</code>:<code>ping_body</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>次にその仲間である<code>ポンメッセージ</code>。</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="apdx_pong_message">ポンのメッセージ</h5>
+<div class="paragraph">
+<p>pongメッセージは、pingメッセージの応答として送信され、以下のフィールドを含む。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>タイプ19</p>
+</li>
+<li>
+<p>フィールズ</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>uint16</code>:<code>pong_body_len</code></p>
+</li>
+<li>
+<p><code>ping_body_len*bytes</code>:<code>pong_body</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><code>Ping</code>メッセージは、どちらの当事者からもいつでも送信することができます。</p>
+</div>
+<div class="paragraph">
+<p><code>ping</code>メッセージには<code>num_pong_bytes</code>フィールドがあり、これは受信ノードに対して、pongで送信するペイロードの大きさを指示するために使用されます。
+このフィールドは、受信ノードが<code>pong</code>メッセージで送信するペイロードの大きさを指示するために使用されます。
+フィールドがあります。<code>ping</code>メッセージには、<code>ping_bodyという</code>不透明なバイト群も含まれており、このバイト群は安全に無視することができます。
+も含まれており、これは安全に無視することができます。これは送信者が送信する<code>ping</code>メッセージのパディングを可能にするためだけのものです。
+送信者が送信するPingメッセージを水増しするのに役立つだけであり、これは特定の
+これは、ワイヤ上のパケットサイズに基づく特定の匿名化技術を阻止しようとするのに役立ちます。</p>
+</div>
+<div class="paragraph">
+<p><code>pong</code>メッセージは、受信した<code>ping</code>メッセージに応答して送信する必要があります。受信側は
+受信者は<code>num_pong_bytesの</code>ランダムバイトを読み込んで、pong_bodyフィールドとして送り返す必要がある。
+<code>pong_body</code>フィールドとして送り返す。これらのフィールド/メッセージを巧みに利用することで、プライバシーを意識したルーティングノードが
+これらのフィールド/メッセージを巧みに使用することで、プライバシーを意識したルーティングノードが、ある種のネットワークの匿名化解除の試みを阻止することができるかもしれない。
+これらのフィールド/メッセージを巧みに使用することで、プライバシーを重視するルーティングノードが、ある種のネットワーク上の匿名化解除の試みを阻止しようとすることができる。
+これらのフィールド/メッセージを巧みに使用することで、プライバシーを意識したルーティングノードが、送信されたパケットサイズに基づいて他のメッセージに似せた「偽の」トランスクリプトを作成できるため、ある種のネットワークの匿名化解除の試みを阻止することができる。デフォルトで
+ライトニングネットワークはデフォルトで<em>暗号化された</em>トランスポートを使用するため、パッシブネットワークモニタ
+はプレーンテキストのバイトを読み取ることができないため、タイミングとパケットサイズだけで
+のみです。</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_channel_funding">チャネルファンディング</h4>
+<div class="paragraph">
+<p>さらに進むと、Lightningプロトコルの機能、セマンティクスを支配するコアメッセージの領域に入ります。
+の機能性とセマンティクスの領域に入ります。このセクションでは
+新しいチャネルを作成するプロセスで送信されるメッセージについて説明します。ここでは
+の詳細な分析は[payment_channels]に任せるため、使用されるフィールドのみを説明します。
+資金調達プロセスの詳細な分析は<a href="#payment_channels">[payment_channels]</a> に任せます。</p>
+</div>
+<div class="paragraph">
+<p>チャネルの資金調達フローで送信されるメッセージは、次の5つのメッセージに属します。
+5つのメッセージのセット:<code>open_channel</code>,<code>accept_channel</code>,<code>funding_created</code>,
+<code>funding_signed</code>、および<code>funding_locked</code>です。</p>
+</div>
+<div class="paragraph">
+<p>これらのメッセージを使用した詳細なプロトコルフローは、<a href="#payment_channels">[payment_channels]</a>で説明されています。</p>
+</div>
+<div class="sect4">
+<h5 id="apdx_open_channel_message">open_channel メッセージ</h5>
+<div class="paragraph">
+<p>open_channel メッセージはチャネルの資金調達プロセスを開始し、以下のフィールドを含む。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>タイプ32</p>
+</li>
+<li>
+<p>フィールズ</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>chain_hash</code>:<code>チェーンハッシュ</code></p>
+</li>
+<li>
+<p><code>32*byte</code>:<code>temp_chan_id</code></p>
+</li>
+<li>
+<p><code>uint64</code>:<code>ファンディングサトシズ</code></p>
+</li>
+<li>
+<p><code>uint64</code>:<code>push_msat</code></p>
+</li>
+<li>
+<p><code>uint64</code>:<code>ダストリミット・サトシ</code></p>
+</li>
+<li>
+<p><code>uint64</code>:<code>max_htlc_value_in_flight_msat</code></p>
+</li>
+<li>
+<p><code>uint64</code>:<code>チャンネルリザーブサトシズ</code></p>
+</li>
+<li>
+<p><code>uint64</code>:<code>htlc_minimum_msat</code></p>
+</li>
+<li>
+<p><code>uint32</code>:<code>feerate_per_kw</code></p>
+</li>
+<li>
+<p><code>uint16</code>:<code>to_self_delay</code>。</p>
+</li>
+<li>
+<p><code>uint16</code>:<code>max_accepted_htlcs</code></p>
+</li>
+<li>
+<p><code>パブキー</code>:<code>funding_pubkey</code></p>
+</li>
+<li>
+<p><code>pubkey</code>:<code>revocation_basepoint</code></p>
+</li>
+<li>
+<p><code>パブキー</code>:<code>payment_basepoint</code></p>
+</li>
+<li>
+<p><code>パブキー</code>:<code>delayed_payment_basepoint</code></p>
+</li>
+<li>
+<p><code>パブキー</code>:<code>htlc_basepoint</code></p>
+</li>
+<li>
+<p><code>パブキー</code>:<code>first_per_commitment_point</code></p>
+</li>
+<li>
+<p><code>byte</code>:<code>チャネルフラグ</code></p>
+</li>
+<li>
+<p><code>tlv_stream</code>:<code>tlvs</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>このメッセージは、あるノードが新しい資金調達フローを実行したいときに最初に送信されま
+を実行したいときに最初に送られるメッセージです。このメッセージには、両ピアが資金取引と資金調達の両方を構築するために必要なすべての情報
+このメッセージには、両ピアが資金調達取引とコミットメント取引の両方を構築するために必要なすべての情報が含まれています。
+コミットメント・トランザクションを構築するために必要なすべての情報が含まれています。</p>
+</div>
+<div class="paragraph">
+<p>本章の執筆時点では、単一のTLVレコードが定義され、定義されたTLVレコードの末尾に付加される可能性のあるオプションのTLVレコードのセットの中で定義されています。
+定義されたメッセージの末尾に追加されるオプションのTLVレコードのセットで定義されています。
+メッセージの末尾に付加することができるオプションのTLVレコードのセット内で定義されています。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>タイプ0</p>
+</li>
+<li>
+<p>データ：<code>upfront_shutdown_script</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><code>upfront_shutdown_scriptは</code>、可変サイズのバイトスライスで、ビットコインネットワークのコンセンサスによって受け入れられる有効な公開鍵スクリプトでなければなりません。
+ビットコインネットワークのコンセンサスアルゴリズムによって受け入れられる有効な公開鍵スクリプトでなければなりません。
+アルゴリズムによって受け入れられた有効な公開鍵スクリプトでなければなりません。このようなアドレスを提供することで、送信側は、そのチャンネルに「閉じたループ」を効果的に作成することができます。
+このようなアドレスを提供することで、送信側は、どちらの側も署名しないので、効果的に彼らのチャネルのための「閉じたループ」を作成することができます。
+他のアドレスに支払われる協調的閉鎖トランザクションをオフに署名しないためです。実際には
+実際には、このアドレスは通常、コールドストレージのウォレットから得られるものです。</p>
+</div>
+<div class="paragraph">
+<p><code>channel_flags</code>フィールドはビットフィールドであり，本稿執筆時点では，最初のビットだけが
+<em>が</em>何らかの意味を持つビットフィールドです。このビットが設定されている場合、このチャネルはルーティング可能なチャネルとして公衆ネットワークに広告される。そうでない場合は、チャネルは非広告とみなされます。
+一般にプライベートチャネルと呼ばれます。</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="apdx_accept_channel_message">accept_channel メッセージ</h5>
+<div class="paragraph">
+<p><code>accept_channel</code>メッセージは<code>open_channel</code>メッセージに対する応答である。</p>
+</div>
+<div class="ulist pagebreak-before">
+<ul>
+<li>
+<p>タイプ33</p>
+</li>
+<li>
+<p>フィールズ</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>32*byte</code>:<code>temp_chan_id</code></p>
+</li>
+<li>
+<p><code>uint64</code>:<code>ダストリミット・サトシ</code></p>
+</li>
+<li>
+<p><code>uint64</code>:<code>max_htlc_value_in_flight_msat</code></p>
+</li>
+<li>
+<p><code>uint64</code>:<code>チャンネルリザーブサトシズ</code></p>
+</li>
+<li>
+<p><code>uint64</code>:<code>htlc_minimum_msat</code></p>
+</li>
+<li>
+<p><code>uint32</code>:<code>最小深度</code></p>
+</li>
+<li>
+<p><code>uint16</code>:<code>to_self_delay</code>。</p>
+</li>
+<li>
+<p><code>uint16</code>:<code>max_accepted_htlcs</code></p>
+</li>
+<li>
+<p><code>パブキー</code>:<code>funding_pubkey</code></p>
+</li>
+<li>
+<p><code>pubkey</code>:<code>revocation_basepoint</code></p>
+</li>
+<li>
+<p><code>パブキー</code>:<code>payment_basepoint</code></p>
+</li>
+<li>
+<p><code>パブキー</code>:<code>delayed_payment_basepoint</code></p>
+</li>
+<li>
+<p><code>パブキー</code>:<code>htlc_basepoint</code></p>
+</li>
+<li>
+<p><code>パブキー</code>:<code>first_per_commitment_point</code></p>
+</li>
+<li>
+<p><code>tlv_stream</code>:<code>tlvs</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><code>accept_channel</code>メッセージは、資金調達の過程で送られる2番目のメッセージです。
+プロセスで送信される2番目のメッセージです。これは、新しいリモートピアとのチャネルを開く意図を確認するためのものです。
+ピアとチャネルを開く意図を確認する役割を果たす。このメッセージは主に、レスポンダがコミットメントトランザクションのバージョンに適用したいパラメータセット
+をコミットメントトランザクションのバージョンに適用する。<a href="#payment_channels">payment_channels]</a>では。
+で、資金調達プロセスを詳しく調べます。
+新しいチャネルを開くときに設定できるさまざまなパラメータの意味を探ります。
+チャンネルを開くときに設定できるさまざまなパラメータの意味を探ります。</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="apdx_funding_created_message">funding_created メッセージ</h5>
+<div class="paragraph">
+<p>これに対して、イニシエータは<code>funding_created</code>メッセージを送信する。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>タイプ34</p>
+</li>
+<li>
+<p>フィールズ</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>32*byte</code>:<code>temp_chan_id</code></p>
+</li>
+<li>
+<p><code>32*byte</code>:<code>funding_txid</code></p>
+</li>
+<li>
+<p><code>uint16</code>:<code>funding_output_index</code></p>
+</li>
+<li>
+<p><code>sig</code>:<code>commit_sig</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>チャネルのイニシエータがレスポンダから<code>accept_channel</code>メッセージを受信した時点で
+レスポンダからaccept_channelメッセージを受信すると、コミットメント取引と資金調達取引を構築するために必要なすべての材料を手に入れることができます。
+コミットメントトランザクションとファンディングトランザクションを構築するために必要なすべての材料を得ることができます。チャネルはデフォルトで
+デフォルトではシングルファンダー（一方のみが資金をコミットする）なので、イニシエーターのみが資金調達トランザクションを構築する必要があります。
+は資金調達取引を構築する必要がある。その結果、応答側が
+レスポンダがイニシエータのためにコミットメントトランザクションのバージョンに署名することを可能にするために、イニシエータは、資金調達トランザクションを送信する必要があるだけです。
+イニシエータはチャネルの資金調達アウトポイントを送信する必要があるだけです。</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="apdx_funding_signed_message">funding_signedのメッセージ</h5>
+<div class="paragraph">
+<p>最後に、レスポンダは<code>funding_signed</code>メッセージを送信する。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>タイプ34</p>
+</li>
+<li>
+<p>フィールズ</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>channel_id</code>:<code>チャンネルID</code></p>
+</li>
+<li>
+<p><code>シグ</code>:<code>サイン</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>レスポンダが<code>funding_created</code>メッセージを受信した後、結論として、レスポンダはイニシエータによるコミットメント・トランザクションの有効な署名を所有することになります。
+はイニシエーターによるコミットメントトランザクションの有効な署名を所有することになります。この署名により
+この署名によって、彼らはいつでもチャネルを抜けることができる。
+この署名によって、彼らはmultisig funding出力の半分に署名し、そのトランザクションをブロードキャストすることによって、いつでもチャネルを終了することができる。これは
+これはフォースクローズと呼ばれる。逆に、イニシエータにチャネルを閉じる能力を与えるために、レスポンダもイニシエータのコミットメントトランザクションに署名する。</p>
+</div>
+<div class="paragraph">
+<p>このメッセージがイニシエータによって受信されると、イニシエータはチャネ ルから抜けることができるようになるため、資金取引をブロードキャストしても安全です。
+チャンネル契約を一方的に終了することができるようになったので、ファンディングトランザクションをブロードキャストしても安全です。
+を一方的に終了することができるようになったからです。</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="apdx_funding_locked_message">funding_lockedのメッセージ</h5>
+<div class="paragraph">
+<p>資金取引で十分な確認が取れたら、資金ロックメッセージを送信する。
+<code>funding_locked</code>メッセージが送信される。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>タイプ36</p>
+</li>
+<li>
+<p>フィールズ</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>channel_id</code>:<code>チャンネルID</code></p>
+</li>
+<li>
+<p><code>パブキー</code>:<code>next_per_commitment_point</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>資金取引で<code>最小深度</code>数の確認が取れたら、資金調達のロックメッセージを双方から送信する。
+資金取引で最低深度の確認が取れたら、両者から<code>funding_locked</code>メッセージが送信される。このメッセージが受信され、送信された後にのみ
+このメッセージが受信され、送信された後でのみ、チャネルは使用され始める。</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_channel_closing">チャネルクロージング</h4>
+<div class="paragraph">
+<p>チャネルのクローズは多段階のプロセスである。1つのノードが<code>シャットダウンメッセージを</code>送信して開始する。その後、2つのチャネルパートナーは一連の<code>closing_signed</code>メッセージを交換し、クロージングトランザクションのための相互に受け入れられる手数料を交渉する。チャネルの出資者は最初の<code>closing_signed</code>メッセージを送信し、相手側は同じ手数料値を持つ<code>closing_signed</code>メッセージを送信することで承諾することができます。</p>
+</div>
+<div class="sect4">
+<h5 id="apdx_shutdown_message">シャットダウンメッセージ</h5>
+<div class="paragraph">
+<p>shutdownメッセージはチャネルを閉じる処理を開始するもので、以下のフィールドを含む。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>タイプ38</p>
+</li>
+<li>
+<p>フィールズ</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>channel_id</code>:<code>チャンネルID</code></p>
+</li>
+<li>
+<p><code>u16</code>:<code>len</code></p>
+</li>
+<li>
+<p><code>len*byte</code>:<code>スクリプトパブキー</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="apdx_closing_signed_message">closing_signedのメッセージ</h5>
+<div class="paragraph">
+<p>closing_signed メッセージは、各チャネル・パートナーが料金に合意するまで送信される。これには以下のフィールドが含まれます。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>タイプ39</p>
+</li>
+<li>
+<p>フィールズ</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>channel_id</code>:<code>チャンネルID</code></p>
+</li>
+<li>
+<p><code>u64</code>:<code>フィーサトシ</code></p>
+</li>
+<li>
+<p><code>署名</code>:<code>signature</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_channel_operation">チャンネル操作</h4>
+<div class="paragraph">
+<p>このセクションでは、ノードがチャネルを操作するために使用されるメッセージのセットについて簡単に説明します。
+ノードがチャネルを操作するために使用されるメッセージのセットについて簡単に説明します。操作とは、あるチャネルの支払いを送信、受信、転送することができることを意味します。
+および支払いの転送ができることを意味します。</p>
+</div>
+<div class="paragraph">
+<p>チャネル上で支払いを送信、受信、または転送するためには、HTLCはまず、チャネルリンクを構成する両方のコミットメント・トランザクションに追加されなければならない。
+チャネルリンクを構成する両方のコミットメントトランザクションに追加されなければならない。</p>
+</div>
+<div class="sect4 pagebreak-before less_space">
+<h5 id="apdx_update_add_htlc_message">update_add_htlc メッセージ</h5>
+<div class="paragraph">
+<p><code>update_add_htlc</code>メッセージは、どちらかの側が新しいHTLCを反対側のコミットメント・トランザクションに追加することを可能にします。
+を追加することができます。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>タイプ128</p>
+</li>
+<li>
+<p>フィールズ</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>channel_id</code>:<code>チャンネルID</code></p>
+</li>
+<li>
+<p><code>uint64</code>:<code>id</code></p>
+</li>
+<li>
+<p><code>uint64</code>:<code>amount_msat</code></p>
+</li>
+<li>
+<p><code>sha256</code>:<code>ペイメントハッシュ</code></p>
+</li>
+<li>
+<p><code>uint32</code>:<code>cltv_expiry</code></p>
+</li>
+<li>
+<p><code>1366*byte</code>:<code>onion_routing_packet</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>このメッセージを送信することで、一方の当事者は、新しい支払の送信、または着信チャネル経由で到着した既存の支払の転送のいずれかを開始することができます。
+または着信チャネル経由で到着した既存の支払を転送することを開始する。この
+メッセージは、金額<code>(amount_msat</code>)と支払いハッシュを指定し、支払い自体をロック解除します。
+は支払い自体のロックを解除する。次のホップの転送指示のセット
+は、<code>onion_routing_packet</code>フィールドで暗号化される。<a href="#onion_routing">onion_routing]</a>では、マルチホップのHTLC転送について
+onion_routing]では、マルチホップ HTLC 転送について、ライトニングネットワークで使用されている onion ルーティングプロトコルを詳しく解説している。
+ライトニングネットワークで使用されているオニオンルーティングプロトコルを詳しく解説しています。</p>
+</div>
+<div class="paragraph">
+<p>各HTLCは自動的にインクリメントされるIDを使用し、このIDはHTLCを変更するすべてのメッセージ （決済またはキャンセル）で使用されることに注意すること。
+このIDは、HTLCを変更するメッセージ（決済またはキャンセル）により使用され、チャネルに割り当てられた一意の方法でHTLCを参照します。
+このIDは、HTLCを変更するすべてのメッセージ（決済またはキャンセル）によって使用され、チャネルにスコープされた一意の方法でHTLCを参照します。</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="apdx_update_fulfill_hltc_message">update_fulfill_hltc メッセージ</h5>
+<div class="paragraph">
+<p><code>update_fulfill_hltc</code>メッセージは、アクティブな HTLC の交換（受信）を許可するものである。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>タイプ130</p>
+</li>
+<li>
+<p>フィールズ</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>channel_id</code>:<code>チャンネルID</code></p>
+</li>
+<li>
+<p><code>uint64</code>:<code>id</code></p>
+</li>
+<li>
+<p><code>32*byte</code>:<code>決済前画像</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>このメッセージは、HTLC 受信機から提案者に送信され、アクティブな HTLC を交換するためのものである。
+アクティブな HTLC を交換するために提案者に送信されるメッセージである。このメッセージは、当該 HTLC の<code>ID</code>を参照し、また、プリ画像（HLTC のロックを解除する。
+を提供する（HLTC のロックを解除する）。</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="apdx_update_fail_htlc_message">update_fail_htlc メッセージ</h5>
+<div class="paragraph">
+<p><code>update_fail_htlc</code>メッセージは、コミットメント・トランザクションから HTLC を削除するために送信される。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>タイプ131</p>
+</li>
+<li>
+<p>フィールズ</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>channel_id</code>:<code>チャンネルID</code></p>
+</li>
+<li>
+<p><code>uint64</code>:<code>id</code></p>
+</li>
+<li>
+<p><code>uint16</code>:<code>len</code></p>
+</li>
+<li>
+<p><code>len*byte</code>:<code>理由</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><code>update_fail_htlc</code>メッセージは<code>update_fulfill_hltc</code>メッセージの逆で、受信者が全く同じ HTLC を削除することを可能にするメッセージである。
+HTLC の受信者が同じ HTLC を削除することを可能にするという点で、update_fulfill_hltc メッセージの逆である。このメッセージは
+このメッセージは、通常、HTLC がアップストリームに適切にルーティングできない場合に送信され、その HTLC を解除するために送信者に送り返す必要があります。
+このメッセージは、通常、HTLC が上流で適切にルーティングできず、HTLC チェーンを解くために送信者に送り返す必要がある場合に送信されます。で調べたように
+[<a href="#failure_messages">failure_messages]</a>で調べたように、このメッセージには<em>暗号化された</em>障害理由<code>(reason</code>)が含まれています。
+メッセージには暗号化された障害理由(reason)が含まれ、送信者はその支払い経路を調整するか、または障害自体が末端のものであれば終了させることができます。
+このメッセージには暗号化された障害理由(reason)が含まれています。</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="apdx_commitment_signed_message">コミットメント署名メッセージ</h5>
+<div class="paragraph">
+<p><code>commitment_signed</code>メッセージは、新しいコミットメント・トランザクションの作成にスタンプを押すために使用されます。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>タイプ132</p>
+</li>
+<li>
+<p>フィールズ</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>channel_id</code>:<code>チャンネルID</code></p>
+</li>
+<li>
+<p><code>シグ</code>:<code>サイン</code></p>
+</li>
+<li>
+<p><code>uint16</code>:<code>num_htlcs</code></p>
+</li>
+<li>
+<p><code>num_htlcs*sig</code>:<code>htlc_signature</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>次のコミットメントトランザクションの署名を送信することに加えて、このメッセージの送信者は、次のコミットメントトランザクションのための署名を送信する必要があります。
+このメッセージの送信者は、次のコミットメント・トランザクションの署名を送信することに加えて、コミットメント・トランザクションに存在する各HTLCの署名も送信する必要があります。
+の署名を送る必要があります。</p>
+</div>
+</div>
+<div class="sect4 pagebreak-before less_space">
+<h5 id="apdx_revoke_and_ack_message">revoke_and_ack メッセージ</h5>
+<div class="paragraph">
+<p><code>revoke_and_ackは</code>、日付指定されたコミットメントを取り消すために送信されます。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>タイプ133</p>
+</li>
+<li>
+<p>フィールズ</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>channel_id</code>:<code>チャンネルID</code></p>
+</li>
+<li>
+<p><code>32*byte</code>:<code>コミッションセークレット毎</code></p>
+</li>
+<li>
+<p><code>パブキー</code>:<code>next_per_commitment_point</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>ライトニング・ネットワークはreplace-by-revokeコミットメント・トランザクションを使用しているため、commit_sigメッセージで新しいコミットメント・トランザクションを受信した後
+<code>commit_sig</code>メッセージで新しいコミットメントを受信した後、次のコミットメントを受信する前に、当事者は過去のコミットメントを取り消す必要があります。
+コミットメントを受け取った後、次のコミットメントを受け取る前に、過去のコミットメントを取り消す必要があります。
+コミットメント・トランザクションを取り消す間、取り消し手は次のコミットメント・ポイントも提供します。
+次のコミットメントポイントを提供します。
+新しいコミットメント状態を送信するために必要な次のコミットメントポイントを提供します。</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="apdx_update_fee_message">update_fee メッセージ</h5>
+<div class="paragraph">
+<p><code>update_feeは</code>、現在のコミットメント・トランザクションの手数料を更新するために送信されます。
+のトランザクションを更新します。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>タイプ134</p>
+</li>
+<li>
+<p>フィールズ</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>channel_id</code>:<code>チャンネルID</code></p>
+</li>
+<li>
+<p><code>uint32</code>:<code>feerate_per_kw</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>このメッセージはチャネルのイニシエーターによってのみ送信されます。
+彼らは、チャネルが開いている限り、チャネルのコミットメント料を支払うことになる人たちです。</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="apdx_update_fail_malformed_htlc_message">update_fail_malformed_htlc メッセージ</h5>
+<div class="paragraph">
+<p><code>update_fail_malformed_htlc</code>メッセージは、破損した HTLC を削除するために送信される。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>タイプ135</p>
+</li>
+<li>
+<p>フィールズ</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>channel_id</code>:<code>チャンネルID</code></p>
+</li>
+<li>
+<p><code>uint64</code>:<code>id</code></p>
+</li>
+<li>
+<p><code>sha256</code>:<code>sha256_of_onion</code></p>
+</li>
+<li>
+<p><code>uint16</code>:<code>失敗コード</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>このメッセージは<code>update_fail_htlc</code>メッセージに似ていますが、実際にはほとんど使用されません。
+このメッセージは update_fail_htlc メッセージに似ていますが、実際にはほとんど使われません。前述したように、各 HTLC はオニオン暗号化されたルーティングパケットを伝送する。
+このパケットは HTLC 自体の部分の完全性もカバーする。もし
+パーティが、途中で何らかの形で破損したオニオンパケットを受信した場合、そのパーティは
+を受信した場合、そのパケットを復号化することはできません。その結果，HTLCを適切に転送することもできない。
+したがって，HTLCが経路のどこかで破損していることを示すために，このメッセージを送信する。
+が送信者に戻る経路のどこかで破損していることを示すためにこのメッセージを送信する。</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_channel_announcement">チャンネル発表</h4>
+<div class="paragraph">
+<p>このカテゴリのメッセージは、チャネルグラフの構成要素
+認証されたデータ構造の構成要素を、より広いネットワークに告知するために使用されます。チャネルグラフは
+チャネルグラフに追加されるすべてのデータは、基本的なビットコインブロックチェーンに固定されていなければならないという条件により、一連のユニークな特性を持ちます。
+チャネルグラフに追加されるすべてのデータは、ベースとなるビットコインブロックチェーンにも固定されていなければならないという条件により、チャネルグラフには一連のユニークな特性があります。その結果
+その結果、チャネルグラフに新しいエントリを追加するには、エージェントがオンチェーン取引料
+オンチェーン取引手数料を支払う必要があります。これは、ライトニング・ネットワークの自然なスパム抑止力として機能する。
+ライトニング・ネットワーク</p>
+</div>
+<div class="sect4">
+<h5 id="apdx_channel_announcement_message">channel_announcement メッセージ</h5>
+<div class="paragraph">
+<p><code>channel_announcement</code>メッセージは、新しいチャネルをより広いネットワークにアナウンスするために使用されます。
+ネットワークに通知します。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>タイプ256</p>
+</li>
+<li>
+<p>フィールズ</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>sig</code>:<code>ノードシグネチャ_1</code></p>
+</li>
+<li>
+<p><code>sig</code>:<code>ノードシグネチャ_2</code></p>
+</li>
+<li>
+<p><code>sig</code>:<code>ビットコインシグネチャー_1</code></p>
+</li>
+<li>
+<p><code>シグ</code>:<code>ビットコインシグネチャー_2</code></p>
+</li>
+<li>
+<p><code>uint16</code>:<code>len</code></p>
+</li>
+<li>
+<p><code>len*byte</code>:<code>機能</code></p>
+</li>
+<li>
+<p><code>chain_hash</code>:<code>チェーンハッシュ</code></p>
+</li>
+<li>
+<p><code>short_channel_id</code>:<code>short_channel_id</code></p>
+</li>
+<li>
+<p><code>パブキー</code>:<code>node_id_1</code></p>
+</li>
+<li>
+<p><code>パブキー</code>:<code>node_id_2</code></p>
+</li>
+<li>
+<p><code>パブキー</code>:<code>bitcoin_key_1</code></p>
+</li>
+<li>
+<p><code>パブキー</code>:<code>bitcoin_key_2</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>メッセージに含まれる一連の署名と公開鍵は、ベースとなるビットコインブロックチェーン内に実際にチャネルが存在することを証明する役割を果たします。
+ビットコインのブロックチェーンに実際に存在するチャンネルであることを<em>証明</em>します。scid]で詳述しているように
+<a href="#scid">scid]</a>で詳述しているように、各チャンネルはブロックチェーン内の位置をコード化したロケーターによって一意に識別されます。
+で詳しく説明していますが、各チャンネルはブロックチェーン内の<em>位置を</em>コード化したロケータによって一意に識別されます。このロケータは、この
+<code>short_channel_id</code>と呼ばれ、64 ビットの整数に収まります。</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="apdx_node_announcement_message">node_announcementのメッセージ</h5>
+<div class="paragraph">
+<p><code>node_announcement</code>メッセージは，ノードが自分の頂点を発表・更新するためのメッセージです．
+より大きなチャネルグラフの中で</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>タイプ257</p>
+</li>
+<li>
+<p>フィールズ</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>シグ</code>:<code>サイン</code></p>
+</li>
+<li>
+<p><code>uint64</code>:<code>フレン</code></p>
+</li>
+<li>
+<p><code>flen*byte</code>:<code>機能</code></p>
+</li>
+<li>
+<p><code>uint32</code>:<code>タイムスタンプ</code></p>
+</li>
+<li>
+<p><code>パブキー</code>:<code>node_id</code></p>
+</li>
+<li>
+<p><code>3*byte</code>:<code>rgb_color</code></p>
+</li>
+<li>
+<p><code>32*byte</code>:<code>エイリアス</code></p>
+</li>
+<li>
+<p><code>uint16</code>:<code>addrlen</code></p>
+</li>
+<li>
+<p><code>addrlen*byte</code>:<code>アドレス</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>ノードがチャネルグラフ内に広告されたチャネルを持っていない場合、このメッセージは無視されることに注意してください。
+このメッセージは無視されます。
+にアイテムを追加すると、オンチェーンコストが発生します。この場合、オンチェーンコストは次のようになります。
+このノードが接続されているチャネルを作成するためのコストです。</p>
+</div>
+<div class="paragraph">
+<p>このメッセージは、ノードの機能セットを宣伝するだけでなく、ノードが到達可能なネットワーク・アドレスのセットを発表/更新することを可能にします。
+このメッセージは、ノードが到達可能なネットワーク<code>アドレスの</code>セットを発表/更新することもできます。</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="apdx_channel_update_message">channel_update メッセージ</h5>
+<div class="paragraph">
+<p><code>channel_update</code>メッセージは、チャネルグラフ内のアクティブなチャネルエッジのプロパティとポリシーを更新するために送信されます。
+を更新するために送信される．</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>タイプ258</p>
+</li>
+<li>
+<p>フィールズ</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>署名</code>:<code>signature</code></p>
+</li>
+<li>
+<p><code>chain_hash</code>:<code>チェーンハッシュ</code></p>
+</li>
+<li>
+<p><code>short_channel_id</code>:<code>short_channel_id</code></p>
+</li>
+<li>
+<p><code>uint32</code>:<code>タイムスタンプ</code></p>
+</li>
+<li>
+<p><code>byte</code>:<code>メッセージフラグ</code></p>
+</li>
+<li>
+<p><code>byte</code>:<code>チャネルフラグ</code></p>
+</li>
+<li>
+<p><code>uint16</code>:<code>cltv_expiry_delta</code></p>
+</li>
+<li>
+<p><code>uint64</code>:<code>htlc_minimum_msat</code></p>
+</li>
+<li>
+<p><code>uint32</code>:<code>フィーベースMSAT</code></p>
+</li>
+<li>
+<p><code>uint32</code>:<code>料金比例百万円単位</code></p>
+</li>
+<li>
+<p><code>uint16</code>:<code>htlc_maximum_msat</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>このメッセージは、チャネルの有効化/無効化だけでなく、ノードがルーティング料金を更新することも可能です。
+ノードは、ルーティングフィーや、このチャネルを通過することを許可された支払いのタイプを形成する他のフィールドを更新することができます。
+このチャネルを通過することが許可される支払いのタイプを形成する他のフィールドを更新することができます。</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="apdx_announce_signatures_message">announce_signaturesメッセージ</h5>
+<div class="paragraph">
+<p><code>announce_signatures</code>メッセージは、チャネルピアが以下の目的で交換する。
+<code>を</code>生成するために必要な署名のセットを組み立てます。
+メッセージを生成するために必要な署名のセットを組み立てるために、チャネルピアによって交換されます。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>タイプ259</p>
+</li>
+<li>
+<p>フィールズ</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>channel_id</code>:<code>チャンネルID</code></p>
+</li>
+<li>
+<p><code>short_channel_id</code>:<code>short_channel_id</code></p>
+</li>
+<li>
+<p><code>sig</code>:<code>ノードシグネチャ</code></p>
+</li>
+<li>
+<p><code>シグ</code>:<code>ビットコインシグネチャ</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><code>funding_locked</code>メッセージが送信された後、もし双方が自分のチャンネルをネットワークにアドバタイズしたい場合
+ネットワークに自分たちのチャンネルを宣伝したい場合は、それぞれ
+<code>announce_signatures</code>メッセージの生成に必要な4つの署名を配置することができます。
+announce<code>_signatures</code>メッセージを生成するために必要な4つの署名を配置することを可能にする announce_signaturesメッセージをそれぞれ送信します。</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_channel_graph_syncing">チャンネルグラフの同期</h4>
+<div class="paragraph">
+<p>ノードは query_short_chan_ids, reply_short_chan_ids_end, query_channel_range, reply_channel_range, and gossip_timestamp_range という5つのメッセージを使ってチャネルグラフのローカルな視点を作成します。</p>
+</div>
+<div class="sect4">
+<h5 id="apdx_query_short_chan_ids_message">query_short_chan_idsのメッセージ</h5>
+<div class="paragraph">
+<p><code>query_short_chan_ids</code>メッセージは，ピアが一連の短いチャネルIDに関連するチャネル情報
+を取得します。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>タイプ261</p>
+</li>
+<li>
+<p>フィールズ</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>chain_hash</code>:<code>チェーンハッシュ</code></p>
+</li>
+<li>
+<p><code>u16</code>:<code>len</code></p>
+</li>
+<li>
+<p><code>len*byte</code>:<code>エンコードされたショートID</code></p>
+</li>
+<li>
+<p><code>query_short_channel_ids_tlvs</code>:<code>tlvs</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><a href="#gossip">gossip]</a>で学んだように、これらのチャネルIDは、送信者にとって新しいチャネル、あるいは古いチャネル
+が送信者にとって新しいものであったり、古くなったものであったりするため、送信者は一連のチャネルの最新情報
+は一組のチャネルに対する最新の情報セットを取得することができます。</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="apdx_reply_short_chan_ids_end_message">reply_short_chan_ids_end メッセージ</h5>
+<div class="paragraph">
+<p><code>reply_short_chan_ids_end</code>メッセージは、相手からの応答が終了した後に送信されます。
+<code>への</code>応答が終了した後に送信されます。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>タイプ262</p>
+</li>
+<li>
+<p>フィールズ</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>chain_hash</code>:<code>チェーンハッシュ</code></p>
+</li>
+<li>
+<p><code>byte</code>:<code>フル情報</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>このメッセージは、受信側に対して、別の問い合わせメッセージを送信したい場合
+クエリメッセージを送信できるようになったことを通知します。</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="apdx_query_channel_range_message">query_channel_range メッセージ</h5>
+<div class="paragraph">
+<p><code>query_channel_range</code>メッセージは、ノードがブロック範囲内に開設されたチャネルの集合を問い合わせること
+を問い合わせることができます。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>タイプ263</p>
+</li>
+<li>
+<p>フィールズ</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>chain_hash</code>:<code>チェーンハッシュ</code></p>
+</li>
+<li>
+<p><code>u32</code>:<code>ファーストブロックナム</code></p>
+</li>
+<li>
+<p><code>u32</code>:<code>ブロック数</code></p>
+</li>
+<li>
+<p><code>query_channel_range_tlvs</code>:<code>tlvs</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>チャンネルはチェーン内の位置をコード化した短いチャンネルIDを使って表現されるので
+ネットワーク上のノードは、ブロックの高さを一種のカーソルとして使用することができます。
+ネットワーク上のノードはブロックの高さを一種の<em>カーソルとして</em>使用し、新しく開かれたチャネルのセットを発見するためにチェーン内を探索することができます。
+オープンしたチャンネルを発見することができます。</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="apdx_reply_channel_range_message">reply_channel_range メッセージ</h5>
+<div class="paragraph">
+<p><code>reply_channel_range</code>メッセージは<code>query_channel_range</code>メッセージに対する応答であり，その範囲内にある既知のチャネルの短いチャネル ID のセットを含む。
+その範囲内の既知のチャネルの短いチャネルIDのセットを含む。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>タイプ264</p>
+</li>
+<li>
+<p>フィールズ</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>chain_hash</code>:<code>チェーンハッシュ</code></p>
+</li>
+<li>
+<p><code>u32</code>:<code>ファーストブロックナム</code></p>
+</li>
+<li>
+<p><code>u32</code>:<code>ブロック数</code></p>
+</li>
+<li>
+<p><code>byte</code>:<code>sync_complete</code></p>
+</li>
+<li>
+<p><code>u16</code>:<code>len</code></p>
+</li>
+<li>
+<p><code>len*byte</code>:<code>エンコードされたショートID</code></p>
+</li>
+<li>
+<p><code>reply_channel_range_tlvs</code>:<code>tlvs</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><code>query_channel_range</code> に対する応答として、このメッセージは、その範囲内で開かれたチャネルのセット
+このメッセージは、その範囲内で開かれたチャネルのセットを送り返します。このプロセスは、次のように繰り返すことができます。
+このプロセスを繰り返すことができます。
+チャンネルグラフの同期を継続します。</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="apdx_gossip_timestamp_range_message">gossip_timestamp_range メッセージ</h5>
+<div class="paragraph">
+<p><code>gossip_timestamp_range</code>メッセージは、ピアがネットワーク上の新しい受信ゴシップ・メッセージの受信を開始することを可能にします。
+メッセージは、ネットワーク上の新しい着信ゴシップ・メッセージの受信を開始します。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>タイプ265</p>
+</li>
+<li>
+<p>フィールズ</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>chain_hash</code>:<code>チェーンハッシュ</code></p>
+</li>
+<li>
+<p><code>u32</code>:<code>最初のタイムスタンプ</code></p>
+</li>
+<li>
+<p><code>u32</code>:<code>タイムスタンプ範囲</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>ピアはチャンネルグラフを同期させた後、チャンネルグラフの変化のリアルタイム更新を受け取りたい場合にこのメッセージを送信することができます。
+チャンネルグラフの変更に関するリアルタイムの更新を受信したい場合、このメッセージを送信することができます。このメッセージは
+また、<code>first_timestamp</code>と<code>timestamp_range</code>フィールドを設定することで、ダウンしている間に見逃した更新のバックログを受け取ることができます。
+また、ダウンしている間に見逃した更新のバックログを受信したい場合は、first_timestamp と timestamp_range フィールドを設定できます。</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+最終更新 2022-10-29 15:50:16 +0400
+</div>
+</div>
+</body>
+</html>

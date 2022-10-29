@@ -1,0 +1,853 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="generator" content="Asciidoctor 2.0.16" />
+<title>はじめに</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700" />
+<style>
+/*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
+/* Uncomment the following line when using as a custom stylesheet */
+/* @import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700"; */
+html{font-family:sans-serif;-webkit-text-size-adjust:100%}
+a{background:none}
+a:focus{outline:thin dotted}
+a:active,a:hover{outline:0}
+h1{font-size:2em;margin:.67em 0}
+b,strong{font-weight:bold}
+abbr{font-size:.9em}
+abbr[title]{cursor:help;border-bottom:1px dotted #dddddf;text-decoration:none}
+dfn{font-style:italic}
+hr{height:0}
+mark{background:#ff0;color:#000}
+code,kbd,pre,samp{font-family:monospace;font-size:1em}
+pre{white-space:pre-wrap}
+q{quotes:"\201C" "\201D" "\2018" "\2019"}
+small{font-size:80%}
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+sup{top:-.5em}
+sub{bottom:-.25em}
+img{border:0}
+svg:not(:root){overflow:hidden}
+figure{margin:0}
+audio,video{display:inline-block}
+audio:not([controls]){display:none;height:0}
+fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
+legend{border:0;padding:0}
+button,input,select,textarea{font-family:inherit;font-size:100%;margin:0}
+button,input{line-height:normal}
+button,select{text-transform:none}
+button,html input[type=button],input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer}
+button[disabled],html input[disabled]{cursor:default}
+input[type=checkbox],input[type=radio]{padding:0}
+button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
+textarea{overflow:auto;vertical-align:top}
+table{border-collapse:collapse;border-spacing:0}
+*,::before,::after{box-sizing:border-box}
+html,body{font-size:100%}
+body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;line-height:1;position:relative;cursor:auto;-moz-tab-size:4;-o-tab-size:4;tab-size:4;word-wrap:anywhere;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}
+a:hover{cursor:pointer}
+img,object,embed{max-width:100%;height:auto}
+object,embed{height:100%}
+img{-ms-interpolation-mode:bicubic}
+.left{float:left!important}
+.right{float:right!important}
+.text-left{text-align:left!important}
+.text-right{text-align:right!important}
+.text-center{text-align:center!important}
+.text-justify{text-align:justify!important}
+.hide{display:none}
+img,object,svg{display:inline-block;vertical-align:middle}
+textarea{height:auto;min-height:50px}
+select{width:100%}
+.subheader,.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{line-height:1.45;color:#7a2518;font-weight:400;margin-top:0;margin-bottom:.25em}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0}
+a{color:#2156a5;text-decoration:underline;line-height:inherit}
+a:hover,a:focus{color:#1d4b8f}
+a img{border:0}
+p{line-height:1.6;margin-bottom:1.25em;text-rendering:optimizeLegibility}
+p aside{font-size:.875em;line-height:1.35;font-style:italic}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{font-family:"Open Sans","DejaVu Sans",sans-serif;font-weight:300;font-style:normal;color:#ba3925;text-rendering:optimizeLegibility;margin-top:1em;margin-bottom:.5em;line-height:1.0125em}
+h1 small,h2 small,h3 small,#toctitle small,.sidebarblock>.content>.title small,h4 small,h5 small,h6 small{font-size:60%;color:#e99b8f;line-height:0}
+h1{font-size:2.125em}
+h2{font-size:1.6875em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.375em}
+h4,h5{font-size:1.125em}
+h6{font-size:1em}
+hr{border:solid #dddddf;border-width:1px 0 0;clear:both;margin:1.25em 0 1.1875em}
+em,i{font-style:italic;line-height:inherit}
+strong,b{font-weight:bold;line-height:inherit}
+small{font-size:60%;line-height:inherit}
+code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;color:rgba(0,0,0,.9)}
+ul,ol,dl{line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
+ul,ol{margin-left:1.5em}
+ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0}
+ul.square li ul,ul.circle li ul,ul.disc li ul{list-style:inherit}
+ul.square{list-style-type:square}
+ul.circle{list-style-type:circle}
+ul.disc{list-style-type:disc}
+ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
+dl dt{margin-bottom:.3125em;font-weight:bold}
+dl dd{margin-bottom:1.25em}
+blockquote{margin:0 0 1.25em;padding:.5625em 1.25em 0 1.1875em;border-left:1px solid #ddd}
+blockquote,blockquote p{line-height:1.6;color:rgba(0,0,0,.85)}
+@media screen and (min-width:768px){h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2}
+h1{font-size:2.75em}
+h2{font-size:2.3125em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.6875em}
+h4{font-size:1.4375em}}
+table{background:#fff;margin-bottom:1.25em;border:1px solid #dedede;word-wrap:normal}
+table thead,table tfoot{background:#f7f8f7}
+table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:.5em .625em .625em;font-size:inherit;color:rgba(0,0,0,.8);text-align:left}
+table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
+table tr.even,table tr.alt{background:#f8f8f7}
+table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{line-height:1.6}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
+h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
+.center{margin-left:auto;margin-right:auto}
+.stretch{width:100%}
+.clearfix::before,.clearfix::after,.float-group::before,.float-group::after{content:" ";display:table}
+.clearfix::after,.float-group::after{clear:both}
+:not(pre).nobreak{word-wrap:normal}
+:not(pre).nowrap{white-space:nowrap}
+:not(pre).pre-wrap{white-space:pre-wrap}
+:not(pre):not([class^=L])>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background:#f7f7f8;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed}
+pre{color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;line-height:1.45;text-rendering:optimizeSpeed}
+pre code,pre pre{color:inherit;font-size:inherit;line-height:inherit}
+pre>code{display:block}
+pre.nowrap,pre.nowrap pre{white-space:pre;word-wrap:normal}
+em em{font-style:normal}
+strong strong{font-weight:400}
+.keyseq{color:rgba(51,51,51,.8)}
+kbd{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;display:inline-block;color:rgba(0,0,0,.8);font-size:.65em;line-height:1.45;background:#f7f7f7;border:1px solid #ccc;border-radius:3px;box-shadow:0 1px 0 rgba(0,0,0,.2),inset 0 0 0 .1em #fff;margin:0 .15em;padding:.2em .5em;vertical-align:middle;position:relative;top:-.1em;white-space:nowrap}
+.keyseq kbd:first-child{margin-left:0}
+.keyseq kbd:last-child{margin-right:0}
+.menuseq,.menuref{color:#000}
+.menuseq b:not(.caret),.menuref{font-weight:inherit}
+.menuseq{word-spacing:-.02em}
+.menuseq b.caret{font-size:1.25em;line-height:.8}
+.menuseq i.caret{font-weight:bold;text-align:center;width:.45em}
+b.button::before,b.button::after{position:relative;top:-1px;font-weight:400}
+b.button::before{content:"[";padding:0 3px 0 2px}
+b.button::after{content:"]";padding:0 2px 0 3px}
+p a>code:hover{color:rgba(0,0,0,.9)}
+#header,#content,#footnotes,#footer{width:100%;margin:0 auto;max-width:62.5em;*zoom:1;position:relative;padding-left:.9375em;padding-right:.9375em}
+#header::before,#header::after,#content::before,#content::after,#footnotes::before,#footnotes::after,#footer::before,#footer::after{content:" ";display:table}
+#header::after,#content::after,#footnotes::after,#footer::after{clear:both}
+#content{margin-top:1.25em}
+#content::before{content:none}
+#header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
+#header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #dddddf}
+#header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
+#header .details{border-bottom:1px solid #dddddf;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:flex;flex-flow:row wrap}
+#header .details span:first-child{margin-left:-.125em}
+#header .details span.email a{color:rgba(0,0,0,.85)}
+#header .details br{display:none}
+#header .details br+span::before{content:"\00a0\2013\00a0"}
+#header .details br+span.author::before{content:"\00a0\22c5\00a0";color:rgba(0,0,0,.85)}
+#header .details br+span#revremark::before{content:"\00a0|\00a0"}
+#header #revnumber{text-transform:capitalize}
+#header #revnumber::after{content:"\00a0"}
+#content>h1:first-child:not([class]){color:rgba(0,0,0,.85);border-bottom:1px solid #dddddf;padding-bottom:8px;margin-top:0;padding-top:1rem;margin-bottom:1.25rem}
+#toc{border-bottom:1px solid #e7e7e9;padding-bottom:.5em}
+#toc>ul{margin-left:.125em}
+#toc ul.sectlevel0>li>a{font-style:italic}
+#toc ul.sectlevel0 ul.sectlevel1{margin:.5em 0}
+#toc ul{font-family:"Open Sans","DejaVu Sans",sans-serif;list-style-type:none}
+#toc li{line-height:1.3334;margin-top:.3334em}
+#toc a{text-decoration:none}
+#toc a:active{text-decoration:underline}
+#toctitle{color:#7a2518;font-size:1.2em}
+@media screen and (min-width:768px){#toctitle{font-size:1.375em}
+body.toc2{padding-left:15em;padding-right:0}
+#toc.toc2{margin-top:0!important;background:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #e7e7e9;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
+#toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
+#toc.toc2>ul{font-size:.9em;margin-bottom:0}
+#toc.toc2 ul ul{margin-left:0;padding-left:1em}
+#toc.toc2 ul.sectlevel0 ul.sectlevel1{padding-left:0;margin-top:.5em;margin-bottom:.5em}
+body.toc2.toc-right{padding-left:0;padding-right:15em}
+body.toc2.toc-right #toc.toc2{border-right-width:0;border-left:1px solid #e7e7e9;left:auto;right:0}}
+@media screen and (min-width:1280px){body.toc2{padding-left:20em;padding-right:0}
+#toc.toc2{width:20em}
+#toc.toc2 #toctitle{font-size:1.375em}
+#toc.toc2>ul{font-size:.95em}
+#toc.toc2 ul ul{padding-left:1.25em}
+body.toc2.toc-right{padding-left:0;padding-right:20em}}
+#content #toc{border:1px solid #e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;border-radius:4px}
+#content #toc>:first-child{margin-top:0}
+#content #toc>:last-child{margin-bottom:0}
+#footer{max-width:none;background:rgba(0,0,0,.8);padding:1.25em}
+#footer-text{color:hsla(0,0%,100%,.8);line-height:1.44}
+#content{margin-bottom:.625em}
+.sect1{padding-bottom:.625em}
+@media screen and (min-width:768px){#content{margin-bottom:1.25em}
+.sect1{padding-bottom:1.25em}}
+.sect1:last-child{padding-bottom:0}
+.sect1+.sect1{border-top:1px solid #e7e7e9}
+#content h1>a.anchor,h2>a.anchor,h3>a.anchor,#toctitle>a.anchor,.sidebarblock>.content>.title>a.anchor,h4>a.anchor,h5>a.anchor,h6>a.anchor{position:absolute;z-index:1001;width:1.5ex;margin-left:-1.5ex;display:block;text-decoration:none!important;visibility:hidden;text-align:center;font-weight:400}
+#content h1>a.anchor::before,h2>a.anchor::before,h3>a.anchor::before,#toctitle>a.anchor::before,.sidebarblock>.content>.title>a.anchor::before,h4>a.anchor::before,h5>a.anchor::before,h6>a.anchor::before{content:"\00A7";font-size:.85em;display:block;padding-top:.1em}
+#content h1:hover>a.anchor,#content h1>a.anchor:hover,h2:hover>a.anchor,h2>a.anchor:hover,h3:hover>a.anchor,#toctitle:hover>a.anchor,.sidebarblock>.content>.title:hover>a.anchor,h3>a.anchor:hover,#toctitle>a.anchor:hover,.sidebarblock>.content>.title>a.anchor:hover,h4:hover>a.anchor,h4>a.anchor:hover,h5:hover>a.anchor,h5>a.anchor:hover,h6:hover>a.anchor,h6>a.anchor:hover{visibility:visible}
+#content h1>a.link,h2>a.link,h3>a.link,#toctitle>a.link,.sidebarblock>.content>.title>a.link,h4>a.link,h5>a.link,h6>a.link{color:#ba3925;text-decoration:none}
+#content h1>a.link:hover,h2>a.link:hover,h3>a.link:hover,#toctitle>a.link:hover,.sidebarblock>.content>.title>a.link:hover,h4>a.link:hover,h5>a.link:hover,h6>a.link:hover{color:#a53221}
+details,.audioblock,.imageblock,.literalblock,.listingblock,.stemblock,.videoblock{margin-bottom:1.25em}
+details{margin-left:1.25rem}
+details>summary{cursor:pointer;display:block;position:relative;line-height:1.6;margin-bottom:.625rem;-webkit-tap-highlight-color:transparent}
+details>summary::before{content:"";border:solid transparent;border-left:solid;border-width:.3em 0 .3em .5em;position:absolute;top:.5em;left:-1.25rem;transform:translateX(15%)}
+details[open]>summary::before{border:solid transparent;border-top:solid;border-width:.5em .3em 0;transform:translateY(15%)}
+details>summary::after{content:"";width:1.25rem;height:1em;position:absolute;top:.3em;left:-1.25rem}
+.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{text-rendering:optimizeLegibility;text-align:left;font-family:"Noto Serif","DejaVu Serif",serif;font-size:1rem;font-style:italic}
+table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
+.paragraph.lead>p,#preamble>.sectionbody>[class=paragraph]:first-of-type p{font-size:1.21875em;line-height:1.6;color:rgba(0,0,0,.85)}
+.admonitionblock>table{border-collapse:separate;border:0;background:none;width:100%}
+.admonitionblock>table td.icon{text-align:center;width:80px}
+.admonitionblock>table td.icon img{max-width:none}
+.admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
+.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #dddddf;color:rgba(0,0,0,.6);word-wrap:anywhere}
+.admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
+.exampleblock>.content{border:1px solid #e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;border-radius:4px}
+.exampleblock>.content>:first-child{margin-top:0}
+.exampleblock>.content>:last-child{margin-bottom:0}
+.sidebarblock{border:1px solid #dbdbd6;margin-bottom:1.25em;padding:1.25em;background:#f3f3f2;border-radius:4px}
+.sidebarblock>:first-child{margin-top:0}
+.sidebarblock>:last-child{margin-bottom:0}
+.sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
+.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
+.literalblock pre,.listingblock>.content>pre{border-radius:4px;overflow-x:auto;padding:1em;font-size:.8125em}
+@media screen and (min-width:768px){.literalblock pre,.listingblock>.content>pre{font-size:.90625em}}
+@media screen and (min-width:1280px){.literalblock pre,.listingblock>.content>pre{font-size:1em}}
+.literalblock pre,.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class=highlight],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
+.literalblock.output pre{color:#f7f7f8;background:rgba(0,0,0,.9)}
+.listingblock>.content{position:relative}
+.listingblock code[data-lang]::before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:inherit;opacity:.5}
+.listingblock:hover code[data-lang]::before{display:block}
+.listingblock.terminal pre .command::before{content:attr(data-prompt);padding-right:.5em;color:inherit;opacity:.5}
+.listingblock.terminal pre .command:not([data-prompt])::before{content:"$"}
+.listingblock pre.highlightjs{padding:0}
+.listingblock pre.highlightjs>code{padding:1em;border-radius:4px}
+.listingblock pre.prettyprint{border-width:0}
+.prettyprint{background:#f7f7f8}
+pre.prettyprint .linenums{line-height:1.45;margin-left:2em}
+pre.prettyprint li{background:none;list-style-type:inherit;padding-left:0}
+pre.prettyprint li code[data-lang]::before{opacity:1}
+pre.prettyprint li:not(:first-child) code[data-lang]::before{display:none}
+table.linenotable{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.linenotable td[class]{color:inherit;vertical-align:top;padding:0;line-height:inherit;white-space:normal}
+table.linenotable td.code{padding-left:.75em}
+table.linenotable td.linenos{border-right:1px solid;opacity:.35;padding-right:.5em}
+pre.pygments .lineno{border-right:1px solid;opacity:.35;display:inline-block;margin-right:.75em}
+pre.pygments .lineno::before{content:"";margin-right:-.125em}
+.quoteblock{margin:0 1em 1.25em 1.5em;display:table}
+.quoteblock:not(.excerpt)>.title{margin-left:-1.5em;margin-bottom:.75em}
+.quoteblock blockquote,.quoteblock p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
+.quoteblock blockquote{margin:0;padding:0;border:0}
+.quoteblock blockquote::before{content:"\201c";float:left;font-size:2.75em;font-weight:bold;line-height:.6em;margin-left:-.6em;color:#7a2518;text-shadow:0 1px 2px rgba(0,0,0,.1)}
+.quoteblock blockquote>.paragraph:last-child p{margin-bottom:0}
+.quoteblock .attribution{margin-top:.75em;margin-right:.5ex;text-align:right}
+.verseblock{margin:0 1em 1.25em}
+.verseblock pre{font-family:"Open Sans","DejaVu Sans",sans-serif;font-size:1.15rem;color:rgba(0,0,0,.85);font-weight:300;text-rendering:optimizeLegibility}
+.verseblock pre strong{font-weight:400}
+.verseblock .attribution{margin-top:1.25rem;margin-left:.5ex}
+.quoteblock .attribution,.verseblock .attribution{font-size:.9375em;line-height:1.45;font-style:italic}
+.quoteblock .attribution br,.verseblock .attribution br{display:none}
+.quoteblock .attribution cite,.verseblock .attribution cite{display:block;letter-spacing:-.025em;color:rgba(0,0,0,.6)}
+.quoteblock.abstract blockquote::before,.quoteblock.excerpt blockquote::before,.quoteblock .quoteblock blockquote::before{display:none}
+.quoteblock.abstract blockquote,.quoteblock.abstract p,.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{line-height:1.6;word-spacing:0}
+.quoteblock.abstract{margin:0 1em 1.25em;display:block}
+.quoteblock.abstract>.title{margin:0 0 .375em;font-size:1.15em;text-align:center}
+.quoteblock.excerpt>blockquote,.quoteblock .quoteblock{padding:0 0 .25em 1em;border-left:.25em solid #dddddf}
+.quoteblock.excerpt,.quoteblock .quoteblock{margin-left:0}
+.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{color:inherit;font-size:1.0625rem}
+.quoteblock.excerpt .attribution,.quoteblock .quoteblock .attribution{color:inherit;font-size:.85rem;text-align:left;margin-right:0}
+p.tableblock:last-child{margin-bottom:0}
+td.tableblock>.content{margin-bottom:1.25em;word-wrap:anywhere}
+td.tableblock>.content>:last-child{margin-bottom:-1.25em}
+table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
+table.grid-all>*>tr>*{border-width:1px}
+table.grid-cols>*>tr>*{border-width:0 1px}
+table.grid-rows>*>tr>*{border-width:1px 0}
+table.frame-all{border-width:1px}
+table.frame-ends{border-width:1px 0}
+table.frame-sides{border-width:0 1px}
+table.frame-none>colgroup+*>:first-child>*,table.frame-sides>colgroup+*>:first-child>*{border-top-width:0}
+table.frame-none>:last-child>:last-child>*,table.frame-sides>:last-child>:last-child>*{border-bottom-width:0}
+table.frame-none>*>tr>:first-child,table.frame-ends>*>tr>:first-child{border-left-width:0}
+table.frame-none>*>tr>:last-child,table.frame-ends>*>tr>:last-child{border-right-width:0}
+table.stripes-all tr,table.stripes-odd tr:nth-of-type(odd),table.stripes-even tr:nth-of-type(even),table.stripes-hover tr:hover{background:#f8f8f7}
+th.halign-left,td.halign-left{text-align:left}
+th.halign-right,td.halign-right{text-align:right}
+th.halign-center,td.halign-center{text-align:center}
+th.valign-top,td.valign-top{vertical-align:top}
+th.valign-bottom,td.valign-bottom{vertical-align:bottom}
+th.valign-middle,td.valign-middle{vertical-align:middle}
+table thead th,table tfoot th{font-weight:bold}
+tbody tr th{background:#f7f8f7}
+tbody tr th,tbody tr th p,tfoot tr th,tfoot tr th p{color:rgba(0,0,0,.8);font-weight:bold}
+p.tableblock>code:only-child{background:none;padding:0}
+p.tableblock{font-size:1em}
+ol{margin-left:1.75em}
+ul li ol{margin-left:1.5em}
+dl dd{margin-left:1.125em}
+dl dd:last-child,dl dd:last-child>:last-child{margin-bottom:0}
+ol>li p,ul>li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
+ul.checklist,ul.none,ol.none,ul.no-bullet,ol.no-bullet,ol.unnumbered,ul.unstyled,ol.unstyled{list-style-type:none}
+ul.no-bullet,ol.no-bullet,ol.unnumbered{margin-left:.625em}
+ul.unstyled,ol.unstyled{margin-left:0}
+ul.checklist>li>p:first-child{margin-left:-1em}
+ul.checklist>li>p:first-child>.fa-square-o:first-child,ul.checklist>li>p:first-child>.fa-check-square-o:first-child{width:1.25em;font-size:.8em;position:relative;bottom:.125em}
+ul.checklist>li>p:first-child>input[type=checkbox]:first-child{margin-right:.25em}
+ul.inline{display:flex;flex-flow:row wrap;list-style:none;margin:0 0 .625em -1.25em}
+ul.inline>li{margin-left:1.25em}
+.unstyled dl dt{font-weight:400;font-style:normal}
+ol.arabic{list-style-type:decimal}
+ol.decimal{list-style-type:decimal-leading-zero}
+ol.loweralpha{list-style-type:lower-alpha}
+ol.upperalpha{list-style-type:upper-alpha}
+ol.lowerroman{list-style-type:lower-roman}
+ol.upperroman{list-style-type:upper-roman}
+ol.lowergreek{list-style-type:lower-greek}
+.hdlist>table,.colist>table{border:0;background:none}
+.hdlist>table>tbody>tr,.colist>table>tbody>tr{background:none}
+td.hdlist1,td.hdlist2{vertical-align:top;padding:0 .625em}
+td.hdlist1{font-weight:bold;padding-bottom:1.25em}
+td.hdlist2{word-wrap:anywhere}
+.literalblock+.colist,.listingblock+.colist{margin-top:-.5em}
+.colist td:not([class]):first-child{padding:.4em .75em 0;line-height:1;vertical-align:top}
+.colist td:not([class]):first-child img{max-width:none}
+.colist td:not([class]):last-child{padding:.25em 0}
+.thumb,.th{line-height:0;display:inline-block;border:4px solid #fff;box-shadow:0 0 0 1px #ddd}
+.imageblock.left{margin:.25em .625em 1.25em 0}
+.imageblock.right{margin:.25em 0 1.25em .625em}
+.imageblock>.title{margin-bottom:0}
+.imageblock.thumb,.imageblock.th{border-width:6px}
+.imageblock.thumb>.title,.imageblock.th>.title{padding:0 .125em}
+.image.left,.image.right{margin-top:.25em;margin-bottom:.25em;display:inline-block;line-height:0}
+.image.left{margin-right:.625em}
+.image.right{margin-left:.625em}
+a.image{text-decoration:none;display:inline-block}
+a.image object{pointer-events:none}
+sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
+sup.footnote a,sup.footnoteref a{text-decoration:none}
+sup.footnote a:active,sup.footnoteref a:active{text-decoration:underline}
+#footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
+#footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em;border-width:1px 0 0}
+#footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;margin-bottom:.2em}
+#footnotes .footnote a:first-of-type{font-weight:bold;text-decoration:none;margin-left:-1.05em}
+#footnotes .footnote:last-of-type{margin-bottom:0}
+#content #footnotes{margin-top:-.625em;margin-bottom:0;padding:.75em 0}
+.gist .file-data>table{border:0;background:#fff;width:100%;margin-bottom:0}
+.gist .file-data>table td.line-data{width:99%}
+div.unbreakable{page-break-inside:avoid}
+.big{font-size:larger}
+.small{font-size:smaller}
+.underline{text-decoration:underline}
+.overline{text-decoration:overline}
+.line-through{text-decoration:line-through}
+.aqua{color:#00bfbf}
+.aqua-background{background:#00fafa}
+.black{color:#000}
+.black-background{background:#000}
+.blue{color:#0000bf}
+.blue-background{background:#0000fa}
+.fuchsia{color:#bf00bf}
+.fuchsia-background{background:#fa00fa}
+.gray{color:#606060}
+.gray-background{background:#7d7d7d}
+.green{color:#006000}
+.green-background{background:#007d00}
+.lime{color:#00bf00}
+.lime-background{background:#00fa00}
+.maroon{color:#600000}
+.maroon-background{background:#7d0000}
+.navy{color:#000060}
+.navy-background{background:#00007d}
+.olive{color:#606000}
+.olive-background{background:#7d7d00}
+.purple{color:#600060}
+.purple-background{background:#7d007d}
+.red{color:#bf0000}
+.red-background{background:#fa0000}
+.silver{color:#909090}
+.silver-background{background:#bcbcbc}
+.teal{color:#006060}
+.teal-background{background:#007d7d}
+.white{color:#bfbfbf}
+.white-background{background:#fafafa}
+.yellow{color:#bfbf00}
+.yellow-background{background:#fafa00}
+span.icon>.fa{cursor:default}
+a span.icon>.fa{cursor:inherit}
+.admonitionblock td.icon [class^="fa icon-"]{font-size:2.5em;text-shadow:1px 1px 2px rgba(0,0,0,.5);cursor:default}
+.admonitionblock td.icon .icon-note::before{content:"\f05a";color:#19407c}
+.admonitionblock td.icon .icon-tip::before{content:"\f0eb";text-shadow:1px 1px 2px rgba(155,155,0,.8);color:#111}
+.admonitionblock td.icon .icon-warning::before{content:"\f071";color:#bf6900}
+.admonitionblock td.icon .icon-caution::before{content:"\f06d";color:#bf3400}
+.admonitionblock td.icon .icon-important::before{content:"\f06a";color:#bf0000}
+.conum[data-value]{display:inline-block;color:#fff!important;background:rgba(0,0,0,.8);border-radius:50%;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
+.conum[data-value] *{color:#fff!important}
+.conum[data-value]+b{display:none}
+.conum[data-value]::after{content:attr(data-value)}
+pre .conum[data-value]{position:relative;top:-.125em}
+b.conum *{color:inherit!important}
+.conum:not([data-value]):empty{display:none}
+dt,th.tableblock,td.content,div.footnote{text-rendering:optimizeLegibility}
+h1,h2,p,td.content,span.alt,summary{letter-spacing:-.01em}
+p strong,td.content strong,div.footnote strong{letter-spacing:-.005em}
+p,blockquote,dt,td.content,span.alt,summary{font-size:1.0625rem}
+p{margin-bottom:1.25rem}
+.sidebarblock p,.sidebarblock dt,.sidebarblock td.content,p.tableblock{font-size:1em}
+.exampleblock>.content{background:#fffef7;border-color:#e0e0dc;box-shadow:0 1px 4px #e0e0dc}
+.print-only{display:none!important}
+@page{margin:1.25cm .75cm}
+@media print{*{box-shadow:none!important;text-shadow:none!important}
+html{font-size:80%}
+a{color:inherit!important;text-decoration:underline!important}
+a.bare,a[href^="#"],a[href^="mailto:"]{text-decoration:none!important}
+a[href^="http:"]:not(.bare)::after,a[href^="https:"]:not(.bare)::after{content:"(" attr(href) ")";display:inline-block;font-size:.875em;padding-left:.25em}
+abbr[title]{border-bottom:1px dotted}
+abbr[title]::after{content:" (" attr(title) ")"}
+pre,blockquote,tr,img,object,svg{page-break-inside:avoid}
+thead{display:table-header-group}
+svg{max-width:100%}
+p,blockquote,dt,td.content{font-size:1em;orphans:3;widows:3}
+h2,h3,#toctitle,.sidebarblock>.content>.title{page-break-after:avoid}
+#header,#content,#footnotes,#footer{max-width:none}
+#toc,.sidebarblock,.exampleblock>.content{background:none!important}
+#toc{border-bottom:1px solid #dddddf!important;padding-bottom:0!important}
+body.book #header{text-align:center}
+body.book #header>h1:first-child{border:0!important;margin:2.5em 0 1em}
+body.book #header .details{border:0!important;display:block;padding:0!important}
+body.book #header .details span:first-child{margin-left:0!important}
+body.book #header .details br{display:block}
+body.book #header .details br+span::before{content:none!important}
+body.book #toc{border:0!important;text-align:left!important;padding:0!important;margin:0!important}
+body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-break-before:always}
+.listingblock code[data-lang]::before{display:block}
+#footer{padding:0 .9375em}
+.hide-on-print{display:none!important}
+.print-only{display:block!important}
+.hide-for-print{display:none!important}
+.show-for-print{display:inherit!important}}
+@media amzn-kf8,print{#header>h1:first-child{margin-top:1.25rem}
+.sect1{padding:0!important}
+.sect1+.sect1{border:0}
+#footer{background:none}
+#footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
+@media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
+</style>
+</head>
+<body class="article">
+<div id="header">
+</div>
+<div id="content">
+<div class="sect1 pagenumrestart">
+<h2 id="intro_what_is_the_lightning_network">はじめに</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><em>ライトニングネットワークを</em>使いこなそう！へようこそ。</p>
+</div>
+<div class="paragraph">
+<p>ライトニング・ネットワーク（しばしばLNと略される）は、人々がオンラインで価値を交換する方法を変えつつあり、ビットコインの歴史の中で最もエキサイティングな進歩の一つです。
+2021年の今日、ライトニング・ネットワークはまだ初期段階にあります。ライトニング・ネットワークは、ビットコインをスマートかつ明白でない方法で使用するためのプロトコルです。ビットコインの上に乗っている第2層の技術です。</p>
+</div>
+<div class="paragraph">
+<p>ライトニング・ネットワークのコンセプトは2015年に提案され、2018年に最初の実装が開始されました。2021年現在、プライバシー、スピード、スケールの向上など、ライトニングネットワークがビットコインに提供する機会が見え始めたところです。
+ライトニングネットワークの中核的な知識を身につければ、ネットワークの未来を形作る手助けをしながら、自分自身の機会も築くことができるのです。</p>
+</div>
+<div class="paragraph">
+<p>ビットコインに関する基礎知識はすでにお持ちだと思いますが、そうでない方もご安心ください。ライトニングネットワークを理解するために知っておくべき、ビットコインの最も重要な概念については、<a href="#bitcoin_fundamentals_review">[bitcoin_fundamentals_review]</a>で解説しています。ビットコインについてもっと知りたい方は、<a href="https://github.com/bitcoinbook/bitcoinbook">オンラインで無料で</a>読めるAndreas M. Antonopoulos著「<em>Mastering Bitcoin</em>, 2nd edition」（オライリー社）を読んでみてください。</p>
+</div>
+<div class="paragraph">
+<p>本書の大部分はプログラマー向けに書かれていますが、最初の数章は、技術的な経験に関係なく誰でも親しめるように書かれています。この章では、まず用語について説明し、次に信頼とその応用について、最後にライトニング・ネットワークの歴史と将来について説明します。それでは始めましょう。</p>
+</div>
+<div class="sect2">
+<h3 id="_lightning_network_basic_concepts">ライトニングネットワークの基本概念</h3>
+<div class="paragraph">
+<p>ライトニングネットワークが実際にどのように機能するかを探る中で、最初は少し戸惑うかもしれない専門用語に出会うことになります。これらの概念や用語はすべて、本書を読み進めるうちに詳しく説明され、用語集で定義されていますが、今のうちに基本的な定義をしておくと、次の 2 つの章での概念を理解しやすくなります。これらの定義にある単語をまだすべて理解していなくても、それはそれで問題ありません。テキストを読み進めていくうちに、より理解が深まるでしょう。</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">ブロックチェーン</dt>
+<dd>
+<p>コンピュータのネットワークによって作成される、分散型の取引台帳のこと。例えばビットコインは、ブロックチェーンを生成するシステムである。ライトニングネットワークは、それ自体がブロックチェーンではなく、ブロックチェーンを生成するものでもありません。既存の外部ブロックチェーンにセキュリティを依存するネットワークである。</p>
+</dd>
+<dt class="hdlist1">デジタル署名</dt>
+<dd>
+<p>デジタル署名は、デジタルメッセージや文書の真正性を検証するための数学的スキームである。有効なデジタル署名は、メッセージが既知の送信者によって作成され、送信者がメッセージを送信したことを否定できず、メッセージが転送中に変更されていないと信じる理由を受信者に与える。</p>
+</dd>
+<dt class="hdlist1">ハッシュ関数</dt>
+<dd>
+<p>暗号ハッシュ関数は、任意のサイズのデータを固定サイズのビット列（ハッシュ）にマッピングする数学的アルゴリズムで、一方向性関数、つまり逆変換が不可能な関数であるように設計されています。</p>
+</dd>
+<dt class="hdlist1">ノード</dt>
+<dd>
+<p>ネットワークに参加するコンピュータのことです。ライトニングノードとは、ライトニングネットワークに参加するコンピュータのことです。ビットコインノードとは、ビットコインネットワークに参加するコンピュータのことです。通常、LNユーザーは、<em>ライトニングノードと</em>ビットコインノードを稼働させます。</p>
+</dd>
+<dt class="hdlist1">オンチェーン vs オフチェーン</dt>
+<dd>
+<p>ビットコイン（または他の基礎となる）ブロックチェーン上でトランザクションとして記録されている場合、支払いは<em>オンチェーン</em>です。ライトニングノード間の支払いチャネルを介して送信され、基礎となるブロックチェーンに表示されていない支払いは、<em>オフチェーン</em>支払いと呼ばれます。通常、ライトニングネットワークでは、オンチェーン取引はライトニングの支払いチャネルを開いたり閉じたりするために使用されるものだけです。チャネルを変更するトランザクションには、スプライシングと呼ばれる第3のタイプが存在し、チャネルにコミットされた資金の量を追加/削除するために使用することができます。</p>
+</dd>
+<dt class="hdlist1">支払方法</dt>
+<dd>
+<p>ライトニングネットワーク上で価値を交換する場合、ビットコインのブロックチェーン上の「取引」に対して、「支払い」と呼んでいます。</p>
+</dd>
+<dt class="hdlist1">支払いチャネル</dt>
+<dd>
+<p>ライトニングネットワーク上の2つのノード間の<em>金融関係</em>。通常、2つのライトニングノード間でビットコインの制御を共有するマルチシグネチャービットコイン取引によって実装されます。</p>
+</dd>
+<dt class="hdlist1">ルーティングと送信の比較</dt>
+<dd>
+<p>ビットコインが取引を全員にブロードキャストして「送信」するのとは異なり、ライトニングは、支払いが送信者から受信者への<em>経路に従って</em>1つまたは複数の支払いチャネルを「ルーティング」されるルーティングネットワークである。</p>
+</dd>
+<dt class="hdlist1">トランザクション</dt>
+<dd>
+<p>ある資金（例えば、あるビットコイン）に対する支配権の移動を記録するデータ構造。ライトニング・ネットワークは、ビットコインの取引（または他のブロックチェーンの取引）に依存して、資金の制御を追跡します。</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>これらの用語やその他多くの用語のより詳細な定義については、<a href="#glossary">[用語集]</a>をご覧ください。本書を通じて、これらの概念が何を意味するのか、またこれらの技術が実際にどのように機能するのかを説明します。</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">チップ</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>本書では、頭文字を大文字にして「Bitcoin」と表記していますが、これは<em>ビットコインシステムを</em>指す固有名詞です。また、「ビットコイン」は小文字の「<em>b</em>」で表記され、通貨単位を表しています。各ビットコインはさらに1億単位に細分化され、それぞれ「サトシ」（単数形）または「サトシ」（複数形）と呼ばれています。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>これらの基本的な用語に慣れたところで、すでに馴染みのある概念である「信頼」に話を移しましょう。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_trust_in_decentralized_networks">分散型ネットワークにおける信頼</h3>
+<div class="paragraph">
+<p>ビットコインやライトニングネットワークを "トラストレス "と呼んでいるのをよく耳にします。一見すると、これは紛らわしい。結局のところ、信頼は良いものではないのでしょうか？銀行はその名前にそれを使っているくらいですから。では、「トラストレス」なシステム、つまり信用がないシステムは悪いものなのでしょうか？</p>
+</div>
+<div class="paragraph">
+<p>トラストレス」という言葉の使用は、システムの他の参加者を信頼する<em>必要が</em>なく運用できることを伝えることを意図しています。ビットコインのような分散型システムでは、常に信頼できる相手と取引することを選ぶことができます。しかし、取引の相手を信頼できなくても、騙されることはない仕組みになっています。信頼は、システムの必需品ではなく、ナイス・トゥ・ハブ（nice-to-have）なのです。</p>
+</div>
+<div class="paragraph">
+<p>銀行のような伝統的なシステムでは、第三者があなたのお金を管理するため、あなたは第三者に信頼を置かなければならないのと対照的です。銀行があなたの信頼に背いた場合、あなたは規制当局や裁判所から何らかの手段を見つけることができるかもしれませんが、時間、お金、労力の莫大なコストがかかるでしょう。</p>
+</div>
+<div class="paragraph">
+<p>トラストレスとは、信頼がないという意味ではありません。すべての取引に信頼が必要な前提条件ではなく、システムが不正を防止するため、信頼できない相手とでも取引できることを意味します。</p>
+</div>
+<div class="paragraph">
+<p>ライトニングネットワークの仕組みに入る前に、ビットコインやライトニングネットワーク、その他多くのシステムの根底にある、<em>フェアネスプロトコルと</em>呼ばれる基本概念を理解することが重要です。フェアネスプロトコルとは、中央の権威を介さずに、お互いを信頼する必要のない参加者間で公正な結果を得るための方法で、ビットコインのような分散型システムの基幹となるものです。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_fairness_without_central_authority">中央の権威に頼らない公正さ</h3>
+<div class="paragraph">
+<p>人々は利害が対立するとき、どのようにして協力的あるいは取引的な行動をとるのに十分な信頼を築くことができるのだろうか。この問いに対する答えは、経済学、社会学、行動心理学、数学など、いくつかの科学的・人文科学的分野の中核にあるものである。これらの分野の中には、評判、公平性、道徳、さらには宗教といった概念に依存した「ソフトな」答えを与えてくれるものもある。他の学問分野は、これらの相互作用の参加者が自己利益を主目的として合理的に行動するという仮定にのみ依存する具体的な答えを与えてくれる。</p>
+</div>
+<div class="paragraph">
+<p>大まかに言えば、利害が対立する可能性のある個人間の相互作用において、公正な結果を確保する方法は一握りしかないのです。</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">信頼を必要とする</dt>
+<dd>
+<p>過去の交流や評判、家族関係などから、すでに信頼できる人とだけ交流するのです。これは小規模、特に家族や小集団の中では十分に機能し、協力的な行動の最も一般的な基礎となっています。しかし残念なことに、この方法は規模を拡大することができず、部族主義（内集団）バイアスに悩まされることになります。</p>
+</dd>
+<dt class="hdlist1">法の支配</dt>
+<dd>
+<p>制度によって実施される相互作用のルールを確立する。この方が拡張性は高いが、習慣や伝統の違い、また執行機関の拡張性がないため、グローバルに拡張することはできない。この解決策の厄介な副作用は、制度が大きくなるにつれてますます強力になり、それが汚職につながる可能性があることです。</p>
+</dd>
+<dt class="hdlist1">信頼できる第三者機関</dt>
+<dd>
+<p>すべての相互作用に仲介者を置き、公正さを強制する。仲介者を監視する「法の支配」と組み合わせることで、この方法はよりうまく機能するが、同じように力の不均衡に悩まされることになる：仲介者が非常に強力になり、腐敗を引き寄せる可能性がある。権力の集中は、システミックリスクとシステミックな失敗（「大きすぎて潰せない」）をもたらす。</p>
+</dd>
+<dt class="hdlist1">ゲーム理論に基づいた公平なプロトコル</dt>
+<dd>
+<p>この最後のカテゴリーは、インターネットと暗号技術の組み合わせから生まれ、このセクションの主題となるものです。その仕組みとメリット・デメリットを見ていきましょう。</p>
+</dd>
+</dl>
+</div>
+<div class="sect3">
+<h4 id="_trusted_protocols_without_intermediaries">仲介者を介さない信頼性の高いプロトコル</h4>
+<div class="paragraph">
+<p>ビットコインやライトニングネットワークのような暗号化システムは、信用できない人（やコンピュータ）と取引することを可能にするシステムである。これは、実際にはトラストレスではないにもかかわらず、しばしば「トラストレス」操作と呼ばれます。実行するソフトウェアを信頼し、そのソフトウェアが実装するプロトコルが公正な結果をもたらすことを信頼しなければならないのです。</p>
+</div>
+<div class="paragraph">
+<p>このような暗号システムと従来の金融システムの大きな違いは、従来の金融では、例えば銀行などの<em>信頼できる第三</em>者がいて、結果が公正であることを保証していることです。このようなシステムの大きな問題は、第三者に大きな力を与えすぎてしまうことと、<em>単一障害点（single point of failure</em>）に対して脆弱であることです。信頼できる第三者自身が信頼に背いたり、不正をしようとしたりすると、信頼の基盤が崩れてしまうのです。</p>
+</div>
+<div class="paragraph">
+<p>暗号システムを研究していると、あるパターンに気づきます。信頼できる第三者に頼るのではなく、インセンティブとディスインセンティブのシステムを用いて、不公平な結果を防ごうとするのです。暗号システムでは、<em>プロトコルを</em>信頼します。プロトコルは、適切に設計されていれば、望ましいインセンティブとディスインセンティブを正しく適用する一連のルールを持つシステムであると言えます。この方法の利点は2つあります。第三者を信頼する必要がないだけでなく、公正な結果を強制する必要性も低くなります。参加者が合意されたプロトコルに従い、システム内に留まる限り、そのプロトコルにおけるインセンティブメカニズムは、強制することなく公正な結果を達成するのです。</p>
+</div>
+<div class="paragraph">
+<p>ビットコインやライトニングネットワークなど、参加者間の金銭的なやりとりを制御する暗号化システムは、参加者の不正を防ぎ、お互いを信頼していない参加者が公正な結果を得られるよう、<em>ゲーム</em>理論に大きく依存している[<sup class="footnote"><a id="_footnoteref_1" class="footnote" href="#_footnotedef_1" title="View footnote.">1</a>]</sup>。</p>
+</div>
+<div class="paragraph">
+<p>ゲーム理論や暗号システムでの利用は、一見すると分かりにくく馴染みのないものに見えるかもしれませんが、おそらく皆さんは日常生活の中で既にこうしたシステムに親しんでおり、まだ認識していないだけでしょう。次の章では、子供の頃の簡単な例を使って、基本的なパターンを理解するのに役立てましょう。一度基本パターンを理解すれば、ブロックチェーンの世界のあらゆるところで目にすることになり、素早く直感的に認識できるようになります。</p>
+</div>
+<div class="paragraph">
+<p>本書では、このパターンを「<em>公正プロトコル</em>」と呼び、お互いを信頼していない参加者が公正な結果を得られるように、インセンティブやディスインセンティブのシステムを使用したプロセスと定義しています。公正プロトコルの施行は、参加者がインセンティブやディスインセンティブから逃れることができないことを保証するためにのみ必要である。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_a_fairness_protocol_in_action">フェアネス・プロトコルの実践</h4>
+<div class="paragraph">
+<p>すでにご存知の方も多いかもしれませんが、フェアネスプロトコルの例を見てみましょう。</p>
+</div>
+<div class="paragraph">
+<p>親と子供2人の家族ランチを想像してください。子供たちは食べ物にうるさくて、唯一フライドポテトしか食べようとしません。親はフライドポテト（「フライドポテト」または「チップス」、どの英語の方言を使うかによる）を用意しました。2人の兄弟はチップスの皿を分けなければならない。親はそれぞれの子供に公平にチップスを配らなければなりません。さもなければ、親は絶え間なく（もしかしたら一日中）文句を言わなければならず、不公平な状況が暴力に発展する可能性が常にあります。親はどうしたらいいのでしょう？</p>
+</div>
+<div class="paragraph">
+<p>お互いを信頼せず、利害が対立する兄弟姉妹の戦略的相互作用において、公平性を実現する方法はいくつかある。素朴だがよく使われる方法は、親が信頼できる第三者としての権威を利用することである。親はチップスの入ったボウルを2人分に分けるのである。これは、銀行、会計士、弁護士が信頼できる第三者として、取引をしたい2人の当事者間で不正が行われないようにする、伝統的な金融に似ている。</p>
+</div>
+<div class="paragraph">
+<p>このシナリオの問題点は、信頼できる第三者の手に多くの権力と責任を委ねてしまうことです。この例では、親がチップの均等配分に全責任を負い、当事者はただ待ち、見守り、文句を言うだけである。  子供たちは、親がチップを公平に配分せず、えこひいきをしていると非難します。兄弟はチップをめぐって争い、「あっちのチップの方が大きい！」と叫び、親をその争いに引きずり込む。ひどい話でしょう？親はもっと大きな声で怒鳴るべきでしょうか？チップスを全部取り上げるべきでしょうか？もう二度とポテトチップスを作らないと脅して、その不甲斐ない子供たちを空腹にさせるか？</p>
+</div>
+<div class="paragraph">
+<p>もっと良い解決策がある。兄弟に "split and choose "というゲームを教えるのだ。昼食のたびに、兄弟の一人がポテトチップスのボウルを2人分に分け、<em>もう</em>一人の兄弟がどちらの人前を食べるか選ぶのです。兄弟はほとんどすぐに、このゲームのダイナミックさを理解します。もし割る方が間違えたり、ごまかそうとしたりしたら、もう一方の兄弟は大きい方のボウルを選んで「罰する」ことができるのです。これは、兄弟姉妹の最善の利益であり、特にボウルを分割する人は、公正なプレーをする必要があります。このシナリオでは、不正行為をした人だけが損をします。親は権威を行使したり、公平性を強制したりする必要さえありません。兄弟が「分ける人」と「選ぶ人」という与えられた役割から逃れられない限り、親は<em>プロトコルを実施</em>するだけで、何も介入しなくても、プロトコル自体が公平な結果を保証してくれるのです。親がえこひいきしたり、結果をゆがめたりすることはできないのです。</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<div class="title">警告</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>1980年代の悪名高いチップバトルがその一例ですが、上記のシナリオと著者の子供時代の従兄弟との実体験が似ているのは全くの偶然...なのでしょうか？</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_security_primitives_as_building_blocks">ビルディングブロックとしてのセキュリティプリミティブ</h4>
+<div class="paragraph">
+<p>このような公平なプロトコルが機能するためには、ある種の保証、つまり<em>セキュリティプリミティブが</em>必要であり、それを組み合わせることで強制力を確保することができる。最初のセキュリティ要素は、<em>厳密な時間順序／順序付け</em>である。「分割」動作は「選択」動作の前に行われなければならない。これはすぐには理解できないが、行動Aが行動Bより先に起こることを保証できなければ、プロトコルは崩壊してしまう。2つ目のセキュリティ基本要素は、<em>否認防止を伴うコミットメント</em>である。兄弟はそれぞれ、分割者または選択者という自分の役割の選択をコミットしなければならない。また、分割が完了すると、分割者は自分が作った分割にコミットすることになる。</p>
+</div>
+<div class="paragraph">
+<p>暗号システムは多くのセキュリティプリミティブを提供し、それらを様々な方法で組み合わせて公平なプロトコルを構成することができる。シーケンシングとコミットメントに加えて、他の多くのツールも使用することができる。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>ハッシュ関数によるデータのフィンガープリント、コミットメント、デジタル署名の基礎として</p>
+</li>
+<li>
+<p>認証、否認防止、秘密の所有者証明のためのデジタル署名</p>
+</li>
+<li>
+<p>暗号化・復号化により、許可された参加者のみに情報へのアクセスを制限</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>これは、現在使用されているセキュリティと暗号のプリミティブの「群れ」のほんの一部です。より多くの基本的なプリミティブとその組み合わせが常に発明されています。</p>
+</div>
+<div class="paragraph">
+<p>実際の例では、"split and choose "と呼ばれるフェアネスプロトコルの一種を見ました。これは、セキュリティプリミティブの構成要素を様々に組み合わせることで構築できる無数の異なるフェアネスプロトコルの一つに過ぎない。しかし、基本的なパターンは常に同じである。2人以上の参加者は、合意されたプロトコルの一部である一連のステップに参加することで、お互いを信用することなく対話する。プロトコルのステップは、参加者が合理的であれば、不正行為は非生産的であり、公平な結果が自動的に得られるように、インセンティブとディスインセンティブを配置する。強制は公正な結果を得るために必要なのではなく、参加者が合意されたプロトコルを破らないようにするためにのみ必要なのである。</p>
+</div>
+<div class="paragraph">
+<p>この基本パターンを理解したことで、ビットコインやライトニングネットワーク、その他多くのシステムのいたるところで、このパターンを目にするようになることでしょう。次は具体的な例を見てみましょう。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_example_of_the_fairness_protocol">フェアネスプロトコルの例</h4>
+<div class="paragraph">
+<p>フェアネスプロトコルの最も顕著な例は、BitcoinのコンセンサスアルゴリズムであるProof of Work（PoW）である。ビットコインでは、採掘者が競って取引を検証し、ブロックに集約していく。マイナーに権限を委ねることなく、不正をしないようにするため、ビットコインではインセンティブとディスインセンティブのシステムを採用しています。採掘者は電力を使い、ハードウェアを捧げて「仕事」をしなければならない。その「仕事」は、ブロックごとに「証明」として埋め込まれる。これは、ハッシュ関数の特性として、出力値が可能な出力範囲全体にランダムに分布しているために実現されています。採掘者が有効なブロックを十分に速く生成することに成功した場合、そのブロックの報酬を得ることで報われる。ネットワークがそのブロックを考慮する前に、採掘者に大量の電力を使わせることは、ブロック内の取引を正しく検証するインセンティブがあることを意味する。もし彼らが不正をしたり、何らかの間違いを犯したりすれば、そのブロックは拒否され、彼らが「証明」するために使った電力は無駄になってしまう。誰もマイナーに有効なブロックを作るよう強制する必要はない。報酬と罰がそうするよう動機付けるのである。プロトコルがすべきことは、Proof of Workを持つ有効なブロックだけが受け入れられるようにすることである。</p>
+</div>
+<div class="paragraph">
+<p>フェアネスプロトコルのパターンは、Lightning Networkのさまざまな側面にも見出すことができます。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>チャンネルに出資する人は、出資取引を公開する前に、返金取引にサインしてもらうようにしています。</p>
+</li>
+<li>
+<p>チャンネルが新しい状態に移行するたびに、誰かがそれを放送しようとすると、全体のバランスを崩して罰を受けるようにすることで、古い状態を「取り消す」のです。</p>
+</li>
+<li>
+<p>支払いを転送する人は、資金を転送することを約束すれば、払い戻しを受けるか、先行するノードから支払いを受けることができることを知っています。</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>何度も何度も、このパターンを見てきました。公正な結果は、いかなる権威によっても強制されることはない。公正な結果に報酬を与え、不正を罰するプロトコル、つまり公正なプロトコルが、公正な結果に向けることで利己心を利用した自然な結果として生まれるのである。</p>
+</div>
+<div class="paragraph">
+<p>ビットコインもライトニングネットワークも、公平性のあるプロトコルを実装したものです。では、なぜライトニングネットワークが必要なのでしょうか？ビットコインで十分ではないか？</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_motivation_for_the_lightning_network">ライトニングネットワークの動機</h3>
+<div class="paragraph">
+<p>ビットコインは、グローバルに複製された公開台帳に取引を記録するシステムです。すべての取引は、参加しているすべてのコンピュータによって見られ、検証され、保存されます。想像できるように、これは大量のデータを生成し、スケーリングが困難である。</p>
+</div>
+<div class="paragraph">
+<p>ビットコインと取引の需要が高まるにつれ、各ブロックの取引数は増加し、最終的にブロックサイズの限界に達した。
+ブロックが「満杯」になると、余分な取引は待ち行列に入れられることになる。多くのユーザーは、次のブロックに自分の取引のためのスペースを買うために、喜んで支払う手数料を増やします。</p>
+</div>
+<div class="paragraph">
+<p>需要がネットワークのキャパシティを上回り続けると、未確認のまま待たされるユーザーのトランザクションがますます増える。手数料をめぐる競争も各取引のコストを上昇させ、特に需要の高い時期には多くの少額取引（マイクロトランザクションなど）がまったく経済的でなくなる。</p>
+</div>
+<div class="paragraph">
+<p>この問題を解決するために、ブロックサイズの上限を増やして、より多くの取引のためのスペースを作ることができます。ブロックスペースの「供給」が増えれば、取引手数料の価格均衡が低くなる。</p>
+</div>
+<div class="paragraph">
+<p>しかし、ブロックサイズを大きくすると、コストがノード運用者にシフトし、ブロックチェーンの検証と保存に多くのリソースを費やす必要があります。ブロックチェーンはゴシッププロトコルであるため、各ノードはネットワーク上で発生するすべての取引を把握し、検証する必要がある。さらに、一度検証されると、各取引とブロックはノードの「隣人」に伝搬されなければならず、必要な帯域幅が倍増します。このように、ブロックサイズが大きくなればなるほど、各ノードが必要とする帯域幅、処理能力、ストレージ容量が大きくなります。このように取引容量を増やすと、ノードとノードオペレータの数が減るため、システムが中央集権化するという好ましくない影響があります。ノード運用者にはノードの運用に対する報酬がないため、ノードの運用コストが非常に高くなると、資金力のある少数のノード運用者だけがノードを運用し続けることになる。</p>
+</div>
+<div class="sect3">
+<h4 id="_scaling_blockchains">ブロックチェーンのスケーリング</h4>
+<div class="paragraph">
+<p>ネットワークの集中化に関して、ブロックサイズを大きくしたり、ブロック時間を短くしたりすることの副作用は、数字を使ったいくつかの計算でわかるように、深刻です。</p>
+</div>
+<div class="paragraph">
+<p>ビットコインの利用が拡大し、ネットワークが1秒間に4万件の取引を処理しなければならなくなったと仮定しましょう。これは、ピーク時のVisaネットワークのおおよその取引処理レベルです。</p>
+</div>
+<div class="paragraph">
+<p>1トランザクションあたり平均250バイトと仮定すると、すべてのトランザクションを受信するために、10メガバイト/秒（MBps）または80メガビット/秒（Mbps）のデータストリームとなる。
+これには、トランザクション情報を他のピアに転送するためのトラフィックオーバーヘッドは含まれていない。
+高速光ファイバーや5Gモバイルの速度からすれば10MBpsは極端とは言えませんが、この要件を満たせない人は、特に高性能インターネットが安価で広く普及していない国では、ノードの運営から事実上排除されることになります。</p>
+</div>
+<div class="paragraph">
+<p>ユーザーは他にも多くの帯域を要求しており、トランザクションを受信するためだけにこれだけの量を消費することは期待できません。</p>
+</div>
+<div class="paragraph">
+<p>さらに、この情報をローカルに保存した場合、1日あたり864ギガバイトになります。これはおよそ1テラバイト、つまりハードディスク1台分のデータ量です。</p>
+</div>
+<div class="paragraph">
+<p>毎秒4万件の楕円曲線デジタル署名アルゴリズム（ECDSA）署名の検証もかろうじて可能であり（<a href="https://bitcoin.stackexchange.com/questions/95339/how-many-bitcoin-transactions-can-be-verified-per-second">StackExchangeのこの記事を</a>参照）、ビットコインブロックチェーンの<em>初期ブロックダウンロード（IBD）</em>（生成ブロックから始まるすべての同期と検証）は非常に高価なハードウェアなしではほぼ不可能である。</p>
+</div>
+<div class="paragraph">
+<p>毎秒4万件のトランザクションは一見多いように見えますが、これはピーク時に従来の金融決済ネットワークと同等になるに過ぎません。マシンツーマシン決済、マイクロトランザクション、その他のアプリケーションの革新により、需要はそれよりも何桁も高くなると思われます。</p>
+</div>
+<div class="paragraph">
+<p>簡単に言えば、全世界の取引を分散して検証するためにブロックチェーンを拡張することはできない、ということです。</p>
+</div>
+<div class="paragraph">
+<p><em>しかし、もし各ノードがすべての取引を知り、検証する必要がなかったらどうでしょう？ビットコインネットワークのセキュリティを失うことなく スケーラブルなオフチェーン取引を行う方法があったらどうでしょう？</em></p>
+</div>
+<div class="paragraph">
+<p>2015年2月、Joseph PoonとThaddeus Dryjaは、「The Bitcoin Lightning Network」を発表し、ビットコインのスケーラビリティ問題に対する可能な解決策を提案しました。スケーラブルなオフチェーン・インスタントペイメント」<sup class="footnote">[<a id="_footnoteref_2" class="footnote" href="#_footnotedef_2" title="View footnote.">2</a>]</sup>を発表しました。</p>
+</div>
+<div class="paragraph">
+<p>プーン氏とドライジャ氏は、ホワイトペーパー（現在は古い）の中で、ビットコインがVisaのピーク時に処理される毎秒4万7000件のトランザクションに到達するためには、8GBのブロックが必要だと推定しています。
+これでは、大規模な企業や工業規模の事業以外では、ノードの運用がまったく不可能になります。
+その結果、少数のユーザーだけが台帳の状態を実際に検証できるネットワークになる。
+ビットコインは、分散化を維持するために、第三者を明示的に信頼することなく、ユーザーが自分自身で台帳を検証することに依存しています。
+ユーザーをノードから締め出すと、平均的なユーザーは台帳の状態を発見するために第三者を信頼せざるを得なくなり、最終的にビットコインの信頼モデルが崩れてしまうのです。</p>
+</div>
+<div class="paragraph">
+<p>ライトニング・ネットワークは、ユーザーが支払いのたびにビットコインのブロックチェーンにトランザクションを公開する必要がなく、ピアツーピアで互いに支払いを行うことができる新しいネットワーク、第二層を提案するものです。
+ユーザーは、追加のビットコイントランザクションを作成したり、オンチェーン手数料を発生させたりすることなく、ライトニングネットワーク上で何度でも互いに支払いを行うことができます。
+ビットコインブロックチェーンを利用するのは、ライトニングネットワークにビットコインを最初にロードするときと、<em>決済</em>、つまりライトニングネットワークからビットコインを取り除くときだけです。
+その結果、より多くのビットコイン決済がオフチェーンで行われるようになり、ビットコインノードが検証・保存する必要があるのは、最初のロードと最後の決済トランザクションのみとなります。
+ノードの負担軽減はもちろん、ライトニングネットワークでの支払いは、ブロックチェーンの手数料を支払う必要がないためユーザーにとって安価であり、ネットワークの全参加者に公開されず、さらに永久に保存されないため、ユーザーにとってよりプライベートなものとなっています。</p>
+</div>
+<div class="paragraph">
+<p>ライトニング・ネットワークは当初ビットコイン用に考案されましたが、いくつかの基本的な技術要件を満たせば、どのブロックチェーンにも実装可能です。ライトコインなどの他のブロックチェーンは、すでにライトニング・ネットワークをサポートしています。さらに、他のいくつかのブロックチェーンでは、スケーリングに役立つ同様のセカンドレイヤーまたは「レイヤー2」ソリューションが開発されています。</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_lightning_networks_defining_features">ライトニング・ネットワークの特徴</h3>
+<div class="paragraph">
+<p>ライトニング・ネットワークは、ビットコインやその他のブロックチェーンの上で、第2層のプロトコルとして動作するネットワークです。ライトニング・ネットワークは、高速、安全、プライベート、トラストレス、パーミッションレスな決済を可能にします。ここでは、ライトニング・ネットワークの特徴を紹介します。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>ライトニング・ネットワークのユーザー同士は、低コストでリアルタイムに決済をルーティングすることができます。</p>
+</li>
+<li>
+<p>ライトニング・ネットワーク上で価値を交換するユーザーは、支払いのためのブロック確認を待つ必要がない。</p>
+</li>
+<li>
+<p>ライトニング・ネットワークでの支払いが完了すると、通常は数秒以内に、その支払いが確定し、取り消すことができなくなります。ビットコイン取引と同様に、ライトニング・ネットワーク上の支払いは、受取人による返金のみが可能です。</p>
+</li>
+<li>
+<p>ビットコインのオンチェーン取引は、ネットワーク内のすべてのノードによってブロードキャストされ、検証されますが、ライトニングネットワークでルーティングされた支払いは、ノードのペア間で送信され、誰にも見えないため、はるかに高いプライバシーが実現されます。</p>
+</li>
+<li>
+<p>ビットコインネットワーク上の取引とは異なり、ライトニングネットワーク上で行われた支払いは、永久に保存する必要がない。そのため、ライトニングは使用するリソースが少なく、その分コストが安い。この性質は、プライバシーにもメリットがある。</p>
+</li>
+<li>
+<p>ライトニング・ネットワークは、プライバシーネットワーク「The Onion Router（Tor）」で使われているプロトコルと同様のオニオンルーティングを採用しており、支払いのルーティングに関わるノードでも、支払い経路の前任者と後任者しか直接認識できないようになっています。</p>
+</li>
+<li>
+<p>ビットコインの上で使用する場合、ライトニング・ネットワークは、常にユーザーが所有（保管）し、完全にコントロールできる本物のビットコインを使用します。ライトニングは別のトークンやコインではなく、ビットコイン<em>な</em>のです。</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="user-stories">ライトニングネットワークの活用事例、ユーザーとそのストーリー</h3>
+<div class="paragraph">
+<p>ライトニング・ネットワークが実際にどのように機能するのか、なぜ利用されるのかを理解するために、多くのユーザーとそのストーリーを追っていきます。</p>
+</div>
+<div class="paragraph">
+<p>私たちの例では、すでにビットコインを使用している人もいれば、ビットコインネットワークにまったく初めて参加する人もいます。ここに挙げた各人物とそのストーリーは、1つ以上の具体的な使用例を示しています。本書を通じて、それらを再確認することになります。</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">コンシューマー</dt>
+<dd>
+<p>アリスはビットコインのユーザーで、少額の小売店での買い物のために、速く、安全で、安い、プライベートな支払いをしたいと考えています。彼女はライトニングネットワークを使って、ビットコインでコーヒーを買っています。</p>
+</dd>
+<dt class="hdlist1">マーチャント</dt>
+<dd>
+<p>ボブはコーヒーショップ "Bob's Cafe" を経営しています。オンチェーンでのビットコイン支払いは、コーヒー1杯のような少額ではスケールしないため、彼はライトニング・ネットワークを使って、ほぼ瞬時に、しかも低額の手数料でビットコイン支払いに応じています。</p>
+</dd>
+<dt class="hdlist1">ソフトウェアサービス事業</dt>
+<dd>
+<p>Chan氏は、ライトニング・ネットワークやビットコインなどの暗号通貨に関連する情報サービスを販売する中国の起業家です。Chan氏は、ライトニング・ネットワーク上でマイクロペイメントを実装することで、インターネット上でこれらの情報サービスを販売しています。さらに、Chan氏は、ライトニングネットワークのインバウンドチャネルの容量をレンタルし、レンタル期間ごとに少額のビットコイン料金を徴収する流動性プロバイダーサービスを実装しています。</p>
+</dd>
+<dt class="hdlist1">ゲーマー</dt>
+<dd>
+<p>ディーナはロシア出身の10代のゲーマーです。様々なコンピュータゲームをプレイしていますが、彼女のお気に入りは、実際のお金で動く「ゲーム内経済」のあるゲームです。ゲームをプレイしながら、ゲーム内の仮想アイテムを入手し、販売することで収入を得ている。ライトニング・ネットワークは、ゲーム内のアイテムを少額で取引したり、クエストをクリアすることで少額を稼ぐことができる。</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_conclusion">結論</h3>
+<div class="paragraph">
+<p>この章では、ビットコインとライトニングネットワークの根幹をなす基本概念、フェアネスプロトコルについてお話しました。</p>
+</div>
+<div class="paragraph">
+<p>ライトニングネットワークの歴史と、ビットコインや他のブロックチェーンベースのネットワークのためのセカンドレイヤースケーリングソリューションの動機に注目しました。</p>
+</div>
+<div class="paragraph">
+<p>ノード、決済チャネル、オンチェーン取引、オフチェーン決済など、基本的な用語を学びました。</p>
+</div>
+<div class="paragraph">
+<p>そして、アリス、ボブ、チャン、ディナとの出会いです。次の章では、アリスに会い、彼女がライトニングウォレットを選び、ボブのカフェでコーヒーを買うために最初のライトニング決済を行う準備をするまでの思考過程を紹介します。</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<hr />
+<div class="footnote" id="_footnotedef_1">
+<a href="#_footnoteref_1">1</a>.Wikipediaの<a href="https://en.wikipedia.org/wiki/Game_theory">「ゲーム理論</a>」の項目に詳細があります。
+</div>
+<div class="footnote" id="_footnotedef_2">
+<a href="#_footnoteref_2">2</a>.Joseph Poon and Thaddeus Dryja."ビットコイン・ライトニング・ネットワーク。スケーラブルなオフチェーン・インスタントペイメント".DRAFTバージョン0.5.9.2.2016年1月14日。<a href="https://lightning.network/lightning-network-paper.pdf" class="bare">https://lightning.network/lightning-network-paper.pdf</a>。
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+最終更新 2022-10-29 15:50:16 +0400
+</div>
+</div>
+</body>
+</html>
