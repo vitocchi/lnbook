@@ -3,7 +3,7 @@ const express = require('express');
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 const app = express();
-const rootPath = '../html_ja';
+const rootPath = 'html_ja';
 const fs = require('fs');
 const basicAuth = require('express-basic-auth')
 
