@@ -1,0 +1,1356 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="generator" content="Asciidoctor 2.0.16" />
+<title>はじめに</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700" />
+<style>
+/*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
+/* Uncomment the following line when using as a custom stylesheet */
+/* @import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700"; */
+html{font-family:sans-serif;-webkit-text-size-adjust:100%}
+a{background:none}
+a:focus{outline:thin dotted}
+a:active,a:hover{outline:0}
+h1{font-size:2em;margin:.67em 0}
+b,strong{font-weight:bold}
+abbr{font-size:.9em}
+abbr[title]{cursor:help;border-bottom:1px dotted #dddddf;text-decoration:none}
+dfn{font-style:italic}
+hr{height:0}
+mark{background:#ff0;color:#000}
+code,kbd,pre,samp{font-family:monospace;font-size:1em}
+pre{white-space:pre-wrap}
+q{quotes:"\201C" "\201D" "\2018" "\2019"}
+small{font-size:80%}
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+sup{top:-.5em}
+sub{bottom:-.25em}
+img{border:0}
+svg:not(:root){overflow:hidden}
+figure{margin:0}
+audio,video{display:inline-block}
+audio:not([controls]){display:none;height:0}
+fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
+legend{border:0;padding:0}
+button,input,select,textarea{font-family:inherit;font-size:100%;margin:0}
+button,input{line-height:normal}
+button,select{text-transform:none}
+button,html input[type=button],input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer}
+button[disabled],html input[disabled]{cursor:default}
+input[type=checkbox],input[type=radio]{padding:0}
+button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
+textarea{overflow:auto;vertical-align:top}
+table{border-collapse:collapse;border-spacing:0}
+*,::before,::after{box-sizing:border-box}
+html,body{font-size:100%}
+body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;line-height:1;position:relative;cursor:auto;-moz-tab-size:4;-o-tab-size:4;tab-size:4;word-wrap:anywhere;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}
+a:hover{cursor:pointer}
+img,object,embed{max-width:100%;height:auto}
+object,embed{height:100%}
+img{-ms-interpolation-mode:bicubic}
+.left{float:left!important}
+.right{float:right!important}
+.text-left{text-align:left!important}
+.text-right{text-align:right!important}
+.text-center{text-align:center!important}
+.text-justify{text-align:justify!important}
+.hide{display:none}
+img,object,svg{display:inline-block;vertical-align:middle}
+textarea{height:auto;min-height:50px}
+select{width:100%}
+.subheader,.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{line-height:1.45;color:#7a2518;font-weight:400;margin-top:0;margin-bottom:.25em}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0}
+a{color:#2156a5;text-decoration:underline;line-height:inherit}
+a:hover,a:focus{color:#1d4b8f}
+a img{border:0}
+p{line-height:1.6;margin-bottom:1.25em;text-rendering:optimizeLegibility}
+p aside{font-size:.875em;line-height:1.35;font-style:italic}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{font-family:"Open Sans","DejaVu Sans",sans-serif;font-weight:300;font-style:normal;color:#ba3925;text-rendering:optimizeLegibility;margin-top:1em;margin-bottom:.5em;line-height:1.0125em}
+h1 small,h2 small,h3 small,#toctitle small,.sidebarblock>.content>.title small,h4 small,h5 small,h6 small{font-size:60%;color:#e99b8f;line-height:0}
+h1{font-size:2.125em}
+h2{font-size:1.6875em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.375em}
+h4,h5{font-size:1.125em}
+h6{font-size:1em}
+hr{border:solid #dddddf;border-width:1px 0 0;clear:both;margin:1.25em 0 1.1875em}
+em,i{font-style:italic;line-height:inherit}
+strong,b{font-weight:bold;line-height:inherit}
+small{font-size:60%;line-height:inherit}
+code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;color:rgba(0,0,0,.9)}
+ul,ol,dl{line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
+ul,ol{margin-left:1.5em}
+ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0}
+ul.square li ul,ul.circle li ul,ul.disc li ul{list-style:inherit}
+ul.square{list-style-type:square}
+ul.circle{list-style-type:circle}
+ul.disc{list-style-type:disc}
+ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
+dl dt{margin-bottom:.3125em;font-weight:bold}
+dl dd{margin-bottom:1.25em}
+blockquote{margin:0 0 1.25em;padding:.5625em 1.25em 0 1.1875em;border-left:1px solid #ddd}
+blockquote,blockquote p{line-height:1.6;color:rgba(0,0,0,.85)}
+@media screen and (min-width:768px){h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2}
+h1{font-size:2.75em}
+h2{font-size:2.3125em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.6875em}
+h4{font-size:1.4375em}}
+table{background:#fff;margin-bottom:1.25em;border:1px solid #dedede;word-wrap:normal}
+table thead,table tfoot{background:#f7f8f7}
+table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:.5em .625em .625em;font-size:inherit;color:rgba(0,0,0,.8);text-align:left}
+table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
+table tr.even,table tr.alt{background:#f8f8f7}
+table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{line-height:1.6}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
+h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
+.center{margin-left:auto;margin-right:auto}
+.stretch{width:100%}
+.clearfix::before,.clearfix::after,.float-group::before,.float-group::after{content:" ";display:table}
+.clearfix::after,.float-group::after{clear:both}
+:not(pre).nobreak{word-wrap:normal}
+:not(pre).nowrap{white-space:nowrap}
+:not(pre).pre-wrap{white-space:pre-wrap}
+:not(pre):not([class^=L])>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background:#f7f7f8;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed}
+pre{color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;line-height:1.45;text-rendering:optimizeSpeed}
+pre code,pre pre{color:inherit;font-size:inherit;line-height:inherit}
+pre>code{display:block}
+pre.nowrap,pre.nowrap pre{white-space:pre;word-wrap:normal}
+em em{font-style:normal}
+strong strong{font-weight:400}
+.keyseq{color:rgba(51,51,51,.8)}
+kbd{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;display:inline-block;color:rgba(0,0,0,.8);font-size:.65em;line-height:1.45;background:#f7f7f7;border:1px solid #ccc;border-radius:3px;box-shadow:0 1px 0 rgba(0,0,0,.2),inset 0 0 0 .1em #fff;margin:0 .15em;padding:.2em .5em;vertical-align:middle;position:relative;top:-.1em;white-space:nowrap}
+.keyseq kbd:first-child{margin-left:0}
+.keyseq kbd:last-child{margin-right:0}
+.menuseq,.menuref{color:#000}
+.menuseq b:not(.caret),.menuref{font-weight:inherit}
+.menuseq{word-spacing:-.02em}
+.menuseq b.caret{font-size:1.25em;line-height:.8}
+.menuseq i.caret{font-weight:bold;text-align:center;width:.45em}
+b.button::before,b.button::after{position:relative;top:-1px;font-weight:400}
+b.button::before{content:"[";padding:0 3px 0 2px}
+b.button::after{content:"]";padding:0 2px 0 3px}
+p a>code:hover{color:rgba(0,0,0,.9)}
+#header,#content,#footnotes,#footer{width:100%;margin:0 auto;max-width:62.5em;*zoom:1;position:relative;padding-left:.9375em;padding-right:.9375em}
+#header::before,#header::after,#content::before,#content::after,#footnotes::before,#footnotes::after,#footer::before,#footer::after{content:" ";display:table}
+#header::after,#content::after,#footnotes::after,#footer::after{clear:both}
+#content{margin-top:1.25em}
+#content::before{content:none}
+#header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
+#header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #dddddf}
+#header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
+#header .details{border-bottom:1px solid #dddddf;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:flex;flex-flow:row wrap}
+#header .details span:first-child{margin-left:-.125em}
+#header .details span.email a{color:rgba(0,0,0,.85)}
+#header .details br{display:none}
+#header .details br+span::before{content:"\00a0\2013\00a0"}
+#header .details br+span.author::before{content:"\00a0\22c5\00a0";color:rgba(0,0,0,.85)}
+#header .details br+span#revremark::before{content:"\00a0|\00a0"}
+#header #revnumber{text-transform:capitalize}
+#header #revnumber::after{content:"\00a0"}
+#content>h1:first-child:not([class]){color:rgba(0,0,0,.85);border-bottom:1px solid #dddddf;padding-bottom:8px;margin-top:0;padding-top:1rem;margin-bottom:1.25rem}
+#toc{border-bottom:1px solid #e7e7e9;padding-bottom:.5em}
+#toc>ul{margin-left:.125em}
+#toc ul.sectlevel0>li>a{font-style:italic}
+#toc ul.sectlevel0 ul.sectlevel1{margin:.5em 0}
+#toc ul{font-family:"Open Sans","DejaVu Sans",sans-serif;list-style-type:none}
+#toc li{line-height:1.3334;margin-top:.3334em}
+#toc a{text-decoration:none}
+#toc a:active{text-decoration:underline}
+#toctitle{color:#7a2518;font-size:1.2em}
+@media screen and (min-width:768px){#toctitle{font-size:1.375em}
+body.toc2{padding-left:15em;padding-right:0}
+#toc.toc2{margin-top:0!important;background:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #e7e7e9;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
+#toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
+#toc.toc2>ul{font-size:.9em;margin-bottom:0}
+#toc.toc2 ul ul{margin-left:0;padding-left:1em}
+#toc.toc2 ul.sectlevel0 ul.sectlevel1{padding-left:0;margin-top:.5em;margin-bottom:.5em}
+body.toc2.toc-right{padding-left:0;padding-right:15em}
+body.toc2.toc-right #toc.toc2{border-right-width:0;border-left:1px solid #e7e7e9;left:auto;right:0}}
+@media screen and (min-width:1280px){body.toc2{padding-left:20em;padding-right:0}
+#toc.toc2{width:20em}
+#toc.toc2 #toctitle{font-size:1.375em}
+#toc.toc2>ul{font-size:.95em}
+#toc.toc2 ul ul{padding-left:1.25em}
+body.toc2.toc-right{padding-left:0;padding-right:20em}}
+#content #toc{border:1px solid #e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;border-radius:4px}
+#content #toc>:first-child{margin-top:0}
+#content #toc>:last-child{margin-bottom:0}
+#footer{max-width:none;background:rgba(0,0,0,.8);padding:1.25em}
+#footer-text{color:hsla(0,0%,100%,.8);line-height:1.44}
+#content{margin-bottom:.625em}
+.sect1{padding-bottom:.625em}
+@media screen and (min-width:768px){#content{margin-bottom:1.25em}
+.sect1{padding-bottom:1.25em}}
+.sect1:last-child{padding-bottom:0}
+.sect1+.sect1{border-top:1px solid #e7e7e9}
+#content h1>a.anchor,h2>a.anchor,h3>a.anchor,#toctitle>a.anchor,.sidebarblock>.content>.title>a.anchor,h4>a.anchor,h5>a.anchor,h6>a.anchor{position:absolute;z-index:1001;width:1.5ex;margin-left:-1.5ex;display:block;text-decoration:none!important;visibility:hidden;text-align:center;font-weight:400}
+#content h1>a.anchor::before,h2>a.anchor::before,h3>a.anchor::before,#toctitle>a.anchor::before,.sidebarblock>.content>.title>a.anchor::before,h4>a.anchor::before,h5>a.anchor::before,h6>a.anchor::before{content:"\00A7";font-size:.85em;display:block;padding-top:.1em}
+#content h1:hover>a.anchor,#content h1>a.anchor:hover,h2:hover>a.anchor,h2>a.anchor:hover,h3:hover>a.anchor,#toctitle:hover>a.anchor,.sidebarblock>.content>.title:hover>a.anchor,h3>a.anchor:hover,#toctitle>a.anchor:hover,.sidebarblock>.content>.title>a.anchor:hover,h4:hover>a.anchor,h4>a.anchor:hover,h5:hover>a.anchor,h5>a.anchor:hover,h6:hover>a.anchor,h6>a.anchor:hover{visibility:visible}
+#content h1>a.link,h2>a.link,h3>a.link,#toctitle>a.link,.sidebarblock>.content>.title>a.link,h4>a.link,h5>a.link,h6>a.link{color:#ba3925;text-decoration:none}
+#content h1>a.link:hover,h2>a.link:hover,h3>a.link:hover,#toctitle>a.link:hover,.sidebarblock>.content>.title>a.link:hover,h4>a.link:hover,h5>a.link:hover,h6>a.link:hover{color:#a53221}
+details,.audioblock,.imageblock,.literalblock,.listingblock,.stemblock,.videoblock{margin-bottom:1.25em}
+details{margin-left:1.25rem}
+details>summary{cursor:pointer;display:block;position:relative;line-height:1.6;margin-bottom:.625rem;-webkit-tap-highlight-color:transparent}
+details>summary::before{content:"";border:solid transparent;border-left:solid;border-width:.3em 0 .3em .5em;position:absolute;top:.5em;left:-1.25rem;transform:translateX(15%)}
+details[open]>summary::before{border:solid transparent;border-top:solid;border-width:.5em .3em 0;transform:translateY(15%)}
+details>summary::after{content:"";width:1.25rem;height:1em;position:absolute;top:.3em;left:-1.25rem}
+.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{text-rendering:optimizeLegibility;text-align:left;font-family:"Noto Serif","DejaVu Serif",serif;font-size:1rem;font-style:italic}
+table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
+.paragraph.lead>p,#preamble>.sectionbody>[class=paragraph]:first-of-type p{font-size:1.21875em;line-height:1.6;color:rgba(0,0,0,.85)}
+.admonitionblock>table{border-collapse:separate;border:0;background:none;width:100%}
+.admonitionblock>table td.icon{text-align:center;width:80px}
+.admonitionblock>table td.icon img{max-width:none}
+.admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
+.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #dddddf;color:rgba(0,0,0,.6);word-wrap:anywhere}
+.admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
+.exampleblock>.content{border:1px solid #e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;border-radius:4px}
+.exampleblock>.content>:first-child{margin-top:0}
+.exampleblock>.content>:last-child{margin-bottom:0}
+.sidebarblock{border:1px solid #dbdbd6;margin-bottom:1.25em;padding:1.25em;background:#f3f3f2;border-radius:4px}
+.sidebarblock>:first-child{margin-top:0}
+.sidebarblock>:last-child{margin-bottom:0}
+.sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
+.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
+.literalblock pre,.listingblock>.content>pre{border-radius:4px;overflow-x:auto;padding:1em;font-size:.8125em}
+@media screen and (min-width:768px){.literalblock pre,.listingblock>.content>pre{font-size:.90625em}}
+@media screen and (min-width:1280px){.literalblock pre,.listingblock>.content>pre{font-size:1em}}
+.literalblock pre,.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class=highlight],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
+.literalblock.output pre{color:#f7f7f8;background:rgba(0,0,0,.9)}
+.listingblock>.content{position:relative}
+.listingblock code[data-lang]::before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:inherit;opacity:.5}
+.listingblock:hover code[data-lang]::before{display:block}
+.listingblock.terminal pre .command::before{content:attr(data-prompt);padding-right:.5em;color:inherit;opacity:.5}
+.listingblock.terminal pre .command:not([data-prompt])::before{content:"$"}
+.listingblock pre.highlightjs{padding:0}
+.listingblock pre.highlightjs>code{padding:1em;border-radius:4px}
+.listingblock pre.prettyprint{border-width:0}
+.prettyprint{background:#f7f7f8}
+pre.prettyprint .linenums{line-height:1.45;margin-left:2em}
+pre.prettyprint li{background:none;list-style-type:inherit;padding-left:0}
+pre.prettyprint li code[data-lang]::before{opacity:1}
+pre.prettyprint li:not(:first-child) code[data-lang]::before{display:none}
+table.linenotable{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.linenotable td[class]{color:inherit;vertical-align:top;padding:0;line-height:inherit;white-space:normal}
+table.linenotable td.code{padding-left:.75em}
+table.linenotable td.linenos{border-right:1px solid;opacity:.35;padding-right:.5em}
+pre.pygments .lineno{border-right:1px solid;opacity:.35;display:inline-block;margin-right:.75em}
+pre.pygments .lineno::before{content:"";margin-right:-.125em}
+.quoteblock{margin:0 1em 1.25em 1.5em;display:table}
+.quoteblock:not(.excerpt)>.title{margin-left:-1.5em;margin-bottom:.75em}
+.quoteblock blockquote,.quoteblock p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
+.quoteblock blockquote{margin:0;padding:0;border:0}
+.quoteblock blockquote::before{content:"\201c";float:left;font-size:2.75em;font-weight:bold;line-height:.6em;margin-left:-.6em;color:#7a2518;text-shadow:0 1px 2px rgba(0,0,0,.1)}
+.quoteblock blockquote>.paragraph:last-child p{margin-bottom:0}
+.quoteblock .attribution{margin-top:.75em;margin-right:.5ex;text-align:right}
+.verseblock{margin:0 1em 1.25em}
+.verseblock pre{font-family:"Open Sans","DejaVu Sans",sans-serif;font-size:1.15rem;color:rgba(0,0,0,.85);font-weight:300;text-rendering:optimizeLegibility}
+.verseblock pre strong{font-weight:400}
+.verseblock .attribution{margin-top:1.25rem;margin-left:.5ex}
+.quoteblock .attribution,.verseblock .attribution{font-size:.9375em;line-height:1.45;font-style:italic}
+.quoteblock .attribution br,.verseblock .attribution br{display:none}
+.quoteblock .attribution cite,.verseblock .attribution cite{display:block;letter-spacing:-.025em;color:rgba(0,0,0,.6)}
+.quoteblock.abstract blockquote::before,.quoteblock.excerpt blockquote::before,.quoteblock .quoteblock blockquote::before{display:none}
+.quoteblock.abstract blockquote,.quoteblock.abstract p,.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{line-height:1.6;word-spacing:0}
+.quoteblock.abstract{margin:0 1em 1.25em;display:block}
+.quoteblock.abstract>.title{margin:0 0 .375em;font-size:1.15em;text-align:center}
+.quoteblock.excerpt>blockquote,.quoteblock .quoteblock{padding:0 0 .25em 1em;border-left:.25em solid #dddddf}
+.quoteblock.excerpt,.quoteblock .quoteblock{margin-left:0}
+.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{color:inherit;font-size:1.0625rem}
+.quoteblock.excerpt .attribution,.quoteblock .quoteblock .attribution{color:inherit;font-size:.85rem;text-align:left;margin-right:0}
+p.tableblock:last-child{margin-bottom:0}
+td.tableblock>.content{margin-bottom:1.25em;word-wrap:anywhere}
+td.tableblock>.content>:last-child{margin-bottom:-1.25em}
+table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
+table.grid-all>*>tr>*{border-width:1px}
+table.grid-cols>*>tr>*{border-width:0 1px}
+table.grid-rows>*>tr>*{border-width:1px 0}
+table.frame-all{border-width:1px}
+table.frame-ends{border-width:1px 0}
+table.frame-sides{border-width:0 1px}
+table.frame-none>colgroup+*>:first-child>*,table.frame-sides>colgroup+*>:first-child>*{border-top-width:0}
+table.frame-none>:last-child>:last-child>*,table.frame-sides>:last-child>:last-child>*{border-bottom-width:0}
+table.frame-none>*>tr>:first-child,table.frame-ends>*>tr>:first-child{border-left-width:0}
+table.frame-none>*>tr>:last-child,table.frame-ends>*>tr>:last-child{border-right-width:0}
+table.stripes-all tr,table.stripes-odd tr:nth-of-type(odd),table.stripes-even tr:nth-of-type(even),table.stripes-hover tr:hover{background:#f8f8f7}
+th.halign-left,td.halign-left{text-align:left}
+th.halign-right,td.halign-right{text-align:right}
+th.halign-center,td.halign-center{text-align:center}
+th.valign-top,td.valign-top{vertical-align:top}
+th.valign-bottom,td.valign-bottom{vertical-align:bottom}
+th.valign-middle,td.valign-middle{vertical-align:middle}
+table thead th,table tfoot th{font-weight:bold}
+tbody tr th{background:#f7f8f7}
+tbody tr th,tbody tr th p,tfoot tr th,tfoot tr th p{color:rgba(0,0,0,.8);font-weight:bold}
+p.tableblock>code:only-child{background:none;padding:0}
+p.tableblock{font-size:1em}
+ol{margin-left:1.75em}
+ul li ol{margin-left:1.5em}
+dl dd{margin-left:1.125em}
+dl dd:last-child,dl dd:last-child>:last-child{margin-bottom:0}
+ol>li p,ul>li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
+ul.checklist,ul.none,ol.none,ul.no-bullet,ol.no-bullet,ol.unnumbered,ul.unstyled,ol.unstyled{list-style-type:none}
+ul.no-bullet,ol.no-bullet,ol.unnumbered{margin-left:.625em}
+ul.unstyled,ol.unstyled{margin-left:0}
+ul.checklist>li>p:first-child{margin-left:-1em}
+ul.checklist>li>p:first-child>.fa-square-o:first-child,ul.checklist>li>p:first-child>.fa-check-square-o:first-child{width:1.25em;font-size:.8em;position:relative;bottom:.125em}
+ul.checklist>li>p:first-child>input[type=checkbox]:first-child{margin-right:.25em}
+ul.inline{display:flex;flex-flow:row wrap;list-style:none;margin:0 0 .625em -1.25em}
+ul.inline>li{margin-left:1.25em}
+.unstyled dl dt{font-weight:400;font-style:normal}
+ol.arabic{list-style-type:decimal}
+ol.decimal{list-style-type:decimal-leading-zero}
+ol.loweralpha{list-style-type:lower-alpha}
+ol.upperalpha{list-style-type:upper-alpha}
+ol.lowerroman{list-style-type:lower-roman}
+ol.upperroman{list-style-type:upper-roman}
+ol.lowergreek{list-style-type:lower-greek}
+.hdlist>table,.colist>table{border:0;background:none}
+.hdlist>table>tbody>tr,.colist>table>tbody>tr{background:none}
+td.hdlist1,td.hdlist2{vertical-align:top;padding:0 .625em}
+td.hdlist1{font-weight:bold;padding-bottom:1.25em}
+td.hdlist2{word-wrap:anywhere}
+.literalblock+.colist,.listingblock+.colist{margin-top:-.5em}
+.colist td:not([class]):first-child{padding:.4em .75em 0;line-height:1;vertical-align:top}
+.colist td:not([class]):first-child img{max-width:none}
+.colist td:not([class]):last-child{padding:.25em 0}
+.thumb,.th{line-height:0;display:inline-block;border:4px solid #fff;box-shadow:0 0 0 1px #ddd}
+.imageblock.left{margin:.25em .625em 1.25em 0}
+.imageblock.right{margin:.25em 0 1.25em .625em}
+.imageblock>.title{margin-bottom:0}
+.imageblock.thumb,.imageblock.th{border-width:6px}
+.imageblock.thumb>.title,.imageblock.th>.title{padding:0 .125em}
+.image.left,.image.right{margin-top:.25em;margin-bottom:.25em;display:inline-block;line-height:0}
+.image.left{margin-right:.625em}
+.image.right{margin-left:.625em}
+a.image{text-decoration:none;display:inline-block}
+a.image object{pointer-events:none}
+sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
+sup.footnote a,sup.footnoteref a{text-decoration:none}
+sup.footnote a:active,sup.footnoteref a:active{text-decoration:underline}
+#footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
+#footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em;border-width:1px 0 0}
+#footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;margin-bottom:.2em}
+#footnotes .footnote a:first-of-type{font-weight:bold;text-decoration:none;margin-left:-1.05em}
+#footnotes .footnote:last-of-type{margin-bottom:0}
+#content #footnotes{margin-top:-.625em;margin-bottom:0;padding:.75em 0}
+.gist .file-data>table{border:0;background:#fff;width:100%;margin-bottom:0}
+.gist .file-data>table td.line-data{width:99%}
+div.unbreakable{page-break-inside:avoid}
+.big{font-size:larger}
+.small{font-size:smaller}
+.underline{text-decoration:underline}
+.overline{text-decoration:overline}
+.line-through{text-decoration:line-through}
+.aqua{color:#00bfbf}
+.aqua-background{background:#00fafa}
+.black{color:#000}
+.black-background{background:#000}
+.blue{color:#0000bf}
+.blue-background{background:#0000fa}
+.fuchsia{color:#bf00bf}
+.fuchsia-background{background:#fa00fa}
+.gray{color:#606060}
+.gray-background{background:#7d7d7d}
+.green{color:#006000}
+.green-background{background:#007d00}
+.lime{color:#00bf00}
+.lime-background{background:#00fa00}
+.maroon{color:#600000}
+.maroon-background{background:#7d0000}
+.navy{color:#000060}
+.navy-background{background:#00007d}
+.olive{color:#606000}
+.olive-background{background:#7d7d00}
+.purple{color:#600060}
+.purple-background{background:#7d007d}
+.red{color:#bf0000}
+.red-background{background:#fa0000}
+.silver{color:#909090}
+.silver-background{background:#bcbcbc}
+.teal{color:#006060}
+.teal-background{background:#007d7d}
+.white{color:#bfbfbf}
+.white-background{background:#fafafa}
+.yellow{color:#bfbf00}
+.yellow-background{background:#fafa00}
+span.icon>.fa{cursor:default}
+a span.icon>.fa{cursor:inherit}
+.admonitionblock td.icon [class^="fa icon-"]{font-size:2.5em;text-shadow:1px 1px 2px rgba(0,0,0,.5);cursor:default}
+.admonitionblock td.icon .icon-note::before{content:"\f05a";color:#19407c}
+.admonitionblock td.icon .icon-tip::before{content:"\f0eb";text-shadow:1px 1px 2px rgba(155,155,0,.8);color:#111}
+.admonitionblock td.icon .icon-warning::before{content:"\f071";color:#bf6900}
+.admonitionblock td.icon .icon-caution::before{content:"\f06d";color:#bf3400}
+.admonitionblock td.icon .icon-important::before{content:"\f06a";color:#bf0000}
+.conum[data-value]{display:inline-block;color:#fff!important;background:rgba(0,0,0,.8);border-radius:50%;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
+.conum[data-value] *{color:#fff!important}
+.conum[data-value]+b{display:none}
+.conum[data-value]::after{content:attr(data-value)}
+pre .conum[data-value]{position:relative;top:-.125em}
+b.conum *{color:inherit!important}
+.conum:not([data-value]):empty{display:none}
+dt,th.tableblock,td.content,div.footnote{text-rendering:optimizeLegibility}
+h1,h2,p,td.content,span.alt,summary{letter-spacing:-.01em}
+p strong,td.content strong,div.footnote strong{letter-spacing:-.005em}
+p,blockquote,dt,td.content,span.alt,summary{font-size:1.0625rem}
+p{margin-bottom:1.25rem}
+.sidebarblock p,.sidebarblock dt,.sidebarblock td.content,p.tableblock{font-size:1em}
+.exampleblock>.content{background:#fffef7;border-color:#e0e0dc;box-shadow:0 1px 4px #e0e0dc}
+.print-only{display:none!important}
+@page{margin:1.25cm .75cm}
+@media print{*{box-shadow:none!important;text-shadow:none!important}
+html{font-size:80%}
+a{color:inherit!important;text-decoration:underline!important}
+a.bare,a[href^="#"],a[href^="mailto:"]{text-decoration:none!important}
+a[href^="http:"]:not(.bare)::after,a[href^="https:"]:not(.bare)::after{content:"(" attr(href) ")";display:inline-block;font-size:.875em;padding-left:.25em}
+abbr[title]{border-bottom:1px dotted}
+abbr[title]::after{content:" (" attr(title) ")"}
+pre,blockquote,tr,img,object,svg{page-break-inside:avoid}
+thead{display:table-header-group}
+svg{max-width:100%}
+p,blockquote,dt,td.content{font-size:1em;orphans:3;widows:3}
+h2,h3,#toctitle,.sidebarblock>.content>.title{page-break-after:avoid}
+#header,#content,#footnotes,#footer{max-width:none}
+#toc,.sidebarblock,.exampleblock>.content{background:none!important}
+#toc{border-bottom:1px solid #dddddf!important;padding-bottom:0!important}
+body.book #header{text-align:center}
+body.book #header>h1:first-child{border:0!important;margin:2.5em 0 1em}
+body.book #header .details{border:0!important;display:block;padding:0!important}
+body.book #header .details span:first-child{margin-left:0!important}
+body.book #header .details br{display:block}
+body.book #header .details br+span::before{content:none!important}
+body.book #toc{border:0!important;text-align:left!important;padding:0!important;margin:0!important}
+body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-break-before:always}
+.listingblock code[data-lang]::before{display:block}
+#footer{padding:0 .9375em}
+.hide-on-print{display:none!important}
+.print-only{display:block!important}
+.hide-for-print{display:none!important}
+.show-for-print{display:inherit!important}}
+@media amzn-kf8,print{#header>h1:first-child{margin-top:1.25rem}
+.sect1{padding:0!important}
+.sect1+.sect1{border:0}
+#footer{background:none}
+#footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
+@media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
+</style>
+</head>
+<body class="article">
+<div id="header">
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="getting-started">はじめに</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>本章では、多くの人が初めてライトニング・ネットワークに出会ったとき、LN経済に参加するためのソフトウェアを選択するところから始めることにします。ライトニング・ネットワークの一般的なユースケースを代表する2人のユーザーの選択を検証し、実例で学びます。コーヒーショップの顧客であるアリスは、モバイル端末のライトニングウォレットを使って、ボブのカフェでコーヒーを購入します。コーヒーショップの顧客であるアリスは、モバイルデバイスでライトニングウォレットを使い、ボブのカフェでコーヒーを購入します。</p>
+</div>
+<div class="sect2">
+<h3 id="_alices_first_lightning_wallet">アリス・ファースト・ライトニング・ウォレット</h3>
+<div class="paragraph">
+<p>アリスは長年のビットコインユーザーです。アリスと初めて会ったのは、『<em>Mastering Bitcoin</em>』の第1章<sup class="footnote">[<a id="_footnoteref_1" class="footnote" href="#_footnotedef_1" title="View footnote.">1</a>]</sup>で、彼女がBobのカフェでビットコイン取引を使ってコーヒーを買ったときでした。ビットコイン取引の仕組みにまだ慣れていない方、復習が必要な方は、「Mastering<em>Bitcoin」</em>または<a href="#bitcoin_fundamentals_review">[bitcoin_fundamentals_review]</a>の要約をお読みください。</p>
+</div>
+<div class="paragraph">
+<p>アリスは最近、ボブのカフェがLN決済を開始したことを知りました。アリスはライトニングネットワークについて学び、実験することを熱望しています。そのために、アリスはまず、自分のニーズに合ったライトニングウォレットを選ばなければなりません。</p>
+</div>
+<div class="paragraph">
+<p>アリスは自分のビットコインの保管を第三者に託したくありません。彼女は暗号通貨について十分に学んでいるので、ウォレットの使い方は知っています。また、外出先での少額決済に使えるようにモバイルウォレットを希望しており、非保管型のモバイルライトニングウォレットとして人気のある<em>エクレールウォレットを</em>選びました。彼女がどのように、そしてなぜこのような選択をしたのか、その理由を詳しくご紹介しましょう。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_lightning_nodes">ライトニングノード</h3>
+<div class="paragraph">
+<p>ライトニング・ネットワークは、LNプロトコルを話すことができるソフトウェア・アプリケーションを介してアクセスされます。<em>ライトニングネットワークノード</em>（LNノードまたは単にノード）は、3つの重要な特性を持つソフトウェアアプリケーションです。まず、ライトニングノードはウォレットであるため、ビットコインネットワークだけでなくライトニングネットワーク上でも支払いを送受信します。次に、ノードは、ネットワークを作成する他のライトニングノードとピアツーピアベースで通信する必要があります。最後に、ライトニングノードは、支払いに使用する資金を確保するために、ビットコインブロックチェーン（または他の暗号通貨のブロックチェーン）へのアクセスも必要です。</p>
+</div>
+<div class="paragraph">
+<p>ユーザーは、自分自身のビットコインノードとライトニングノードを実行することで、最も高度な制御を行うことができます。しかし、ライトニングノードは、一般的に簡略化された支払い検証（SPV）と呼ばれる軽量のビットコインクライアントを使用して、ビットコインのブロックチェーンと対話することもできます。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ln_explorer">ライトニング・エクスプローラーズ</h3>
+<div class="paragraph">
+<p>LNエクスプローラは、ノード、チャネル、ネットワーク容量の統計情報を表示する便利なツールです。</p>
+</div>
+<div class="paragraph">
+<p>以下はその一例です。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://1ml.com">1ML ライトニングエクスプローラー</a></p>
+</li>
+<li>
+<p><a href="https://explorer.acinq.co">ACINQのLightningエクスプローラー</a>、派手なビジュアル化で話題</p>
+</li>
+<li>
+<p><a href="https://amboss.space">Amboss Space Lightningエクスプローラ</a>、コミュニティ・メトリクスと直感的な<span class="keep-together">ビジュアライゼーションが</span>可能。</p>
+</li>
+<li>
+<p><a href="https://ln.bigsun.xyz">FiatjafのLightningエクスプローラー</a>、多数の図解付き</p>
+</li>
+<li>
+<p><a href="https://hashxp.org/lightning/node">hashXP ライトニングエクスプローラー</a></p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">チップ</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Lightningエクスプローラを使用する場合、他のブロックエクスプローラと同様に、プライバシーが懸念される可能性があることに注意してください。
+ユーザーが不注意な場合、ウェブサイトがユーザーのIPアドレスを追跡し、行動記録（例えば、ユーザーが興味を持っているノードなど）を収集する可能性があります。</p>
+</div>
+<div class="paragraph">
+<p>また、現在のライトニンググラフや既存のチャンネルポリシーの現状についてグローバルなコンセンサスがないため、ユーザーはライトニングエクスプローラーに最新情報を取得するために決して依存してはならないことに注意する必要があります。
+さらに、ユーザーがチャンネルを開設、閉鎖、更新すると、グラフは変化し、個々のライトニングエクスプローラは最新でなくなる可能性があります。
+Lightningエクスプローラは、ネットワークの視覚化や情報収集のために使用しますが、Lightningネットワークで何が起こっているかの権威ある情報源としては使用しないでください。
+Lightning ネットワークの信頼できるビューを得るには、独自の Lightning ノードを実行してチャンネルグラフを構築し、さまざまな統計情報を収集し、Web ベースのインターフェイスで表示することができます。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_lightning_wallets">ライトニングウォレット</h3>
+<div class="paragraph">
+<p><em>Lightningウォレットという</em>用語は、何らかのユーザーインターフェイスと組み合わされた広範なコンポーネントを表すことができるため、やや曖昧な表現となります。ライトニングウォレットソフトウェアの最も一般的なコンポーネントは以下の通りです。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>秘密鍵などの機密を保持する鍵ストア</p>
+</li>
+<li>
+<p>前述したPeer to Peerネットワークで通信するLNノード（Lightningノード</p>
+</li>
+<li>
+<p>ブロックチェーンのデータを保存し、他のビットコインノードと通信を行うビットコインノード</p>
+</li>
+<li>
+<p>Lightning Networkで発表されたノードとチャンネルのデータベース「マップ」。</p>
+</li>
+<li>
+<p>LNチャンネルをオープン/クローズできるチャンネルマネージャー</p>
+</li>
+<li>
+<p>決済元から決済先まで、接続されたチャネルのパスを見つけることができるクローズアップシステム</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>ライトニングウォレットは、これらの機能をすべて含み、サードパーティのサービスに依存しない「完全な」ウォレットとして機能することができます。または、これらのコンポーネントの1つまたは複数が、これらの機能を仲介するサードパーティサービスに（部分的または全体的に）依存する場合があります。</p>
+</div>
+<div class="paragraph">
+<p><em>重要な</em>のは、鍵の保管機能が内部にあるか外部にあるかという点です。ブロックチェーンでは、"your keys, your coins; not your keys, not your coins "というフレーズに象徴されるように、鍵の管理が資金の保管を決定するのです。鍵の管理を外部に委託しているウォレットは、カストディアンとして行動する第三者が、ユーザーではなくユーザーの資金を管理しているため、<em>カストディアルウォレットと</em>呼ばれます。これに対し、<em>ノンカストディアル</em>または<em>セルフカストディアルウォレットは</em>、キーストアがウォレットの一部であり、キーはユーザーによって直接管理されるものである。  非保管型ウォレットという用語は、単に鍵ストアがローカルで、ユーザーの管理下にあることを意味する。しかし、他のウォレットコンポーネントの1つ以上は、アウトソーシングされ、信頼できるサードパーティに依存している場合もありますし、そうでない場合もあります。</p>
+</div>
+<div class="paragraph">
+<p>ブロックチェーン、特にビットコインのようなオープンブロックチェーンは、第三者への信頼を最小化または排除し、ユーザーに権限を与えることを試みている。これはしばしば「トラストレス」モデルと呼ばれるが、「トラストミニマイズ」の方がより適切な表現である。このようなシステムでは、ユーザーは第三者ではなく、ソフトウェアのルールを信頼する。したがって、鍵の管理は、ライトニング・ウォレットを選択する際の主要な検討事項です。</p>
+</div>
+<div class="paragraph">
+<p>ライトニングウォレットの他のすべての構成要素も、同様の信頼に関する考察をもたらします。すべてのコンポーネントがユーザーのコントロール下にあれば、第三者への信頼は最小限になり、ユーザーに最大限のパワーをもたらします。もちろん、このパワーには、複雑なソフトウェアを管理する責任が伴うため、直接的なトレードオフが生じます。</p>
+</div>
+<div class="paragraph">
+<p>すべてのユーザーは、どのタイプのライトニングウォレットを使用するかを決定する前に、自身の技術的スキルを考慮する必要があります。技術的なスキルが高い人は、すべてのコンポーネントをユーザーが直接制御できるライトニングウォレットを使用する必要があります。技術的なスキルが低くても、資金を管理したい人は、非管理型のLightningウォレットを選択すべきです。
+このような場合の信頼は、多くの場合、プライバシーに関係します。
+ユーザーが一部の機能を第三者に委託することを決めた場合、第三者がユーザーに関する何らかの情報を知ることになるため、ユーザーは通常、ある程度のプライバシーをあきらめることになります。</p>
+</div>
+<div class="paragraph">
+<p>最後に、管理とセキュリティを犠牲にしても、シンプルさと利便性を求める人は、カストディアル・ライトニング・ウォレットを選択することができます。これは技術的な難易度が最も低い選択肢ですが、<em>暗号通貨の信頼</em>モデルを損なうため、より高度な管理と自立に向けた足がかりとしてのみ検討すべきです。</p>
+</div>
+<div class="paragraph">
+<p>ウォレットを特徴づける、または分類する方法はたくさんあります。
+特定のウォレットについて尋ねる最も重要な質問は、次のとおりです。</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>このライトニングウォレットは完全なライトニングノードを持っていますか、それともサードパーティのライトニングノードを使っていますか？</p>
+</li>
+<li>
+<p>このライトニングウォレットは、完全なビットコインノードを持っていますか、それともサードパーティのビットコインノードを使用していますか？</p>
+</li>
+<li>
+<p>このライトニング・ウォレットは、ユーザーの管理下で自身の鍵を保管していますか（セルフ・カストディ）、それともサードパーティのカストディアンが鍵を保管していますか？</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">チップ</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>ライトニングウォレットがサードパーティのライトニングノードを使用する場合、ビットコインとの通信方法を決定するのは、このサードパーティのライトニングノードです。したがって、サードパーティのLightningノードを使用することは、サードパーティのBitcoinノードも使用することを意味する。ライトニングウォレットが独自のライトニングノードを使用する場合のみ、フルビットコインノードとサードパーティビットコインノードの選択が存在します。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>抽象度の高いものでは、質問1と3が最も初歩的なものである。
+この2つの質問から、4つの可能なカテゴリーを導き出すことができます。
+これらの4つのカテゴリを、<a href="#lnwallet-categories">Lightningウォレットの</a>象限儀に見られるような象限儀に配置することができます。
+しかし、これはライトニングウォレットを分類する1つの方法に過ぎないことを忘れないでください。</p>
+</div>
+<table id="lnwallet-categories" class="tableblock frame-all grid-all stretch">
+<caption class="title">表1.ライトニングウォレットのクワドラント</caption>
+<colgroup>
+<col style="width: 33.3333%;" />
+<col style="width: 33.3333%;" />
+<col style="width: 33.3334%;" />
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"></th>
+<th class="tableblock halign-left valign-top"><strong>フルライトニングノード</strong></th>
+<th class="tableblock halign-left valign-top"><strong>サードパーティ製 Lightning ノード</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>セルフカストディ</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Q1：技術力が高い、第三者を信頼していない、パーミッションレスが多い</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Q2：技術力が中程度以下、第三者への信頼が中程度以下、何らかの権限が必要</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>カストディアル</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Q3：技術力は中程度以上、第三者への信頼度は中程度以上、ある程度の権限が必要</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Q4：技術力が低い、第三者への信頼度が高い、パーミッションレスが少ない</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>クワドラント3（Q3）は、Lightningのフルノードを使用し、鍵はカストディアンが保有するもので、現状では一般的ではありません。
+このクワドラントからの将来のウォレットは、ユーザーはノードの運用面を気にしつつ、鍵へのアクセスは主にコールドストレージを使用するサードパーティに委ねることができるかもしれません。</p>
+</div>
+<div class="paragraph">
+<p>Lightningウォレットは、ラップトップ、サーバー、モバイルデバイスなど、様々なデバイスにインストールすることができます。モバイルデバイスやラップトップは通常、容量、処理能力、バッテリー寿命、接続性の面で十分な性能を備えていないため、ライトニングノードをフルに稼働させるには、サーバーやデスクトップコンピュータを使用する必要があります。</p>
+</div>
+<div class="paragraph">
+<p>サードパーティーのライトニングノードのカテゴリーもまた、細分化することができる。</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">軽量化</dt>
+<dd>
+<p>つまり、ウォレットはライトニングノードを運用していないため、インターネットを介して他人のライトニングノードからライトニングネットワークの情報を取得する必要があります。</p>
+</dd>
+<dt class="hdlist1">なし</dt>
+<dd>
+<p>つまり、ライトニングノードだけでなく、ウォレットの大部分もクラウド上で第三者が運用しているのです。これは、誰かが資金の保管を管理するカストディアルウォレットです。</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>これらのサブカテゴリーは、「<a href="#lnwallet-examples">人気のライトニング・ウォレットの例</a>」で使用されています。</p>
+</div>
+<div class="paragraph pagebreak-before">
+<p>ビットコインノード」欄の「<a href="#lnwallet-examples">人気のライトニングウォレットの例</a>」で説明が必要なその他の用語は以下の通りです。</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">ニュートリノ</dt>
+<dd>
+<p>このウォレットは、ビットコインノードを操作しません。代わりに、他の誰か（第三者）が運営するビットコインノードに、ニュートリノ・プロトコルを介してアクセスします。</p>
+</dd>
+<dt class="hdlist1">エレクトラム</dt>
+<dd>
+<p>このウォレットは、ビットコインノードを操作しません。代わりに、他の誰か（サードパーティー）が運営するビットコインノードに、Electrumプロトコルを介してアクセスします。</p>
+</dd>
+<dt class="hdlist1">ビットコインコア</dt>
+<dd>
+<p>Bitcoinのノードの実装です。</p>
+</dd>
+<dt class="hdlist1">ビーティーシー</dt>
+<dd>
+<p>これもビットコインのノードを実装したものです。</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p><a href="#lnwallet-examples">人気のLightningウォレットの例では</a>、現在人気のあるLightningノードとウォレットアプリケーションの例を、さまざまな種類のデバイスで見ることができます。リストは、まずデバイスの種類でソートされ、次にアルファベット順になっています。</p>
+</div>
+<table id="lnwallet-examples" class="tableblock frame-all grid-all stretch">
+<caption class="title">表2.人気のLightningウォレットの例</caption>
+<colgroup>
+<col style="width: 20%;" />
+<col style="width: 20%;" />
+<col style="width: 20%;" />
+<col style="width: 20%;" />
+<col style="width: 20%;" />
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">アプリケーション</th>
+<th class="tableblock halign-left valign-top">デバイス</th>
+<th class="tableblock halign-left valign-top">ライトニングノード</th>
+<th class="tableblock halign-left valign-top">ビットコインノード</th>
+<th class="tableblock halign-left valign-top">キーストア</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ブルーウォレット</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">モバイル</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">なし</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">なし</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">カストディアル</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ブリーズウォレット</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">モバイル</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">フルノード</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ニュートリノ</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">セルフカストディ</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">エクレール・モバイル</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">モバイル</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">軽量化</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">エレクトラム</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">セルフカストディ</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ランプロボット</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">モバイル</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">なし</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">なし</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">カストディアル</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ムーン</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">モバイル</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">軽量化</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ニュートリノ</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">セルフカストディ</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">フェニックスウォレット</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">モバイル</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">軽量化</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">エレクトラム</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">セルフカストディ</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ゼウス</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">モバイル</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">フルノード</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ビットコインコア/btcd</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">セルフカストディ</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">エレクトラム</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">デスクトップ</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">フルノード</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ビットコインコア/エレクトラム</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">セルフカストディ</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Zapデスクトップ</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">デスクトップ</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">フルノード</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ニュートリノ</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">セルフカストディ</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cライトニング</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">サーバー</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">フルノード</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ビットコインコア</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">セルフカストディ</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">エクレールサーバー</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">サーバー</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">フルノード</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ビットコインコア/エレクトラム</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">セルフカストディ</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ルド</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">サーバー</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">フルノード</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ビットコインコア/btcd</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">セルフカストディ</p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect3">
+<h4 id="testnet-bitcoin">テストネットビットコイン</h4>
+<div class="paragraph">
+<p>ビットコインシステムは、<em>メインネットと</em>呼ばれる「通常の」ビットコインチェーンとは対照的に、テスト目的のために<em>testnetと</em>呼ばれる代替チェーンを提供しています。テストネットでは、通貨は<em>テストネットビットコイン</em><em>（tBTC</em>）であり、これはテスト専用に使用されるビットコインの無価値なコピーである。ビットコインのすべての機能が正確に再現されていますが、お金の価値はゼロなので、文字通り失うものは何もありません!</p>
+</div>
+<div class="paragraph">
+<p>Lightningウォレットの中には、testnetで動作するものもあり、実際の資金をリスクにさらすことなく、testnetのビットコインでLightning決済を行うことができます。これは、Lightningを安全に実験するのに最適な方法です。この章でアリスが使っているEclair Mobileは、テストネットの操作をサポートするLightningウォレットの一例です。</p>
+</div>
+<div class="paragraph">
+<p>オンデマンドで無料のtBTCを配る<em>testnetビットコイン蛇口</em>から、遊ぶためのtBTCを入手することができます。いくつかのテストネットの蛇口はこちらです。</p>
+</div>
+<ul class="simplelist">
+<li><a href="https://coinfaucet.eu/en/btc-testnet/"><em>https://coinfaucet.eu/en/btc-testnet</em></a></li>
+<li><a href="https://testnet-faucet.mempool.co/"><em>https://testnet-faucet.mempool.co</em></a></li>
+<li><a href="https://bitcoinfaucet.uo1.net/"><em>https://bitcoinfaucet.uo1.net</em></a></li>
+<li><a href="https://testnet.help/en/btcfaucet/testnet"><em>https://testnet.help/en/btcfaucet/testnet</em></a></li>
+</ul>
+<div class="paragraph">
+<p>本書のすべての例は、tBTCを使ってテストネット上で正確に再現することができますので、実際のお金をリスクにさらすことなく、お望みであれば、それに従うことができます。</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_balancing_complexity_and_control">複雑さと制御のバランス</h3>
+<div class="paragraph">
+<p>ライトニングウォレットは、複雑さとユーザーコントロールのバランスを慎重に取る必要があります。ユーザーが資金を最も自由に管理でき、プライバシーが守られ、サードパーティーのサービスから最も独立できるものは、必然的に複雑で運用が難しくなります。技術の進歩に伴い、これらのトレードオフはあまり顕著ではなくなり、ユーザーはより複雑でなくともより多くの制御を得ることができるようになるかもしれない。しかし、現時点では、さまざまな企業やプロジェクトが、この制御と複雑さのスペクトラムに沿ったさまざまなポジションを模索し、ターゲットとするユーザーにとっての「スイートスポット」を見つけようとしているのである。</p>
+</div>
+<div class="paragraph">
+<p>ウォレットを選択する際には、これらのトレードオフが見えない場合でも、存在することを念頭に置いてください。例えば、多くのウォレットはユーザーからチャネル管理の負担を取り除くことを試みます。そのために、すべてのウォレットが自動的に接続するセントラル・<em>ハブ・ノードを</em>導入します。このトレードオフはユーザーインターフェースとユーザーエクスペリエンスを簡素化しますが、このハブノードがウォレットの運用に不可欠になるため、単一障害点（SPOF）を導入することになります。さらに、このような「ハブ」に依存すると、ハブはユーザーのウォレットによって行われた各支払いの送信者と潜在的に（ユーザーに代わって支払いルートを構築する場合）受取人も知っているため、ユーザーのプライバシーが低下する可能性があります。</p>
+</div>
+<div class="paragraph">
+<p>次のセクションでは、最初のユーザーに戻り、彼女の最初のLightningウォレットのセットアップを説明します。彼女は、簡単なカストディアルウォレットよりも洗練されたウォレットを選択しました。これにより、根本的な複雑さの一部を示し、高度なウォレットの内部構造を紹介することができます。あなたは、最初の理想的なウォレットが、コントロールとプライバシーのトレードオフをある程度受け入れた上で、使いやすさを指向していることが分かるかもしれません。あるいは、よりパワーユーザーで、ウォレットソリューションの一部として独自のライトニングとビットコインノードを実行したいと思うかもしれません。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_downloading_and_installing_a_lightning_wallet">Lightning Walletのダウンロードとインストール</h3>
+<div class="paragraph">
+<p>新しい暗号通貨ウォレットを探すときは、ソフトウェアの安全な提供元を選択することに十分注意する必要があります。</p>
+</div>
+<div class="paragraph">
+<p>残念ながら、偽の財布アプリケーションの多くはお客様のお金を盗みます。これらの中には、AppleやGoogleのアプリケーションストアのような、評判が良く、審査が厳しいとされるソフトウェアサイトに入り込んでしまうものさえあるのです。初めて使う財布でも、10個目の財布でも、常に細心の注意を払ってください。不正なアプリは、あなたが預けたお金を盗むだけでなく、あなたのモバイルデバイスのオペレーティングシステムを危険にさらすことによって、他のアプリケーションのキーやパスワードを盗むことができるかもしれません。</p>
+</div>
+<div class="paragraph">
+<p>アリスはAndroidデバイスを使用しており、Google Playストアを使用してEclairウォレットをダウンロードし、インストールする予定です。Google Playで検索すると、<a href="#eclair-playstore">Google Play StoreのEclair Mobile</a>に示すように、「Eclair Mobile」のエントリーが見つかります。</p>
+</div>
+<div id="eclair-playstore" class="imageblock">
+<div class="content">
+<img src="images/mtln_0201.png" alt="Eclair wallet in the Google Play Store" />
+</div>
+<div class="title">図1.Google Play ストアでのエクレールモバイル</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">チップ</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>testnetのビットコインを使用することで、全てのビットコイン型ソフトウェアをリスクゼロ（自分の時間を除いて）で実験・テストすることが可能です。また、Google Play Storeにアクセスすると、Lightningを試すためのEclair testnet walletを（testnetで）ダウンロードすることができます。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>アリスは、このページでいくつかの異なる要素に気づき、これが彼女が探している正しい「エクレール・モバイル」ウォレットである可能性が高いことを確認します。まず、ACINQ<sup class="footnote">[<a id="_footnoteref_2" class="footnote" href="#_footnotedef_2" title="View footnote.">2</a>]</sup>という組織がこのモバイルウォレットの開発者としてリストアップされており、アリスはこの組織が正しい開発者であることを調査から知っています。次に、このウォレットは「1万回以上」インストールされ、320件以上の肯定的なレビューがあります。これは、Google Playストアに忍び込んだ不正アプリである可能性は低い。第三段階として、彼女は<a href="https://acinq.co">ACINQのWeb</a>サイトにアクセスします。アドレスがhttpsで始まっていること、あるいは一部のブラウザでは南京錠が付けられていることを確認し、Webページが安全であることを確認します。ウェブサイトでは、「ダウンロード」セクションに移動し、Google App Storeへのリンクを探します。リンクを見つけ、クリックする。このリンクから、Google App Storeのまったく同じアプリが表示されることを比較します。この結果に満足したアリスは、自分の携帯端末にエクレアのアプリをインストールします。</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<div class="title">警告</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>デバイスにソフトウェアをインストールする際は、常に細心の注意を払ってください。暗号通貨ウォレットの偽物が多く出回っており、お金を盗むだけでなく、デバイス上の他のすべてのアプリケーションを危険にさらす可能性があります。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_creating_a_new_wallet">ウォレットの新規作成</h3>
+<div class="paragraph">
+<p>アリスが初めてエクレールモバイルアプリを開いたとき、"新しいウォレットを作る" か "既存のウォレットをインポートする" かを選ぶ選択肢が表示されます。アリスは新しいウォレットを作成しますが、まず、なぜこれらのオプションがここに提示されているのか、そして、既存のウォレットをインポートすることの意味について説明しましょう。</p>
+</div>
+<div class="sect3">
+<h4 id="_responsibility_with_key_custody">キーカストディを伴う責任</h4>
+<div class="paragraph">
+<p>このセクションの最初に述べたように、エクレアは<em>非監護</em>ウォレットです。つまり、アリスは自分のビットコインを管理するための鍵を単独で管理しています。これはまた、アリスがこれらの鍵を保護し、バックアップする責任があることを意味します。もしアリスが鍵をなくしてしまったら、誰もビットコインを取り戻す手助けはできませんし、永遠に失われてしまうでしょう。</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<div class="title">警告</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>エクレールモバイルウォレットでは、アリスは鍵の親権と管理権を持っており、したがって鍵を安全に保管し、バックアップする全責任を負います。もし彼女が鍵を失えば、ビットコインを失い、誰もその損失から回復する手助けをすることはできません!</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_mnemonic_words">ニーモニック・ワード</h4>
+<div class="paragraph">
+<p>ほとんどのビットコインウォレットと同様に、エクレールモバイルはアリスがバックアップするための<em>ニーモニックフレーズ</em>（「シード」または「シードフレーズ」とも呼ばれることがあります）を提供します。ニモニックフレーズは24個の英単語からなり、ソフトウェアによってランダムに選択され、ウォレットによって生成されるキーのベースとして使用されます。アリスは、携帯端末の紛失、ソフトウェアのバグ、メモリの破損があった場合、ニモニックフレーズを使ってエクレア・モバイル・ウォレットのすべての取引と資金を復元することができます。</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">チップ</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>これらのバックアップの言葉は、正しくは "mnemonic phrase "です。ニーモニックフレーズを指す "seed "の使用は、一般的であっても不正確であるため、私たちはその使用を避けています。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>アリスが新しいウォレットの作成を選択すると、「<a href="#eclair-mnemonic">新しいウォレットのニーモニック</a>フレーズ」のスクリーンショットのようなニーモニックフレーズのスクリーンが表示されます。</p>
+</div>
+<div id="eclair-mnemonic" class="imageblock">
+<div class="content">
+<img src="images/mtln_0202.png" alt="New Wallet Mnemonic Phrase" />
+</div>
+<div class="title">図2.新型ウォレットのニーモニックフレーズ</div>
+</div>
+<div class="paragraph">
+<p><a href="#eclair-mnemonic">New walletのニモニックフレーズでは</a>、本書の読者がニモニックを再利用できないように、ニモニックフレーズの一部を意図的に隠蔽しています。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="mnemonic-storage">ニーモニックを安全に保存する</h4>
+<div class="paragraph">
+<p>アリスは、ニモニックフレーズが盗まれないように、また誤って紛失しないように保管することに注意する必要があります。これらのリスクの適切なバランスをとるために推奨される方法は、紙にニモニックフレーズを2部書き、それぞれの単語に番号を振っておくことです。</p>
+</div>
+<div class="paragraph">
+<p>アリスがニモニックフレーズを記録したら、画面の「OK GOT IT」をタッチした後、ニモニックを正しく記録できたかどうかを確認するクイズが出題されます。クイズでは、ランダムに3～4個の単語が出題されます。アリスはクイズを期待していませんでしたが、ニモニックを正しく記録したため、難なくパスしました。</p>
+</div>
+<div class="paragraph">
+<p>アリスがニモニックフレーズを記録し、クイズに合格したら、それぞれのコピーを鍵のかかる机の引き出しや耐火金庫など、別の安全な場所に保管する必要があります。</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<div class="title">警告</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>ニーモニックを<a href="#mnemonic-storage">安全に</a>保管する」のベストプラクティスの推奨から少しでも外れた「DIY」セキュリティスキームは絶対に試さないでください。ニモニックを半分に切る、スクリーンショットを撮る、USBドライブやクラウドドライブに保存する、暗号化する、など標準的でない方法を試さないでください。永久に失われる危険性があるような方法で、バランスを崩すことになります。多くの人が資金を失っていますが、それは盗難によるものではなく、リスクのバランスをとるための専門知識を持たずに標準外の解決策を試したためです。ベストプラクティスの推奨は、専門家が慎重に検討し、大多数のユーザーに適したものです。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>アリスがエクレア・モバイル・ウォレットを初期化した後、ユーザーインターフェースの様々な要素を強調する簡単なチュートリアルが表示されます。ここではチュートリアルを再現しませんが、アリスがコーヒーを買おうとするのを追いながら、これらの要素をすべて探っていきます!</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_loading_bitcoin_onto_the_wallet">ウォレットにビットコインを入れる</h3>
+<div class="paragraph">
+<p>アリスは今、ライトニングの財布を持っています。しかし、それは空っぽです!彼女は今、この実験のより困難な局面に直面しています。ビットコインを入手し、それをEclairウォレットにロードする方法を見つけなければならないのです。</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">チップ</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>アリスがすでに他の財布にビットコインを入れている場合、新しい財布に入れるために新たにビットコインを取得する代わりに、そのビットコインをエクレア財布に送ることを選択することができます。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="acquiring-bitcoin">ビットコインの取得</h4>
+<div class="paragraph">
+<p>アリスがビットコインを取得する方法はいくつかあります。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>彼女は、暗号通貨取引所で自国通貨（例：米ドル）の一部を交換することができます。</p>
+</li>
+<li>
+<p>彼女は、友人や、ビットコインのミートアップで知り合った人から、現金と引き換えにいくらか買うことができます。</p>
+</li>
+<li>
+<p>彼女は、自分の住んでいる地域に、<em>ビットコインを</em>現金で売る自動販売機のような役割を果たす<em>ビットコインATMを</em>見つけることができます。</p>
+</li>
+<li>
+<p>彼女は自分のスキルや販売する商品を提供し、ビットコインで支払いを受けることができます。</p>
+</li>
+<li>
+<p>彼女は、雇用主や顧客にビットコインで支払うよう依頼することができます。</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>これらの方法はすべて難易度に差があり、多くは手数料を支払わなければなりません。また、現地の銀行規制を守るために、アリスに身分証明書を提出させるものもあります。しかし、これらの方法で、アリスはビットコインを受け取ることができます。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_receiving_bitcoin">ビットコインの受取り</h4>
+<div class="paragraph">
+<p>アリスが地元のビットコインATMを見つけ、現金と引き換えにビットコインを買うことにしたとします。Lamassu社が製造したビットコインATMの例を、<a href="#bitcoin-atm">A Lamassu Bitcoin ATMに示して</a>います。このようなビットコインATMは、現金投入口から国の通貨（現金）を受け取り、内蔵カメラで利用者の財布からスキャンしたビットコインアドレスにビットコインを送ります。</p>
+</div>
+<div id="bitcoin-atm" class="imageblock">
+<div class="content">
+<img src="images/mtln_0203.png" alt="Lamassu Bitcoin ATM" />
+</div>
+<div class="title">図3.ラマッスー・ビットコインATM</div>
+</div>
+<div class="paragraph">
+<p>Eclair Lightningウォレットにあるビットコインを受け取るために、アリスはEclair LightningウォレットからビットコインアドレスをATMに提示する必要があります。ATMは、アリスが新しく手に入れたビットコインを、このビットコインアドレスに送ることができます。</p>
+</div>
+<div class="paragraph">
+<p>エクレールウォレットでビットコインアドレスを見るには、アリスはYOUR BITCOIN ADDRESS（<a href="#eclair-receive">エクレールで表示されるアリスのビットコインアドレス</a>参照）というタイトルの左の欄へスワイプしなければならず、そこには四角いバーコード（<em>QRコードという</em>）とその下に文字と数字の列が表示されます。</p>
+</div>
+<div class="paragraph">
+<p>QRコードには、その下に表示されている文字と数字と同じ文字列が、スキャンしやすい形で含まれています。こうすることで、アリスはビットコインアドレスを入力する必要がありません。スクリーンショット<a href="#eclair-receive">（エクレアで表示されたアリスのビットコインアドレス</a>）では、読者が誤ってこのアドレスにビットコインを送ってしまわないように、意図的に両方をぼかしています。</p>
+</div>
+<div id="eclair-receive" class="imageblock">
+<div class="content">
+<img src="images/mtln_0204.png" alt="Eclair bitcoin address QR code" />
+</div>
+<div class="title">図4．Eclairで表示されるアリスのビットコインアドレス</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">備考</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>ビットコインアドレスとQRコードの両方にはエラー検出情報が含まれており、入力やスキャンのミスで「間違った」ビットコインアドレスが生成されるのを防ぎます。アドレスに間違いがある場合、どのビットコイン財布もその間違いに気付き、ビットコインアドレスを有効なものとして受け入れることを拒否します。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph pagebreak-before">
+<p>アリスは携帯端末をATMに持って行き、内蔵カメラに見せると、<a href="#bitcoin-atm-receive">ビットコインATMがQRコードをスキャン</a>します。現金を投入すると、ビットコインがEclairで送られてきます。</p>
+</div>
+<div id="bitcoin-atm-receive" class="imageblock">
+<div class="content">
+<img src="images/mtln_0205.png" alt="Bitcoin ATM scans the QR code" />
+</div>
+<div class="title">図5.ビットコインATMでQRコードを読み取る</div>
+</div>
+<div class="paragraph">
+<p>アリスは、Eclairウォレットの「TRANSACTION HISTORY」タブで、ATMからの取引を確認します。Eclairはわずか数秒でビットコイン取引を検出しますが、ビットコイン取引がビットコインブロックチェーン上で「確認」されるまでには約1時間かかります。<a href="#eclair-tx1">Alice receives bitcoinで</a>わかるように、アリスのエクレールウォレットには取引の下に「6+ conf」と表示されており、この取引は必要最低限の6回の確認を受け、彼女の資金は使用できる状態になったことがわかります。</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">チップ</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>トランザクションの確認回数は、そのトランザクションが含まれるブロック以降に採掘されたブロックの数です（そのブロックを含む）。6回の確認がベストプラクティスですが、ライトニングウォレットによっては、任意の回数の確認が行われた後にチャネルが開かれたとみなすことができます。ウォレットによっては、確認回数をチャネルの金額でスケールアップするものもあります。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>この例では、アリスは最初のビットコインを得るためにATMを使いましたが、「<a href="#acquiring-bitcoin">ビットコインを得る</a>」の他の方法の一つを使ったとしても、同じ基本的な考え方が適用されます。例えば、アリスがビットコインと引き換えに製品や専門的なサービスを販売したい場合、彼女の顧客はビットコインアドレスを財布でスキャンして、ビットコインで支払うことができます。</p>
+</div>
+<div id="eclair-tx1" class="imageblock">
+<div class="content">
+<img src="images/mtln_0206.png" alt="Bitcoin transaction received" />
+</div>
+<div class="title">図6.アリスがビットコインを受け取る</div>
+</div>
+<div class="paragraph">
+<p>同様に、インターネット上で提供されるサービスの料金をクライアントに請求する場合、アリスはビットコインアドレスやQRコードをメールやインスタントメッセージでクライアントに送り、クライアントはその情報をビットコイン財布に貼り付けたりスキャンしたりして、彼女に支払うことができるのです。</p>
+</div>
+<div class="paragraph">
+<p>アリスはQRコードを印刷して看板に貼り付け、公共の場に表示してチップをもらうこともできます。例えば、ギターにQRコードを貼り付けて、路上で演奏しながらチップをもらうこともできるのです！[3]。<sup class="footnote">[<a id="_footnoteref_3" class="footnote" href="#_footnotedef_3" title="View footnote.">3]</a></sup></p>
+</div>
+<div class="paragraph">
+<p>最後に、アリスが暗号通貨取引所からビットコインを買った場合、彼女は自分のビットコインアドレスを取引所のウェブサイトに貼り付けて、ビットコインを「引き出す」ことができます（そうすべきです）。そうすれば、取引所は彼女のアドレスに直接ビットコインを送ってくれます。</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_from_bitcoin_to_lightning_network">ビットコインからライトニングネットワークへ</h3>
+<div class="paragraph">
+<p>アリスのビットコインは今、彼女のエクレールウォレットによって管理され、ビットコインブロックチェーンに記録されています。この時点で、アリスのビットコインは<em>オンチェーン</em>です。つまり、この取引はビットコインネットワーク全体にブロードキャストされ、すべてのビットコインノードによって検証され、ビットコインブロックチェーンに<em>採掘</em>（記録）されたことを意味します。</p>
+</div>
+<div class="paragraph">
+<p>これまで、エクレア・モバイル・ウォレットはビットコイン・ウォレットとしてのみ振る舞い、アリスはエクレアのライトニング・ネットワークの機能を使用していませんでした。多くのライトニングウォレットがそうであるように、Eclairはビットコインウォレットとライトニングウォレットの両方として動作することで、ビットコインとライトニングネットワークの橋渡しをします。</p>
+</div>
+<div class="paragraph">
+<p>さて、アリスはライトニング・ネットワークを利用する準備が整った。ビットコインをオフチェーンに持ち出し、ライトニング・ネットワークが提供する高速で安価なプライベート決済を利用するのである。</p>
+</div>
+<div class="sect3">
+<h4 id="_lightning_network_channels">ライトニングネットワークチャネル</h4>
+<div class="paragraph">
+<p>右にスワイプすると、アリスはEclairのLIGHTNING CHANNELSセクションにアクセスします。ここで彼女は、自分の財布をライトニングネットワークに接続するチャンネルを管理することができます。</p>
+</div>
+<div class="paragraph">
+<p>この際、もう少しわかりやすくするために、LNチャネルの定義をおさらいしておきましょう。まず、「チャネル」という言葉は、アリスのライトニングウォレットと他のライトニングウォレットとの間の<em>金融</em>関係の比喩です。アリスのウォレットとこの別のウォレットが、ビットコインのブロックチェーン（オンチェーン）に取引をコミットせずに、ライトニングネットワーク（オフチェーン）上で互いに多くの支払いをやり取りする手段であることから、チャネルと呼んでいるのです。</p>
+</div>
+<div class="paragraph">
+<p>アリスがチャネルを開いたウォレットや<em>ノードは</em> <em>チャネルピアと</em>呼ばれます。一度「開いた」チャネルは、アリスのウォレットとチャネルピアの間で 多くの支払いをやりとりするために使われます。</p>
+</div>
+<div class="paragraph">
+<p>さらに、アリスのチャンネルピアは、ライトニングネットワークのさらに奥にある他のチャンネル経由で支払いを<em>転送</em>することができます。このようにして、アリスのウォレットがチャンネルからチャンネルへホッピングして作られた実行可能な<em>パスを</em>ボブのウォレットまで見つけることができる限り、アリスは任意のウォレット（例えば、ボブのライトニングウォレット）に支払いを<em>転送</em>することができるのです。</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">チップ</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>すべてのチャネルピアが支払いをルーティングするのに<em>適した</em>ピアであるわけではありません。十分なコネクションを持つピアは、目的地までの短い経路で支払いをルーティングすることができ、成功する確率が高くなります。資金に余裕のあるチャネルピアは、より大きな支払いをルーティングすることができます。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>言い換えると、アリスはライトニングネットワークの他のノードに接続するチャンネルを1つ以上必要とします。アリスはボブに支払いを送るために、自分の財布をボブのカフェに直接接続するチャンネルは必要ありませんが、直接チャンネルを開くことを選択することも可能です。ライトニングネットワークのどのノードもアリスの最初のチャンネルに使うことができます。ノードがよく接続されていればいるほど、アリスはより多くの人に連絡を取ることができます。この例では、支払い経路のデモもしたいので、アリスにボブの財布への直接のチャネルを開かせません。代わりに、アリスによく接続されたノードへのチャネルを開かせ、 後でそのノードを使って支払いを転送し、 必要に応じて他のノードを経由してボブに到達させるようにします。</p>
+</div>
+<div class="paragraph">
+<p>最初は開いているチャンネルがないので、<a href="#eclair-channels">LIGHTNING CHANNELSタブに</a>あるように、空のリストが表示されます。気づけば、右下にプラス記号（＋）があり、これは新しいチャンネルを開くためのボタンです。</p>
+</div>
+<div id="eclair-channels" class="imageblock">
+<div class="content">
+<img src="images/mtln_0207.png" alt="LIGHTNING CHANNELS tab" />
+</div>
+<div class="title">図 7.ライトニングチャンネル(LIGHTNING CHANNELS)タブ</div>
+</div>
+<div class="paragraph pagebreak-before">
+<p>アリスがプラスマークを押すと、チャンネルを開くための4つの方法が提示されます。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>ノードのURIを貼り付ける</p>
+</li>
+<li>
+<p>ノードのURIをスキャンする</p>
+</li>
+<li>
+<p>ランダムノード</p>
+</li>
+<li>
+<p>ACINQノード</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>ノードURI」は、特定のライトニングノードを識別するためのユニバーサルリソース識別子(URI)である。アリスはクリップボードからそのようなURIを貼り付けるか、同じ情報を含むQRコードをスキャンすることができます。ノード URI の例は、<a href="#node-URI-QR">Node URI as a Q</a>R code and as a text string に QR コードとして示されています。</p>
+</div>
+<div id="node-URI-QR" class="imageblock">
+<div class="content">
+<img src="images/mtln_0208.png" alt="Lightning node URI QR code" width="120" />
+</div>
+<div class="title">図8 QRコードとしてのノードURIノードURIをQRコードにしたもの</div>
+</div>
+<div id="node-URI-example" class="listingblock">
+<div class="title">ノードユーアールアイ</div>
+<div class="content">
+<pre>0237fefbe8626bf888de0cad8c73630e32746a22a2c4faa91c1d9877a3826e1174@1.ln.aantonop.com:9735</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>アリスは特定のライトニングノードを選択することも、「ランダムノード」オプションを使用してエクレアウォレットにランダムにノードを選択させることもできますが、ACINQノードオプションを選択してACINQのよく接続されたライトニングノードの1つに接続することにします。</p>
+</div>
+<div class="paragraph">
+<p>ACINQノードを選ぶと、ACINQはアリスのすべての取引を見ることができるので、アリスのプライバシーはわずかに減少します。また、アリスは1つのチャネルしか持っていないので、ACINQノードが利用できない場合、アリスは支払いをすることができないので、単一障害点が発生します。最初は物事をシンプルにするために、これらのトレードオフを受け入れることにします。この後の章では、より独立性を高め、トレードオフを少なくする方法を徐々に学んでいきます!</p>
+</div>
+<div class="paragraph">
+<p>アリスはACINQノードを選択し、ライトニングネットワークで最初のチャンネルを開設する準備が整いました。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_opening_a_lightning_channel">ライトニングチャンネルの開設</h4>
+<div class="paragraph">
+<p>アリスが新しいチャネルを開くノードを選択するとき、このチャネルにどれだけのビットコインを割り当てるか選択するよう求められる。この後の章でこれらの選択の意味を説明しますが、今のところ、アリスはほぼすべての資金をチャネルに割り当てます。チャネルを開設するためには取引手数料を支払わなければならないので、彼女は自分の総資産より少し少ない金額を選択する。<sup class="footnote">[<a id="_footnoteref_4" class="footnote" href="#_footnotedef_4" title="View footnote.">4</a>]</sup></p>
+</div>
+<div class="paragraph">
+<p>アリスは合計0.020BTCのうち0.018BTCを自分のチャンネルに割り当て、「<a href="#eclair-open-channel">ライトニングチャンネルを</a>開く」で示したように、デフォルトの手数料レートを受け入れることにしました。</p>
+</div>
+<div id="eclair-open-channel" class="imageblock">
+<div class="content">
+<img src="images/mtln_0209.png" alt="Opening a Lightning Channel" />
+</div>
+<div class="title">図9 Lightningチャンネルを開くライトニングチャンネルの開設</div>
+</div>
+<div class="paragraph">
+<p>OPENをクリックすると、彼女の財布はライトニングチャンネルを開く特別なビットコイン取引を構築し、<em>資金取引として</em>知られています。オンチェーンでの資金取引は、確認のためビットコインネットワークに送信されます。</p>
+</div>
+<div class="paragraph">
+<p>アリスは今、取引がビットコインブロックチェーンに記録されるのを再び待たなければならない（<a href="#eclair-channel-waiting">チャネルを開くための資金取引待ちを</a>参照）。ビットコインを取得した最初のビットコイン取引と同様に、彼女は6回以上（約1時間）確認を待たなければならない。</p>
+</div>
+<div id="eclair-channel-waiting" class="imageblock">
+<div class="content">
+<img src="images/mtln_0210.png" alt="Waiting for the Funding Transaction to Open the Channel" />
+</div>
+<div class="title">図 10.資金取引でチャネルを開くのを待つ</div>
+</div>
+<div class="paragraph">
+<p>資金取引が確認されると、ACINQノードへのアリスのチャネルは、<a href="#eclair-channel-open">チャネルが開いている</a>に示すように、資金が供給され、準備完了となります。</p>
+</div>
+<div id="eclair-channel-open" class="imageblock">
+<div class="content">
+<img src="images/mtln_0211.png" alt="Channel is Open" />
+</div>
+<div class="title">図11.チャンネルが開いている</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">チップ</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>チャンネルの金額が変更されたように見えることに気づきましたか？チャンネルには0.018BTCが含まれていますが、スクリーンショット間の時間でBTC為替レートが変更されたため、USD値が異なっているのです。あなたはBTCまたはUSDで残高を表示するように選択することができますが、USDの値はリアルタイムで計算され、変更されることに留意してください</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_buying_a_cup_of_coffee_using_the_lightning_network">Lightningネットワークでコーヒーを買う</h3>
+<div class="paragraph">
+<p>アリスは今、ライトニングネットワークの使用を開始するためのすべての準備が整いました。見ての通り、ちょっとした作業と、確認を待つ時間が必要でした。しかし、今ではその後の行動は迅速かつ簡単です。ライトニング・ネットワークは、数秒で資金が決済されるため、確認を待つことなく支払いが可能です。</p>
+</div>
+<div class="paragraph">
+<p>アリスは携帯端末を手に、近所にあるBob's Cafeに走ります。新しいライトニングウォレットを試して、何かを買うために興奮しています。</p>
+</div>
+<div class="sect3">
+<h4 id="_bobs_cafe">ボブズカフェ</h4>
+<div class="paragraph">
+<p>Bob は、ライトニングネットワーク上でビットコインによる支払いを希望する顧客が使用する、シンプルな POS（販売時点情報管理）アプリケーショ ンを持っています。次章で説明するように、Bobは人気のあるオープンソースプラットフォーム<em>BTCPay Serverを</em>使用しています。このプラットフォームには、次のようなeコマースや小売ソリューションに必要なすべてのコンポーネントが含まれています。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>ビットコインコアソフトウェアを使用したビットコインノード</p>
+</li>
+<li>
+<p>c-lightningソフトウェアを使用したLightningノード</p>
+</li>
+<li>
+<p>タブレット端末用の簡易POSアプリケーション</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>BTCPayサーバーは、必要なソフトウェアをすべてインストールし、写真や商品価格をアップロードして、すばやくお店を立ち上げることができます。</p>
+</div>
+<div class="paragraph">
+<p>ボブズカフェのカウンターには、<a href="#bob-cafe-posapp">ボブズカフェのPOSアプリケーション</a>で見たものを表示するタブレット端末が置かれています。</p>
+</div>
+<div id="bob-cafe-posapp" class="imageblock">
+<div class="content">
+<img src="images/mtln_0212.png" alt="Bob&#8217;s Point-of-Sale Application" />
+</div>
+<div class="title">図12.ボブのPOSアプリケーション</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_a_lightning_invoice">Lightningインボイス</h4>
+<div class="paragraph">
+<p>アリスが画面からカフェラテを選択すると、Lightning inv<a href="#bob-cafe-invoice">oice for Alice's latteの</a>ように、<em>Lightning invoice</em>（「支払い請求書」とも呼ばれる）が表示されます。</p>
+</div>
+<div id="bob-cafe-invoice" class="imageblock">
+<div class="content">
+<img src="images/mtln_0213.png" alt="BTCPay Server Lightning invoice" />
+</div>
+<div class="title">図13.アリスのラテのライトニングインボイス</div>
+</div>
+<div class="paragraph pagebreak-before">
+<p>請求書を支払うために、アリスはエクレールウォレットを開き、TRANSACTION HISTORY タブの下にある送信ボタン（上向きの矢印のように見える）を選択します（<a href="#alice-send-start">アリスが送信を選択した</a>ところ）。</p>
+</div>
+<div id="alice-send-start" class="imageblock">
+<div class="content">
+<img src="images/mtln_0214.png" alt="Lightning transaction send" width="300" />
+</div>
+<div class="title">図14.アリスが送信を選択</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">チップ</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>支払いリクエスト」という用語は、ビットコインの支払いリクエストとライトニングインボイスを指すことがあり、「インボイス」と「支払いリクエスト」という用語は同じ意味で使われることが多いようです。ウォレットでの名称に関わらず、技術用語としては「ライトニングインボイス」が正しいです。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>アリスは「支払いリクエストをスキャンする」というオプションを選択し、タブレットの画面に表示されたQRコード（<a href="#bob-cafe-invoice">アリスのラテのライトニングインボイス</a>参照）をスキャンすると、<a href="#alice-send-detail">アリスの送信確認に</a>あるように、支払いの確認を促されます。</p>
+</div>
+<div class="paragraph">
+<p>アリスがPAYを押すと、1秒後、ボブのタブレットに支払い成功の表示が。アリスは最初のLN決済を完了しました!速くて、安くて、簡単だった。これで、アリスはビットコインで購入したラテを、高速、安価、かつ分散型の決済システムで楽しむことができるようになった。今後、アリスはボブのタブレット画面で商品を選び、携帯電話でQRコードをスキャンして「PAY」をクリックするだけで、数秒以内にコーヒーが提供され、すべてオンチェーン取引なしで行える。</p>
+</div>
+<div id="alice-send-detail" class="imageblock">
+<div class="content">
+<img src="images/mtln_0215.png" alt="Lightning transaction send confirmation" width="300" />
+</div>
+<div class="title">図15.アリスの送信確認</div>
+</div>
+<div class="paragraph">
+<p>ボブにとってもライトニングペイメントは良いものです。彼は、オンチェーンでの確認を待つことなく、アリスのラテの代金が支払われることを確信しているのです。今後、アリスがボブのカフェでコーヒーを飲みたくなったとき、彼女はビットコインネットワークかライトニングネットワークのどちらで支払うかを選ぶことができます。彼女はどちらを選ぶと思いますか？</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_conclusion">結論</h3>
+<div class="paragraph">
+<p>この章では、アリスが最初のライトニングウォレットをダウンロードしてインストールし、ビットコインを取得して送金し、最初のライトニングチャンネルを開設し、ライトニングネットワークで最初の支払いを行ってコーヒーを購入するところまで追いかけました。次の章では、ライトニングネットワークの各コンポーネントがどのように機能し、アリスの支払いがどのようにボブのカフェに到達したかを「裏側」で見ていきます。</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<hr />
+<div class="footnote" id="_footnotedef_1">
+<a href="#_footnoteref_1">1</a>.Andreas M. Antonopoulos,<em>Mastering Bitcoin</em>, 2nd Edition,<a href="https://github.com/bitcoinbook/bitcoinbook/blob/develop/ch01.asciidoc">Chapter 1</a>(O'Reilly).
+</div>
+<div class="footnote" id="_footnotedef_2">
+<a href="#_footnoteref_2">2</a>.ACINQ：エクレア・モバイル・ライトニング・ウォレットの開発者。
+</div>
+<div class="footnote" id="_footnotedef_3">
+<a href="#_footnoteref_3">3</a>.すべてのビットコイン取引は公開されているため、一般に、同じビットコインアドレスを複数の支払いに再利用することはお勧めできません。通りすがりのおせっかいな人がアリスのQRコードをスキャンして、アリスがすでにこのアドレスに受け取ったチップの数をビットコインブロックチェーン上で見ることができるのです。幸いなことに、ライトニング・ネットワークはこれに対してよりプライベートな解決策を提供しています、この本の中で後述します
+</div>
+<div class="footnote" id="_footnotedef_4">
+<a href="#_footnoteref_4">4</a>.エクレールウォレットには、必要な手数料を自動的に計算し、最大限の資金をチャンネルに割り当てるオプションがないため、アリスが自分で計算しなければなりません。
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+最終更新 2022-10-29 15:50:16 +0400
+</div>
+</div>
+</body>
+</html>

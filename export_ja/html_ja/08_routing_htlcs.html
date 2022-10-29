@@ -1,0 +1,1371 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="generator" content="Asciidoctor 2.0.16" />
+<title>決済チャネルのネットワーク上でのルーティング</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700" />
+<style>
+/*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
+/* Uncomment the following line when using as a custom stylesheet */
+/* @import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700"; */
+html{font-family:sans-serif;-webkit-text-size-adjust:100%}
+a{background:none}
+a:focus{outline:thin dotted}
+a:active,a:hover{outline:0}
+h1{font-size:2em;margin:.67em 0}
+b,strong{font-weight:bold}
+abbr{font-size:.9em}
+abbr[title]{cursor:help;border-bottom:1px dotted #dddddf;text-decoration:none}
+dfn{font-style:italic}
+hr{height:0}
+mark{background:#ff0;color:#000}
+code,kbd,pre,samp{font-family:monospace;font-size:1em}
+pre{white-space:pre-wrap}
+q{quotes:"\201C" "\201D" "\2018" "\2019"}
+small{font-size:80%}
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+sup{top:-.5em}
+sub{bottom:-.25em}
+img{border:0}
+svg:not(:root){overflow:hidden}
+figure{margin:0}
+audio,video{display:inline-block}
+audio:not([controls]){display:none;height:0}
+fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
+legend{border:0;padding:0}
+button,input,select,textarea{font-family:inherit;font-size:100%;margin:0}
+button,input{line-height:normal}
+button,select{text-transform:none}
+button,html input[type=button],input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer}
+button[disabled],html input[disabled]{cursor:default}
+input[type=checkbox],input[type=radio]{padding:0}
+button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
+textarea{overflow:auto;vertical-align:top}
+table{border-collapse:collapse;border-spacing:0}
+*,::before,::after{box-sizing:border-box}
+html,body{font-size:100%}
+body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;line-height:1;position:relative;cursor:auto;-moz-tab-size:4;-o-tab-size:4;tab-size:4;word-wrap:anywhere;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}
+a:hover{cursor:pointer}
+img,object,embed{max-width:100%;height:auto}
+object,embed{height:100%}
+img{-ms-interpolation-mode:bicubic}
+.left{float:left!important}
+.right{float:right!important}
+.text-left{text-align:left!important}
+.text-right{text-align:right!important}
+.text-center{text-align:center!important}
+.text-justify{text-align:justify!important}
+.hide{display:none}
+img,object,svg{display:inline-block;vertical-align:middle}
+textarea{height:auto;min-height:50px}
+select{width:100%}
+.subheader,.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{line-height:1.45;color:#7a2518;font-weight:400;margin-top:0;margin-bottom:.25em}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0}
+a{color:#2156a5;text-decoration:underline;line-height:inherit}
+a:hover,a:focus{color:#1d4b8f}
+a img{border:0}
+p{line-height:1.6;margin-bottom:1.25em;text-rendering:optimizeLegibility}
+p aside{font-size:.875em;line-height:1.35;font-style:italic}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{font-family:"Open Sans","DejaVu Sans",sans-serif;font-weight:300;font-style:normal;color:#ba3925;text-rendering:optimizeLegibility;margin-top:1em;margin-bottom:.5em;line-height:1.0125em}
+h1 small,h2 small,h3 small,#toctitle small,.sidebarblock>.content>.title small,h4 small,h5 small,h6 small{font-size:60%;color:#e99b8f;line-height:0}
+h1{font-size:2.125em}
+h2{font-size:1.6875em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.375em}
+h4,h5{font-size:1.125em}
+h6{font-size:1em}
+hr{border:solid #dddddf;border-width:1px 0 0;clear:both;margin:1.25em 0 1.1875em}
+em,i{font-style:italic;line-height:inherit}
+strong,b{font-weight:bold;line-height:inherit}
+small{font-size:60%;line-height:inherit}
+code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;color:rgba(0,0,0,.9)}
+ul,ol,dl{line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
+ul,ol{margin-left:1.5em}
+ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0}
+ul.square li ul,ul.circle li ul,ul.disc li ul{list-style:inherit}
+ul.square{list-style-type:square}
+ul.circle{list-style-type:circle}
+ul.disc{list-style-type:disc}
+ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
+dl dt{margin-bottom:.3125em;font-weight:bold}
+dl dd{margin-bottom:1.25em}
+blockquote{margin:0 0 1.25em;padding:.5625em 1.25em 0 1.1875em;border-left:1px solid #ddd}
+blockquote,blockquote p{line-height:1.6;color:rgba(0,0,0,.85)}
+@media screen and (min-width:768px){h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2}
+h1{font-size:2.75em}
+h2{font-size:2.3125em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.6875em}
+h4{font-size:1.4375em}}
+table{background:#fff;margin-bottom:1.25em;border:1px solid #dedede;word-wrap:normal}
+table thead,table tfoot{background:#f7f8f7}
+table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:.5em .625em .625em;font-size:inherit;color:rgba(0,0,0,.8);text-align:left}
+table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
+table tr.even,table tr.alt{background:#f8f8f7}
+table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{line-height:1.6}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
+h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
+.center{margin-left:auto;margin-right:auto}
+.stretch{width:100%}
+.clearfix::before,.clearfix::after,.float-group::before,.float-group::after{content:" ";display:table}
+.clearfix::after,.float-group::after{clear:both}
+:not(pre).nobreak{word-wrap:normal}
+:not(pre).nowrap{white-space:nowrap}
+:not(pre).pre-wrap{white-space:pre-wrap}
+:not(pre):not([class^=L])>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background:#f7f7f8;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed}
+pre{color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;line-height:1.45;text-rendering:optimizeSpeed}
+pre code,pre pre{color:inherit;font-size:inherit;line-height:inherit}
+pre>code{display:block}
+pre.nowrap,pre.nowrap pre{white-space:pre;word-wrap:normal}
+em em{font-style:normal}
+strong strong{font-weight:400}
+.keyseq{color:rgba(51,51,51,.8)}
+kbd{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;display:inline-block;color:rgba(0,0,0,.8);font-size:.65em;line-height:1.45;background:#f7f7f7;border:1px solid #ccc;border-radius:3px;box-shadow:0 1px 0 rgba(0,0,0,.2),inset 0 0 0 .1em #fff;margin:0 .15em;padding:.2em .5em;vertical-align:middle;position:relative;top:-.1em;white-space:nowrap}
+.keyseq kbd:first-child{margin-left:0}
+.keyseq kbd:last-child{margin-right:0}
+.menuseq,.menuref{color:#000}
+.menuseq b:not(.caret),.menuref{font-weight:inherit}
+.menuseq{word-spacing:-.02em}
+.menuseq b.caret{font-size:1.25em;line-height:.8}
+.menuseq i.caret{font-weight:bold;text-align:center;width:.45em}
+b.button::before,b.button::after{position:relative;top:-1px;font-weight:400}
+b.button::before{content:"[";padding:0 3px 0 2px}
+b.button::after{content:"]";padding:0 2px 0 3px}
+p a>code:hover{color:rgba(0,0,0,.9)}
+#header,#content,#footnotes,#footer{width:100%;margin:0 auto;max-width:62.5em;*zoom:1;position:relative;padding-left:.9375em;padding-right:.9375em}
+#header::before,#header::after,#content::before,#content::after,#footnotes::before,#footnotes::after,#footer::before,#footer::after{content:" ";display:table}
+#header::after,#content::after,#footnotes::after,#footer::after{clear:both}
+#content{margin-top:1.25em}
+#content::before{content:none}
+#header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
+#header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #dddddf}
+#header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
+#header .details{border-bottom:1px solid #dddddf;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:flex;flex-flow:row wrap}
+#header .details span:first-child{margin-left:-.125em}
+#header .details span.email a{color:rgba(0,0,0,.85)}
+#header .details br{display:none}
+#header .details br+span::before{content:"\00a0\2013\00a0"}
+#header .details br+span.author::before{content:"\00a0\22c5\00a0";color:rgba(0,0,0,.85)}
+#header .details br+span#revremark::before{content:"\00a0|\00a0"}
+#header #revnumber{text-transform:capitalize}
+#header #revnumber::after{content:"\00a0"}
+#content>h1:first-child:not([class]){color:rgba(0,0,0,.85);border-bottom:1px solid #dddddf;padding-bottom:8px;margin-top:0;padding-top:1rem;margin-bottom:1.25rem}
+#toc{border-bottom:1px solid #e7e7e9;padding-bottom:.5em}
+#toc>ul{margin-left:.125em}
+#toc ul.sectlevel0>li>a{font-style:italic}
+#toc ul.sectlevel0 ul.sectlevel1{margin:.5em 0}
+#toc ul{font-family:"Open Sans","DejaVu Sans",sans-serif;list-style-type:none}
+#toc li{line-height:1.3334;margin-top:.3334em}
+#toc a{text-decoration:none}
+#toc a:active{text-decoration:underline}
+#toctitle{color:#7a2518;font-size:1.2em}
+@media screen and (min-width:768px){#toctitle{font-size:1.375em}
+body.toc2{padding-left:15em;padding-right:0}
+#toc.toc2{margin-top:0!important;background:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #e7e7e9;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
+#toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
+#toc.toc2>ul{font-size:.9em;margin-bottom:0}
+#toc.toc2 ul ul{margin-left:0;padding-left:1em}
+#toc.toc2 ul.sectlevel0 ul.sectlevel1{padding-left:0;margin-top:.5em;margin-bottom:.5em}
+body.toc2.toc-right{padding-left:0;padding-right:15em}
+body.toc2.toc-right #toc.toc2{border-right-width:0;border-left:1px solid #e7e7e9;left:auto;right:0}}
+@media screen and (min-width:1280px){body.toc2{padding-left:20em;padding-right:0}
+#toc.toc2{width:20em}
+#toc.toc2 #toctitle{font-size:1.375em}
+#toc.toc2>ul{font-size:.95em}
+#toc.toc2 ul ul{padding-left:1.25em}
+body.toc2.toc-right{padding-left:0;padding-right:20em}}
+#content #toc{border:1px solid #e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;border-radius:4px}
+#content #toc>:first-child{margin-top:0}
+#content #toc>:last-child{margin-bottom:0}
+#footer{max-width:none;background:rgba(0,0,0,.8);padding:1.25em}
+#footer-text{color:hsla(0,0%,100%,.8);line-height:1.44}
+#content{margin-bottom:.625em}
+.sect1{padding-bottom:.625em}
+@media screen and (min-width:768px){#content{margin-bottom:1.25em}
+.sect1{padding-bottom:1.25em}}
+.sect1:last-child{padding-bottom:0}
+.sect1+.sect1{border-top:1px solid #e7e7e9}
+#content h1>a.anchor,h2>a.anchor,h3>a.anchor,#toctitle>a.anchor,.sidebarblock>.content>.title>a.anchor,h4>a.anchor,h5>a.anchor,h6>a.anchor{position:absolute;z-index:1001;width:1.5ex;margin-left:-1.5ex;display:block;text-decoration:none!important;visibility:hidden;text-align:center;font-weight:400}
+#content h1>a.anchor::before,h2>a.anchor::before,h3>a.anchor::before,#toctitle>a.anchor::before,.sidebarblock>.content>.title>a.anchor::before,h4>a.anchor::before,h5>a.anchor::before,h6>a.anchor::before{content:"\00A7";font-size:.85em;display:block;padding-top:.1em}
+#content h1:hover>a.anchor,#content h1>a.anchor:hover,h2:hover>a.anchor,h2>a.anchor:hover,h3:hover>a.anchor,#toctitle:hover>a.anchor,.sidebarblock>.content>.title:hover>a.anchor,h3>a.anchor:hover,#toctitle>a.anchor:hover,.sidebarblock>.content>.title>a.anchor:hover,h4:hover>a.anchor,h4>a.anchor:hover,h5:hover>a.anchor,h5>a.anchor:hover,h6:hover>a.anchor,h6>a.anchor:hover{visibility:visible}
+#content h1>a.link,h2>a.link,h3>a.link,#toctitle>a.link,.sidebarblock>.content>.title>a.link,h4>a.link,h5>a.link,h6>a.link{color:#ba3925;text-decoration:none}
+#content h1>a.link:hover,h2>a.link:hover,h3>a.link:hover,#toctitle>a.link:hover,.sidebarblock>.content>.title>a.link:hover,h4>a.link:hover,h5>a.link:hover,h6>a.link:hover{color:#a53221}
+details,.audioblock,.imageblock,.literalblock,.listingblock,.stemblock,.videoblock{margin-bottom:1.25em}
+details{margin-left:1.25rem}
+details>summary{cursor:pointer;display:block;position:relative;line-height:1.6;margin-bottom:.625rem;-webkit-tap-highlight-color:transparent}
+details>summary::before{content:"";border:solid transparent;border-left:solid;border-width:.3em 0 .3em .5em;position:absolute;top:.5em;left:-1.25rem;transform:translateX(15%)}
+details[open]>summary::before{border:solid transparent;border-top:solid;border-width:.5em .3em 0;transform:translateY(15%)}
+details>summary::after{content:"";width:1.25rem;height:1em;position:absolute;top:.3em;left:-1.25rem}
+.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{text-rendering:optimizeLegibility;text-align:left;font-family:"Noto Serif","DejaVu Serif",serif;font-size:1rem;font-style:italic}
+table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
+.paragraph.lead>p,#preamble>.sectionbody>[class=paragraph]:first-of-type p{font-size:1.21875em;line-height:1.6;color:rgba(0,0,0,.85)}
+.admonitionblock>table{border-collapse:separate;border:0;background:none;width:100%}
+.admonitionblock>table td.icon{text-align:center;width:80px}
+.admonitionblock>table td.icon img{max-width:none}
+.admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
+.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #dddddf;color:rgba(0,0,0,.6);word-wrap:anywhere}
+.admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
+.exampleblock>.content{border:1px solid #e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;border-radius:4px}
+.exampleblock>.content>:first-child{margin-top:0}
+.exampleblock>.content>:last-child{margin-bottom:0}
+.sidebarblock{border:1px solid #dbdbd6;margin-bottom:1.25em;padding:1.25em;background:#f3f3f2;border-radius:4px}
+.sidebarblock>:first-child{margin-top:0}
+.sidebarblock>:last-child{margin-bottom:0}
+.sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
+.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
+.literalblock pre,.listingblock>.content>pre{border-radius:4px;overflow-x:auto;padding:1em;font-size:.8125em}
+@media screen and (min-width:768px){.literalblock pre,.listingblock>.content>pre{font-size:.90625em}}
+@media screen and (min-width:1280px){.literalblock pre,.listingblock>.content>pre{font-size:1em}}
+.literalblock pre,.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class=highlight],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
+.literalblock.output pre{color:#f7f7f8;background:rgba(0,0,0,.9)}
+.listingblock>.content{position:relative}
+.listingblock code[data-lang]::before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:inherit;opacity:.5}
+.listingblock:hover code[data-lang]::before{display:block}
+.listingblock.terminal pre .command::before{content:attr(data-prompt);padding-right:.5em;color:inherit;opacity:.5}
+.listingblock.terminal pre .command:not([data-prompt])::before{content:"$"}
+.listingblock pre.highlightjs{padding:0}
+.listingblock pre.highlightjs>code{padding:1em;border-radius:4px}
+.listingblock pre.prettyprint{border-width:0}
+.prettyprint{background:#f7f7f8}
+pre.prettyprint .linenums{line-height:1.45;margin-left:2em}
+pre.prettyprint li{background:none;list-style-type:inherit;padding-left:0}
+pre.prettyprint li code[data-lang]::before{opacity:1}
+pre.prettyprint li:not(:first-child) code[data-lang]::before{display:none}
+table.linenotable{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.linenotable td[class]{color:inherit;vertical-align:top;padding:0;line-height:inherit;white-space:normal}
+table.linenotable td.code{padding-left:.75em}
+table.linenotable td.linenos{border-right:1px solid;opacity:.35;padding-right:.5em}
+pre.pygments .lineno{border-right:1px solid;opacity:.35;display:inline-block;margin-right:.75em}
+pre.pygments .lineno::before{content:"";margin-right:-.125em}
+.quoteblock{margin:0 1em 1.25em 1.5em;display:table}
+.quoteblock:not(.excerpt)>.title{margin-left:-1.5em;margin-bottom:.75em}
+.quoteblock blockquote,.quoteblock p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
+.quoteblock blockquote{margin:0;padding:0;border:0}
+.quoteblock blockquote::before{content:"\201c";float:left;font-size:2.75em;font-weight:bold;line-height:.6em;margin-left:-.6em;color:#7a2518;text-shadow:0 1px 2px rgba(0,0,0,.1)}
+.quoteblock blockquote>.paragraph:last-child p{margin-bottom:0}
+.quoteblock .attribution{margin-top:.75em;margin-right:.5ex;text-align:right}
+.verseblock{margin:0 1em 1.25em}
+.verseblock pre{font-family:"Open Sans","DejaVu Sans",sans-serif;font-size:1.15rem;color:rgba(0,0,0,.85);font-weight:300;text-rendering:optimizeLegibility}
+.verseblock pre strong{font-weight:400}
+.verseblock .attribution{margin-top:1.25rem;margin-left:.5ex}
+.quoteblock .attribution,.verseblock .attribution{font-size:.9375em;line-height:1.45;font-style:italic}
+.quoteblock .attribution br,.verseblock .attribution br{display:none}
+.quoteblock .attribution cite,.verseblock .attribution cite{display:block;letter-spacing:-.025em;color:rgba(0,0,0,.6)}
+.quoteblock.abstract blockquote::before,.quoteblock.excerpt blockquote::before,.quoteblock .quoteblock blockquote::before{display:none}
+.quoteblock.abstract blockquote,.quoteblock.abstract p,.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{line-height:1.6;word-spacing:0}
+.quoteblock.abstract{margin:0 1em 1.25em;display:block}
+.quoteblock.abstract>.title{margin:0 0 .375em;font-size:1.15em;text-align:center}
+.quoteblock.excerpt>blockquote,.quoteblock .quoteblock{padding:0 0 .25em 1em;border-left:.25em solid #dddddf}
+.quoteblock.excerpt,.quoteblock .quoteblock{margin-left:0}
+.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{color:inherit;font-size:1.0625rem}
+.quoteblock.excerpt .attribution,.quoteblock .quoteblock .attribution{color:inherit;font-size:.85rem;text-align:left;margin-right:0}
+p.tableblock:last-child{margin-bottom:0}
+td.tableblock>.content{margin-bottom:1.25em;word-wrap:anywhere}
+td.tableblock>.content>:last-child{margin-bottom:-1.25em}
+table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
+table.grid-all>*>tr>*{border-width:1px}
+table.grid-cols>*>tr>*{border-width:0 1px}
+table.grid-rows>*>tr>*{border-width:1px 0}
+table.frame-all{border-width:1px}
+table.frame-ends{border-width:1px 0}
+table.frame-sides{border-width:0 1px}
+table.frame-none>colgroup+*>:first-child>*,table.frame-sides>colgroup+*>:first-child>*{border-top-width:0}
+table.frame-none>:last-child>:last-child>*,table.frame-sides>:last-child>:last-child>*{border-bottom-width:0}
+table.frame-none>*>tr>:first-child,table.frame-ends>*>tr>:first-child{border-left-width:0}
+table.frame-none>*>tr>:last-child,table.frame-ends>*>tr>:last-child{border-right-width:0}
+table.stripes-all tr,table.stripes-odd tr:nth-of-type(odd),table.stripes-even tr:nth-of-type(even),table.stripes-hover tr:hover{background:#f8f8f7}
+th.halign-left,td.halign-left{text-align:left}
+th.halign-right,td.halign-right{text-align:right}
+th.halign-center,td.halign-center{text-align:center}
+th.valign-top,td.valign-top{vertical-align:top}
+th.valign-bottom,td.valign-bottom{vertical-align:bottom}
+th.valign-middle,td.valign-middle{vertical-align:middle}
+table thead th,table tfoot th{font-weight:bold}
+tbody tr th{background:#f7f8f7}
+tbody tr th,tbody tr th p,tfoot tr th,tfoot tr th p{color:rgba(0,0,0,.8);font-weight:bold}
+p.tableblock>code:only-child{background:none;padding:0}
+p.tableblock{font-size:1em}
+ol{margin-left:1.75em}
+ul li ol{margin-left:1.5em}
+dl dd{margin-left:1.125em}
+dl dd:last-child,dl dd:last-child>:last-child{margin-bottom:0}
+ol>li p,ul>li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
+ul.checklist,ul.none,ol.none,ul.no-bullet,ol.no-bullet,ol.unnumbered,ul.unstyled,ol.unstyled{list-style-type:none}
+ul.no-bullet,ol.no-bullet,ol.unnumbered{margin-left:.625em}
+ul.unstyled,ol.unstyled{margin-left:0}
+ul.checklist>li>p:first-child{margin-left:-1em}
+ul.checklist>li>p:first-child>.fa-square-o:first-child,ul.checklist>li>p:first-child>.fa-check-square-o:first-child{width:1.25em;font-size:.8em;position:relative;bottom:.125em}
+ul.checklist>li>p:first-child>input[type=checkbox]:first-child{margin-right:.25em}
+ul.inline{display:flex;flex-flow:row wrap;list-style:none;margin:0 0 .625em -1.25em}
+ul.inline>li{margin-left:1.25em}
+.unstyled dl dt{font-weight:400;font-style:normal}
+ol.arabic{list-style-type:decimal}
+ol.decimal{list-style-type:decimal-leading-zero}
+ol.loweralpha{list-style-type:lower-alpha}
+ol.upperalpha{list-style-type:upper-alpha}
+ol.lowerroman{list-style-type:lower-roman}
+ol.upperroman{list-style-type:upper-roman}
+ol.lowergreek{list-style-type:lower-greek}
+.hdlist>table,.colist>table{border:0;background:none}
+.hdlist>table>tbody>tr,.colist>table>tbody>tr{background:none}
+td.hdlist1,td.hdlist2{vertical-align:top;padding:0 .625em}
+td.hdlist1{font-weight:bold;padding-bottom:1.25em}
+td.hdlist2{word-wrap:anywhere}
+.literalblock+.colist,.listingblock+.colist{margin-top:-.5em}
+.colist td:not([class]):first-child{padding:.4em .75em 0;line-height:1;vertical-align:top}
+.colist td:not([class]):first-child img{max-width:none}
+.colist td:not([class]):last-child{padding:.25em 0}
+.thumb,.th{line-height:0;display:inline-block;border:4px solid #fff;box-shadow:0 0 0 1px #ddd}
+.imageblock.left{margin:.25em .625em 1.25em 0}
+.imageblock.right{margin:.25em 0 1.25em .625em}
+.imageblock>.title{margin-bottom:0}
+.imageblock.thumb,.imageblock.th{border-width:6px}
+.imageblock.thumb>.title,.imageblock.th>.title{padding:0 .125em}
+.image.left,.image.right{margin-top:.25em;margin-bottom:.25em;display:inline-block;line-height:0}
+.image.left{margin-right:.625em}
+.image.right{margin-left:.625em}
+a.image{text-decoration:none;display:inline-block}
+a.image object{pointer-events:none}
+sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
+sup.footnote a,sup.footnoteref a{text-decoration:none}
+sup.footnote a:active,sup.footnoteref a:active{text-decoration:underline}
+#footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
+#footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em;border-width:1px 0 0}
+#footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;margin-bottom:.2em}
+#footnotes .footnote a:first-of-type{font-weight:bold;text-decoration:none;margin-left:-1.05em}
+#footnotes .footnote:last-of-type{margin-bottom:0}
+#content #footnotes{margin-top:-.625em;margin-bottom:0;padding:.75em 0}
+.gist .file-data>table{border:0;background:#fff;width:100%;margin-bottom:0}
+.gist .file-data>table td.line-data{width:99%}
+div.unbreakable{page-break-inside:avoid}
+.big{font-size:larger}
+.small{font-size:smaller}
+.underline{text-decoration:underline}
+.overline{text-decoration:overline}
+.line-through{text-decoration:line-through}
+.aqua{color:#00bfbf}
+.aqua-background{background:#00fafa}
+.black{color:#000}
+.black-background{background:#000}
+.blue{color:#0000bf}
+.blue-background{background:#0000fa}
+.fuchsia{color:#bf00bf}
+.fuchsia-background{background:#fa00fa}
+.gray{color:#606060}
+.gray-background{background:#7d7d7d}
+.green{color:#006000}
+.green-background{background:#007d00}
+.lime{color:#00bf00}
+.lime-background{background:#00fa00}
+.maroon{color:#600000}
+.maroon-background{background:#7d0000}
+.navy{color:#000060}
+.navy-background{background:#00007d}
+.olive{color:#606000}
+.olive-background{background:#7d7d00}
+.purple{color:#600060}
+.purple-background{background:#7d007d}
+.red{color:#bf0000}
+.red-background{background:#fa0000}
+.silver{color:#909090}
+.silver-background{background:#bcbcbc}
+.teal{color:#006060}
+.teal-background{background:#007d7d}
+.white{color:#bfbfbf}
+.white-background{background:#fafafa}
+.yellow{color:#bfbf00}
+.yellow-background{background:#fafa00}
+span.icon>.fa{cursor:default}
+a span.icon>.fa{cursor:inherit}
+.admonitionblock td.icon [class^="fa icon-"]{font-size:2.5em;text-shadow:1px 1px 2px rgba(0,0,0,.5);cursor:default}
+.admonitionblock td.icon .icon-note::before{content:"\f05a";color:#19407c}
+.admonitionblock td.icon .icon-tip::before{content:"\f0eb";text-shadow:1px 1px 2px rgba(155,155,0,.8);color:#111}
+.admonitionblock td.icon .icon-warning::before{content:"\f071";color:#bf6900}
+.admonitionblock td.icon .icon-caution::before{content:"\f06d";color:#bf3400}
+.admonitionblock td.icon .icon-important::before{content:"\f06a";color:#bf0000}
+.conum[data-value]{display:inline-block;color:#fff!important;background:rgba(0,0,0,.8);border-radius:50%;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
+.conum[data-value] *{color:#fff!important}
+.conum[data-value]+b{display:none}
+.conum[data-value]::after{content:attr(data-value)}
+pre .conum[data-value]{position:relative;top:-.125em}
+b.conum *{color:inherit!important}
+.conum:not([data-value]):empty{display:none}
+dt,th.tableblock,td.content,div.footnote{text-rendering:optimizeLegibility}
+h1,h2,p,td.content,span.alt,summary{letter-spacing:-.01em}
+p strong,td.content strong,div.footnote strong{letter-spacing:-.005em}
+p,blockquote,dt,td.content,span.alt,summary{font-size:1.0625rem}
+p{margin-bottom:1.25rem}
+.sidebarblock p,.sidebarblock dt,.sidebarblock td.content,p.tableblock{font-size:1em}
+.exampleblock>.content{background:#fffef7;border-color:#e0e0dc;box-shadow:0 1px 4px #e0e0dc}
+.print-only{display:none!important}
+@page{margin:1.25cm .75cm}
+@media print{*{box-shadow:none!important;text-shadow:none!important}
+html{font-size:80%}
+a{color:inherit!important;text-decoration:underline!important}
+a.bare,a[href^="#"],a[href^="mailto:"]{text-decoration:none!important}
+a[href^="http:"]:not(.bare)::after,a[href^="https:"]:not(.bare)::after{content:"(" attr(href) ")";display:inline-block;font-size:.875em;padding-left:.25em}
+abbr[title]{border-bottom:1px dotted}
+abbr[title]::after{content:" (" attr(title) ")"}
+pre,blockquote,tr,img,object,svg{page-break-inside:avoid}
+thead{display:table-header-group}
+svg{max-width:100%}
+p,blockquote,dt,td.content{font-size:1em;orphans:3;widows:3}
+h2,h3,#toctitle,.sidebarblock>.content>.title{page-break-after:avoid}
+#header,#content,#footnotes,#footer{max-width:none}
+#toc,.sidebarblock,.exampleblock>.content{background:none!important}
+#toc{border-bottom:1px solid #dddddf!important;padding-bottom:0!important}
+body.book #header{text-align:center}
+body.book #header>h1:first-child{border:0!important;margin:2.5em 0 1em}
+body.book #header .details{border:0!important;display:block;padding:0!important}
+body.book #header .details span:first-child{margin-left:0!important}
+body.book #header .details br{display:block}
+body.book #header .details br+span::before{content:none!important}
+body.book #toc{border:0!important;text-align:left!important;padding:0!important;margin:0!important}
+body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-break-before:always}
+.listingblock code[data-lang]::before{display:block}
+#footer{padding:0 .9375em}
+.hide-on-print{display:none!important}
+.print-only{display:block!important}
+.hide-for-print{display:none!important}
+.show-for-print{display:inherit!important}}
+@media amzn-kf8,print{#header>h1:first-child{margin-top:1.25rem}
+.sect1{padding:0!important}
+.sect1+.sect1{border:0}
+#footer{background:none}
+#footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
+@media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
+</style>
+</head>
+<body class="article">
+<div id="header">
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="routing"><span class="keep-together">決済チャネルの</span>ネットワーク上でのルーティング</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>この章では、<em>ルーティングと</em>呼ばれるプロセスによって、ペイメントチャンネルがどのように接続され、ペイメントチャンネルのネットワークを形成することができるかを最終的に解き明かします。具体的には、ルーティング層の最初の部分である「Atomic and Trustless multihop contracts」プロトコルについて見ていきます。これは、<a href="#LN_protocol_routing_highlight">LightningプロトコルスイートのAtomic payment routingに</a>示されているように、プロトコルスイートのアウトラインによって強調されています。</p>
+</div>
+<div id="LN_protocol_routing_highlight" class="imageblock">
+<div class="content">
+<img src="images/mtln_0801.png" alt="Atomic payment routing in the Lightning protocol suite" />
+</div>
+<div class="title">図1.Lightningプロトコルスイートにおけるアトミックペイメントルーチング</div>
+</div>
+<div class="sect2">
+<h3 id="_routing_a_payment">支払いのルーティング</h3>
+<div class="paragraph">
+<p>ここでは、ゲーム実況をしながらファンからの寄付を受けるゲーマー、ディナの視点からルーティングを考察してみます。</p>
+</div>
+<div class="paragraph">
+<p>ルーティングされた支払い経路の革新により、ディナは、チップを渡したいファン一人ひとりと個別のチャネルを維持することなく、チップを受け取ることができる。
+その視聴者からディナまでの資金力のある経路が存在する限り、彼女はそのファンから支払いを受けることができるのです。</p>
+</div>
+<div class="paragraph">
+<p><a href="#dina_routing_diagram">ライトニングネットワークでディナに（中略）直接接続されているファンでは</a>、ライトニングノード間のさまざまな支払い経路によって作られる可能性のあるネットワークレイアウトを見ることができます。この図の誰もが、経路を構築することによってDinaに支払いを送ることができます。ファン4がDinaに支払いを送りたい場合を想像してください。それを実現するためのパスがわかりますか？ファン4は、ファン3、ボブ、チャンを経由してディナに支払いをルーティングすることができます。同様に、アリスはボブとチャンを経由してディナに支払いをルーティングすることができます。</p>
+</div>
+<div id="dina_routing_diagram" class="imageblock">
+<div class="content">
+<img src="images/mtln_0802.png" alt="Fans connected (in)directly to Dina on the Lightning Network" />
+</div>
+<div class="title">図2.LightningネットワークでDinaに（中略）直接接続されたファンたち</div>
+</div>
+<div class="paragraph">
+<p>ファンからディナまでの経路にあるノードは、支払いのルーティングの文脈では<em>ルーティングノードと</em>呼ばれる仲介役である。ルーティングノードとDinaのファンが操作するノードの間に機能的な違いはない。ライトニングノードであれば、そのペイメントチャネル全体で支払いをルーティングすることが可能です。</p>
+</div>
+<div class="paragraph">
+<p>重要なのは、ルーティング・ノードがファンからディナへの支払いをルーティングしている間に資金を盗むことができないことである。
+さらに、ルーティング・ノードはルーティング・プロセスに参加している間に損をすることはできない。
+ルーティング・ノードは、仲介役を務めることでルーティング料を請求することができるが、その必要はなく、無料で支払いをルーティングすることも可能である。</p>
+</div>
+<div class="paragraph">
+<p>もう1つの重要な点は、オニオンルーティングを使用しているため、仲介ノードは経路上で先行する1つのノードと後続する1つのノードのみを明示的に認識することである。
+彼らは、誰が支払いの送信者と受信者であるかは必ずしも知りません。
+このため、ファンは仲介ノードを利用して、個人情報を漏らすことなく、また盗難の危険性もなく、ディナに支払いを行うことができる。</p>
+</div>
+<div class="paragraph">
+<p>このように、一連の決済チャネルをエンドツーエンドのセキュリティで接続するプロセスや、ノードが支払いを<em>転送</em>するインセンティブ構造は、ライトニング・ネットワークの重要な革新技術の一つです。</p>
+</div>
+<div class="paragraph">
+<p>本章では、ライトニング・ネットワークにおけるルーティングの仕組みに触れ、ネットワーク上での決済の流れ方について詳しく説明します。まず、ルーティングの概念を明確にし、経路探索と比較します。これらは混同され、同じように使用されることが多いからです。次に、フェアネスプロトコルを構築する。これは、支払いをルーティングするために使用されるアトミックでトラストレスのないマルチホッププロトコルである。このフェアネスプロトコルがどのように機能するかを示すために、4人の間で金貨を転送する物理的な等価物を使用する。最後に、現在ライトニング・ネットワークで使われている原子・信頼・マルチホップ・プロトコルの実装を紹介します。これは、ハッシュタイムロックコントラクト（HTLC）と呼ばれるものです。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_routing_versus_pathfinding">ルーティングとパスファインディングの比較</h3>
+<div class="paragraph">
+<p>ここで重要なのは、<em>ルーティングの</em>概念と<em>経路探索の</em>概念を分けて考えることです。この2つの概念はしばしば混同され、<em>ルーティングという</em>用語が両方の概念を表すのに使われることがある。これ以上先に進む前に曖昧さを取り除きましょう。</p>
+</div>
+<div class="paragraph">
+<p>経路探索は、<a href="#path_finding">[path_finding]</a>で説明されているように、送信者Aから受信者Bに接続する支払チャネルからなる連続した経路を見つけ、選択するプロセスである。支払いの送信者は、他のノードによってゴシップされたチャネル発表から組み立てられた<em>チャネルグラフを</em>調べることによって経路探索を実行する。</p>
+</div>
+<div class="paragraph">
+<p>ルーティングとは、ある地点Aから別の地点Bへ、経路探索によって事前に選択された経路を経由して、支払いを転送しようとするネットワーク上の一連の相互作用のことである。ルーティングは、経路上で支払いを送信する能動的なプロセスであり、その経路に沿ったすべての中間ノードの協力が必要である。</p>
+</div>
+<div class="paragraph">
+<p>重要な経験則は、AliceとBobの間に<em>経路が</em>存在し(おそらく複数)、支払いを送信するためのアクティブな<em>経路が</em>存在しない可能性があることです。1つの例は、AliceとBobを接続するすべてのノードが現在オフラインである シナリオである。この例では、チャネルグラフを調べて、アリスからボブへの一連の支払チャネルを接続することができるため、<em>経路が</em>存在する。しかし、仲介ノードがオフラインであるため、支払いは送信できず、したがって、<em>経路は</em>存在しない。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_creating_a_network_of_payment_channels">決済チャネルのネットワーク化</h3>
+<div class="paragraph">
+<p>アトミックトラストレスマルチホップ決済の概念に入る前に、例を挙げて説明しよう。
+前の章でアリスは、オープンチャンネルを持つボブからコーヒーを購入した。
+今、アリスはゲーマーであるディナのライブストリームを見ていて、ライトニングネットワークを通じてディナに5万サトシのチップを送りたいと考えている。しかし、アリスはディナとの直接のチャンネルを持っていません。アリスにできることは何でしょうか？</p>
+</div>
+<div class="paragraph">
+<p>アリスはディナと直接チャネルを開くことができますが、それには流動性とオンチェーン手数料が必要で、チップ自体の価値よりも高くなる可能性があります。その代わりに、アリスはディナにチップを送るために、ディナと直接チャネルを開く必要<em>なく</em>、既存のオープンチャネルを使用することができます。これは、アリスからディナにチップを送るのに十分な容量のチャンネルの経路が存在する限り可能である。</p>
+</div>
+<div class="paragraph">
+<p><a href="#routing_network">アリスとディナの間の支払いチャネルのネットワークで</a>わかるように、アリスはコーヒーショップのオーナーであるボブとオープンなチャネルを持っている。ボブは、コーヒーショップで使っているPOSシステムを手伝っているソフトウェア開発者チャンとオープンなチャネルを持っている。チャンはディナがプレイするゲームを開発する大きなソフトウェア会社のオーナーでもあり、彼らはすでにディナがゲームのライセンスやゲーム内アイテムの支払いに使用するオープンチャンネルを持っている。</p>
+</div>
+<div id="routing_network" class="imageblock">
+<div class="content">
+<img src="images/mtln_0803.png" alt="A network of payment channels between Alice and Dina" />
+</div>
+<div class="title">図3.AliceとDinaの間の支払いチャネルのネットワーク</div>
+</div>
+<div class="paragraph">
+<p>アリスからディナまでの<em>経路を</em>、ボブとチャンを中継ノードとして追跡することが可能である。
+アリスはこの経路から<em>ルートを</em>作り、それを使ってディナに数千サトシのチップを送り、その支払いはボブとチャンが<em>転送</em>することができる。
+基本的に、アリスはボブに支払い、ボブはチャンに支払い、チャンはディナに支払います。アリスからディナへの直接のチャンネルは必要ありません。</p>
+</div>
+<div class="paragraph">
+<p>主な課題は、アリスがディナに届けたいお金を、ボブとチャンが盗めないようにすることだ。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_a_physical_example_of_routing">"ルーティング "の物理的な例</h3>
+<div class="paragraph">
+<p>ライトニング・ネットワークがどのように支払いを保護しながらルーティングしているかを理解するために、現実世界における金貨による物理的な支払いのルーティングの例と比較することができます。</p>
+</div>
+<div class="paragraph">
+<p>アリスがディナに金貨10枚を渡したいと思っているが、ディナと直接の面識がないと仮定する。しかし、アリスはボブを知っており、ボブはディナを知っているチャンを知っているので、ボブとチャンに助けを求めることにしました。これは、<a href="#alice_dina_routing_1">アリスがディナに</a>金貨10枚を支払いたいと考えていることを示しています。</p>
+</div>
+<div id="alice_dina_routing_1" class="imageblock">
+<div class="content">
+<img src="images/mtln_0804.png" alt="mtln 0804" />
+</div>
+<div class="title">図4.アリスがディナに金貨10枚を支払いたい</div>
+</div>
+<div class="paragraph">
+<p>アリスはディナに支払うためにボブにチャンに支払うことができますが、コインを受け取った後、ボブやチャンがコインを持ち逃げしないようにどうやって確認するのでしょうか?
+物理的な世界では、契約は一連の支払いを安全に実行するために使われるかもしれません。</p>
+</div>
+<div class="paragraph">
+<p>アリスは、ボブとの間で、次のような契約を交わすことができる。</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><em>私アリスは、ボブ君に金貨10枚を渡しますので、それをチャンに渡してください。</em></p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p>この契約は抽象的には良いが、現実の世界では、アリスはボブが契約を破って捕まらないことを願うかもしれないというリスクを負う。
+仮にボブが捕まって起訴されたとしても、アリスはボブが破産して10枚の金貨を返せなくなるというリスクに直面する。
+これらの問題が魔法のように解決されるとして、このような契約を利用して、ディナにコインを届けるという我々の望む結果を達成する方法はまだ不明である。</p>
+</div>
+<div class="paragraph">
+<p>これらの配慮を取り入れた契約書に改善していきましょう。</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><em>私アリスは、あなたがチャンに金貨10枚を渡したことを私に証明してくれれば、ボブであるあなたに金貨10枚を弁償します（例えば領収書など）。</em></p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p>なぜボブはそのような契約にサインしなければならないのかと思うかもしれません。
+彼はChanにお金を払わなければなりませんが、結局のところ交換から何も得られず、アリスが彼に弁償しないかもしれないというリスクを負っています。ボブはディナに支払うためにチャンに同じような契約を申し出ることができますが、同様にチャンはそれを受け入れる理由がありません。</p>
+</div>
+<div class="paragraph">
+<p>リスクはともかく、ボブとチャンは<em>すでに</em>10枚の金貨を送金しているはずだ。そうでなければ、契約に参加することはできないだろう。</p>
+</div>
+<div class="paragraph">
+<p>したがって、ボブとチャンはこの契約に同意することでリスクと機会費用の両方に直面し、それを受け入れるために補償を受ける必要がある。</p>
+</div>
+<div class="paragraph">
+<p>アリスは、ボブとチャンがディナに支払いを送信すれば、金貨1枚ずつの手数料を提供することで、このことをボブとチャンの両方に魅力的に見せることができる。</p>
+</div>
+<div class="paragraph">
+<p>そうすると、契約書はこうなる。</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><em>私アリスは、あなたがチャンに11枚の金貨を渡したことを私に証明できれば、ボブであるあなたに12枚の金貨を弁償します（たとえば領収書など）。</em></p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p>アリスは今、ボブに12枚の金貨を約束しました。10枚はDinaに渡すもので、2枚は手数料のためです。アリスはボブが11枚をチャンに渡したことを証明できれば、12枚をボブに渡すと約束します。
+差額の金貨1枚は、ボブがこの支払いを手伝ったことで得られる手数料です。<a href="#alice_dina_routing_2">アリスがボブに支払い、ボブがチャンに支払い、チャンがディナに</a>支払うと、この取り決めにより、10枚の金貨がボブとチャンを経由してディナに渡ることがわかります。</p>
+</div>
+<div id="alice_dina_routing_2" class="imageblock">
+<div class="content">
+<img src="images/mtln_0805.png" alt="mtln 0805" />
+</div>
+<div class="title">図5.アリスがボブに支払い、ボブがチャンに支払い、チャンがディナに支払う。</div>
+</div>
+<div class="paragraph">
+<p>まだ信頼の問題があり、アリスかボブのどちらかが契約を守らないというリスクがあるため、すべての当事者はエスクローサービスを使うことにしました。
+交換の開始時に、アリスはこの12枚の金貨をエスクローに「預ける」ことができ、ボブがチャンに11枚の金貨を支払ったことを証明してから、ボブに支払われることになるのです。</p>
+</div>
+<div class="paragraph">
+<p>このエスクローサービスは理想化されたもので、他のリスク（カウンターパーティーリスクなど）は導入していない。後ほど、エスクローをビットコインのスマートコントラクトに置き換える方法を紹介する。今は、誰もがこのエスクローサービスを信頼していると仮定しよう。</p>
+</div>
+<div class="paragraph">
+<p>ライトニング・ネットワークでは、レシート（支払いの証明）は、ディナだけが知っている秘密という形をとることができます。
+実際には、この秘密は他の人が推測できないほど大きな乱数（通常、256ビットでエンコードされた<em>非常に</em>大きな数！）になるでしょう。</p>
+</div>
+<div class="paragraph">
+<p>Dinaはこの秘密値Rを乱数発生器から生成する。</p>
+</div>
+<div class="paragraph">
+<p>そして、以下のように、契約自体に秘密のSHA-256ハッシュを含めることで、契約に秘密をコミットすることができる。</p>
+</div>
+<ul class="simplelist">
+<li><em>H</em>= SHA-256<em>(R</em>)</li>
+</ul>
+<div class="paragraph">
+<p>この支払の秘密のハッシュを、<em>支払ハッシュと</em>呼ぶ。
+支払いを「アンロック」する秘密は、<em>支払い秘密(payment secret</em>)と呼ばれる。</p>
+</div>
+<div class="paragraph">
+<p>とりあえず、シンプルに、ディーナの秘密は単にテキスト行だと仮定する。<code>Dinas secret</code>.この秘密のメッセージは、<em>支払秘密</em>または<em>支払前画像と</em>呼ばれる。</p>
+</div>
+<div class="paragraph">
+<p>この秘密を「コミット」するために、ディナはSHA-256ハッシュを計算する。これを16進数に変換すると、次のように表示される。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>0575965b3b44be51e8057d551c4016d83cb1fba9ea8d6e986447ba33fe69f6b3</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>アリスの支払いを容易にするために、Dinaは支払い秘密と支払いハッシュを作成し、支払いハッシュをアリスに送ります。<a href="#alice_dina_routing_3">Dina sends the hashed secret to Aliceでは</a>、Dinaが電子メールやテキストメッセージなどの外部チャネル(破線)を介してAliceに支払いハッシュを送信することがわかります。</p>
+</div>
+<div id="alice_dina_routing_3" class="imageblock">
+<div class="content">
+<img src="images/mtln_0806.png" alt="Dina sends the hashed secret to Alice" />
+</div>
+<div class="title">図6.Dinaはハッシュ化された秘密をAliceに送信する</div>
+</div>
+<div class="paragraph">
+<p>アリスはその秘密を知らないが、その秘密のハッシュを支払いの証明として使うように契約を書き換えることができる。</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><em>私アリスは、ハッシュ値:`057596`の有効なメッセージを見せてくれたら、ボブ君に12枚の金貨を払い戻します...。
+このメッセージは、Dinaと同様の契約を結んでいるChanと同様の契約を結ぶことで入手することができます。
+あなたが次の契約を設定する前に、払い戻しを保証するために、私は信頼できるエスクローに12枚の金貨を提供する予定です。</em></p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p>この新しい契約は、アリスをボブがチャンに転送しないことから守り、ボブをアリスから払い戻されないことから守り、ディナの秘密のハッシュによってディナが最終的に支払われたことを証明することを保証するものである。</p>
+</div>
+<div class="paragraph">
+<p>ボブとアリスが契約に合意し、アリスが12枚の金貨を預けたというメッセージをボブがエスクローから受け取った後、ボブはチャンと同様の契約を交渉することができるようになる。</p>
+</div>
+<div class="paragraph">
+<p>ボブはサービス料として1枚の金貨を受け取っているので、ChanがDinaに支払ったことを証明したときにのみ、11枚の金貨をChanに転送することに注意すること。
+同様に、Chanも手数料を要求し、Dinaに約束の10枚の金貨を支払ったことを証明した後、11枚の金貨を受け取ることを期待する。</p>
+</div>
+<div class="paragraph">
+<p>ボブさんとチャンさんの契約書はこうなります。</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><em>私、ボブは、あなたが`057596`というハッシュ値を持つ有効なメッセージを私に見せることができれば、11枚の金貨をあなたに払い戻します......。
+このメッセージは、ディナと同様の契約を結ぶことで入手することができます。
+この11枚の金貨は、あなたが次の契約をする前に、信頼できるエスクローに預けられます。</em></p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p>ボブが11枚の金貨を預けたというエスクローからのメッセージを受け取ると、チャンはディナとの間で同様の契約を成立させる。</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><em>私、Chanは、あなたが`057596`にハッシュ化された有効なメッセージを私に示すことができれば、10枚の金貨をあなたに返済します...。
+あなたが秘密を明かした後に払い戻されることを保証するために、私は信頼できるエスクローに10枚の金貨を提供します。</em></p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p>これですべてが整った。
+アリスはボブと契約し、12枚の金貨をエスクローに預けている。
+ボブはChanと契約し、11枚の金貨を預けた。
+ChanはDinaと契約し、10枚の金貨をエスクローに預けた。
+Dinaが秘密を明かすのは、彼女が支払いの証明として確立したハッシュのプリ画像である。</p>
+</div>
+<div class="paragraph">
+<p>ディナは今、ディナスの秘密をチャンに送っている。</p>
+</div>
+<div class="paragraph">
+<p>Chanは、Dinasの秘密のハッシュが057596であることを確認する...。Chanはこれで支払いを証明することができたので、エスクローサービスにDinaに10枚の金貨を渡すように指示しました。</p>
+</div>
+<div class="paragraph">
+<p>Chanは今度はBobにその秘密を教える。ボブはそれを確認し、エスクローサービスに11枚の金貨をChanに渡すように指示する。</p>
+</div>
+<div class="paragraph">
+<p>ボブは今、アリスに秘密を提供する。
+アリスはそれを確認し、金貨12枚をボブに渡すようエスクローに指示する。</p>
+</div>
+<div class="paragraph">
+<p>これですべての契約が決済されました。
+アリスは合計12枚の金貨を支払い、そのうち1枚をボブが、1枚をチャンが、10枚をディーナが受け取りました。
+このように契約が連鎖していると、ボブとチャンは先にエスクローに預けたので、お金を持ち逃げすることができません。</p>
+</div>
+<div class="paragraph">
+<p>しかし、まだ1つ問題が残っている。
+もしディナが秘密のプリ画像を公開することを拒否したら、チャン、ボブ、アリスは全員コインを預けたまま払い戻しを受けられなくなる。
+そして同様に、もし他の誰かがその秘密を伝えなかった場合、同じことが起こる。
+つまり、誰もアリスからお金を盗むことはできませんが、誰もが自分のお金を永久にエスクローに預けることになるのです。</p>
+</div>
+<div class="paragraph">
+<p>幸いなことに、これは契約書に期限を設けることで解決することができます。</p>
+</div>
+<div class="paragraph">
+<p>ある期限までに履行されなければ、契約は失効し、エスクローサービスは最初の預金をした人にお金を返すように、契約を修正することができるのです。
+この期限を<em>タイムロックと</em>呼ぶ。</p>
+</div>
+<div class="paragraph">
+<p>デポジットは一定期間エスクローサービスにロックされ、支払い証明が提供されなくても最終的には解放される。</p>
+</div>
+<div class="paragraph">
+<p>このことを考慮し、アリスとボブの間の契約は再び新しい条項で修正される。</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><em>ボブは契約締結後24時間以内に秘密を提示しなければならない。
+もしボブがこの時間までに秘密を提示しなければ、アリスの預金はエスクローサービスによって払い戻され、契約は無効となる。</em></p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p>ボブはもちろん、24時間以内に支払い証明を受け取るようにしなければならない。
+たとえチャンにうまく支払えたとしても、支払証明を受け取るのが24時間より遅ければ、弁済はされない。そのリスクを排除するために、ボブはチャンにさらに短い期限を与えなければならない。</p>
+</div>
+<div class="paragraph">
+<p>これに伴い、ボブはチャンとの契約を次のように変更する。</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><em>Chanは契約締結後、22時間以内に秘密を提示しなければならない。
+もし、この時間までに秘密を明かさなければ、ボブの手付金はエスクロー・サービスによって返金され、契約は無効となる。</em></p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p>ご推察の通り、チャンはディナとの契約も変更することになる。</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><em>Dinaは契約締結後、20時間以内に秘密を明かさなければならない。
+もし、この時間までに秘密の提示がなければ、Chanの手付金はエスクロー・サービスによって返金され、契約は無効となる。</em></p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p>このような契約の連鎖によって、24時間後に、アリスからボブ、チャン、ディナへの支払いが成功するか、失敗して全員が返金されるかを確認することができます。
+契約が失敗するか成功するか、その中間はないのです。</p>
+</div>
+<div class="paragraph">
+<p>ライトニングネットワークでは、この「all or nothing」特性を<em>アトミックと</em>呼んでいます。</p>
+</div>
+<div class="paragraph">
+<p>エスクローが信頼に足るものであり、その義務を忠実に果たしている限り、その過程でコインを盗まれることはありません。</p>
+</div>
+<div class="paragraph">
+<p>この<em>ルートが</em>全く機能しない前提条件は、このパスのすべての関係者が、必要な一連の預金を満たすだけの十分な資金を持っていることである。</p>
+</div>
+<div class="paragraph">
+<p>これは些細なことのように思えるが、この要件が実はLNノードにとってより困難な問題の一つであることは、本章の後半で説明される。
+支払いの規模が大きくなるにつれて、この問題は徐々に難しくなる。
+さらに、当事者はエスクローにロックされている間、お金を使うことができない。</p>
+</div>
+<div class="paragraph">
+<p>このため、転送を行うユーザーには、資金をロックするための機会費用が発生するが、これは先の例で見たように、最終的にはルーティングフィーで弁済される。</p>
+</div>
+<div class="paragraph">
+<p>物理的な支払いルーティングの例を見たので、これをサードパーティのエスクローを必要とせずに、ビットコインブロックチェーンに実装する方法を見ていきます。そのために、Bitcoin Scriptを使用して参加者間の契約を設定します。サードパーティーのエスクローを、公平性プロトコルを実装した<em>スマートコントラクトに</em>置き換えます。そのコンセプトを分解して、実装してみましょう</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_fairness_protocol">フェアネスプロトコル</h3>
+<div class="paragraph">
+<p>本書の第1章で見たように、ビットコインの革新性は、暗号プリミティブを使って、第三者（仲介者）への信頼を信頼プロトコルに置き換えたフェアネスプロトコルを実装できることにある。</p>
+</div>
+<div class="paragraph">
+<p>金貨の例では、当事者のいずれかが義務を放棄することを防ぐために、エスクローサービスが必要でした。しかし、暗号化された公正プロトコルの革新により、エスクローサービスをプロトコルに置き換えることができるようになった。</p>
+</div>
+<div class="paragraph">
+<p>作成したいフェアネスプロトコルの特性は以下の通りです。</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">トラストレスオペレーション</dt>
+<dd>
+<p>ルート型決済の参加者は、お互いに、あるいは仲介者や第三者を信用する必要はない。その代わり、参加者は不正行為から自分たちを守ってくれるプロトコルを信頼する。</p>
+</dd>
+<dt class="hdlist1">アトミシティ</dt>
+<dd>
+<p>支払いが完全に実行されるか、失敗して全員が払い戻されるかのどちらかである。仲介者がルーティングされた支払いを回収し、次のホップに転送しない可能性はない。したがって、仲介者は不正行為や窃盗をすることはできない。</p>
+</dd>
+<dt class="hdlist1">マルチホップ</dt>
+<dd>
+<p>システムのセキュリティは、単一の決済チャネルの両端間の支払いと同様に、複数の決済チャネルを経由した支払いにもエンドツーエンドで拡張されます。</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>オプションの追加特性として、支払い全体の原子性を維持したまま、支払いを複数 の部分に分割する能力がある。これらは<em>マルチパートペイメント</em><em>(MPP</em>)と呼ばれ、<a href="#mpp">[mpp]</a>でさらに検討されている。</p>
+</div>
+<div class="sect3">
+<h4 id="_implementing_atomic_trustless_multihop_payments">アトミックトラストレスマルチホップ決済の実現</h4>
+<div class="paragraph">
+<p>ビットコインスクリプトは柔軟性に富んでおり、原子性、トラストレス操作、マルチホップ・セキュリティの特性を持つ公正プロトコルを実装する方法は何十通りも存在します。特定の実装を選択することは、プライバシー、効率、および複雑さの間の特定のトレードオフに依存します。</p>
+</div>
+<div class="paragraph">
+<p>現在ライトニングネットワークで使われているルーティングの公平性プロトコルは、ハッシュタイムロックコントラクト（HTLC）と呼ばれています。HTLCは、本章の金貨の例で見たように、支払いのロックを解除する秘密としてハッシュプリイメージを使用します。支払いの受け手は、ランダムな秘密番号を生成し、そのハッシュを計算する。ハッシュが支払いの条件となり、秘密が明かされると、すべての参加者は入ってきた支払いを換金することができる。HTLCは原子性、信頼性のない操作、マルチホップの安全性を提供する。</p>
+</div>
+<div class="paragraph">
+<p>ルーティングを実装する別のメカニズムとして、<em>Point Time-Locked Contract</em><em>(PTLC</em>)が提案されている。PTLCもアトミティ、トラストレス運用、マルチホップ・セキュリティを実現しますが、より高い効率とより良いプライバシーでそれを実現します。  PTLCの効率的な実装は、<em>シュナー署名と</em>呼ばれる新しいデジタル署名アルゴリズムに依存しており、これは2021年にビットコインで有効化されると予想されています。</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_revisiting_the_tipping_example">チップの例の再検討</h3>
+<div class="paragraph">
+<p>この章の最初のほうで紹介した例をもう一度見てみましょう。アリスはディナにライトニングでチップを渡したいと思っています。アリスはディナに50,000サトシをチップとして送りたいとします。</p>
+</div>
+<div class="paragraph">
+<p>アリスがディナに支払うには、アリスはディナのノードがライトニングの請求書を生成する必要があります。これについては、<a href="#invoices">[invoices]</a>で詳しく説明します。とりあえず、DinaがチップのためのLightning請求書を生成できるウェブサイトを持っていると仮定しましょう。</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">チップ</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Lightningの支払いは、<em>keysendという</em>機能を使って請求書なしで送ることができますが、これについては<a href="#keysend">[keysend]</a>で詳しく説明します。今回は、よりシンプルな請求書を使った支払いの流れを説明します。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>アリスがディナのサイトにアクセスし、フォームに5万サトシの金額を入力すると、それに応じてディナのライトニングノードがライトニング請求書という形で5万サトシの支払い要求を生成します。このやりとりは、<a href="#alice_dina_invoice_1">Alice requests an invoice from Dina's website</a>に示すように、ウェブ上で、ライトニングネットワークの外で行われます。</p>
+</div>
+<div id="alice_dina_invoice_1" class="imageblock">
+<div class="content">
+<img src="images/mtln_0807.png" alt="Alice requests an invoice from Dina&#8217;s website" />
+</div>
+<div class="title">図7.AliceがDinaのウェブサイトから請求書を要求する</div>
+</div>
+<div class="paragraph">
+<p>前の例で見たように、アリスはディナへの直接の支払いチャネルを持っていないと仮定する。代わりに、アリスはボブへのチャネルを持ち、ボブはチャンへのチャネルを持ち、チャンはディナへのチャネルを持っている。Dinaに支払うために、アリスはDinaに接続する経路を見つけなければならない。そのステップについては<a href="#path_finding">[path_finding]</a>で詳しく説明します。今のところ、アリスが利用可能なチャンネルについての情報を集め、 自分からボブ、チャンを経由してディナに至る経路があることを確認できたと仮定しましょう。</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">備考</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>BobとChanが自分のノードを通して支払いをすることで、小さな報酬を期待することがあるのを覚えているだろうか。アリスはディナに50,000サトシを払いたいのですが、次の節で見るように、彼女はボブに50,200サトシを送ることにします。余分な200サトシは、ルーティングフィーとして、BobとChanにそれぞれ100サトシを支払うことになる。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>これで、AliceのノードはLightningの支払いを構築できる。次のセクションでは、AliceのノードがDinaに支払うためにHTLCを構築する方法と、そのHTLCがAliceからDinaへの経路に沿って転送される方法について見ていきます。</p>
+</div>
+<div class="sect3">
+<h4 id="_on_chain_versus_off_chain_settlement_of_htlcs">HTLCのオンチェーン決済とオフチェーン決済の比較</h4>
+<div class="paragraph">
+<p>ライトニング・ネットワークの目的は、オンチェーン取引と同じように信頼される<em>オフチェーン</em>取引を可能にすることです。誰も不正できない理由は、参加者の誰もがいつでもオフチェーン取引をオンチェーンに持ち込むことができるからです。各オフチェーン取引は、いつでもビットコインブロックチェーンに提出できる状態になっています。このように、ビットコインのブロックチェーンは、必要に応じて紛争解決や最終決済のメカニズムとして機能するのです。</p>
+</div>
+<div class="paragraph">
+<p>どんな取引でもいつでもオンチェーンに持ち込めるという事実があるだけで、それらの取引はすべてオフチェーンに留めておくことができるのです。遡及権があることが分かっていれば、他の参加者と協力し続けることができ、オンチェーン決済や余分な手数料の必要性を回避することができます。</p>
+</div>
+<div class="paragraph">
+<p>この後の例では、これらの取引のいずれもがいつでもオンチェーンで行えると仮定する。参加者はオフチェーンにすることを選択するが、取引のオンチェーン採掘によって課される高い手数料と遅延以外、システムの機能には何の違いもない。この例は、すべての取引がオンチェーンであってもオフチェーンであっても同じように機能する。</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="htlcs">ハッシュタイムロックコントラクト</h3>
+<div class="paragraph">
+<p>ここでは、HTLCの仕組みについて説明します。</p>
+</div>
+<div class="paragraph">
+<p>HTLCの最初の部分は<em>ハッシュ</em>である。これは、暗号化ハッシュアルゴリズムを使用して、ランダムに生成された秘密をコミットすることを指します。この秘密を知ることで、代金の引き換えが可能になる。暗号ハッシュ関数は、誰もが秘密のプリ画像を推測することは不可能であるが、ハッシュを検証することは容易であり、支払い条件を解決するプリ画像は1つだけであることを保証している。</p>
+</div>
+<div class="paragraph">
+<p><a href="#alice_dina_invoice_2">アリスがディナから支払いハッシュを</a>得るでは、アリスがディナからライトニングの請求書を得ているのがわかる。その請求書の中に、Dinaは<em>支払いハッシュを</em>符号化している。これは、Dinaのノードが生成した秘密の暗号ハッシュである。Dinaの秘密は、<em>支払いプリ画像と</em>呼ばれています。支払いハッシュは、支払いをDinaにルーティングするために使用できる識別子として機能する。支払いプリ画像は、支払いが完了すると、領収書や支払い証明書として機能する。</p>
+</div>
+<div id="alice_dina_invoice_2" class="imageblock">
+<div class="content">
+<img src="images/mtln_0808.png" alt="Alice gets a payment hash from Dina" />
+</div>
+<div class="title">図8.アリスはディナから支払いハッシュを取得する</div>
+</div>
+<div class="paragraph">
+<p>ライトニングネットワークでは、ディーナの支払いのプリミティブは、ディーナの秘密のようなフレーズではなく、ディーナのノードが生成する乱数になります。その乱数を<em>Rと</em>呼ぶことにする。</p>
+</div>
+<div class="paragraph">
+<p>Dinaのノードは、<em>Rの</em>暗号ハッシュを計算し、次のようにする。</p>
+</div>
+<ul class="simplelist">
+<li><em>H</em>= SHA-256<em>(R</em>)</li>
+</ul>
+<div class="paragraph">
+<p>この式において、<em>Hは</em>ハッシュ、すなわち<em>支払いハッシュ</em>であり、<em>Rは</em>秘密または<em>支払いプリ画像</em>である。</p>
+</div>
+<div class="paragraph">
+<p>暗号ハッシュ関数の使用は、<em>トラストレスオペレーションを</em>保証する1つの要素である。決済の仲介者は、誰も秘密を推測したり、偽造したりできないことを知っているので、お互いを信頼する必要はありません。</p>
+</div>
+<div class="sect3">
+<h4 id="_htlcs_in_bitcoin_script">ビットコインスクリプトにおけるHTLC</h4>
+<div class="paragraph">
+<p>金貨の例では、アリスはこのようにエスクローで執行される契約をしていました。</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p><em>アリスはボブに金貨12枚を払い戻す。もしあなたがハッシュ化した有効なメッセージを示すことができれば。</em>0575...f6b3。<em>ボブは契約締結後24時間以内に秘密を提示しなければならない。もしボブがこの時間までに秘密を提示しなければ、アリスの預金はエスクローサービスによって払い戻され、契約は無効となる。</em></p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph pagebreak-before">
+<p>これをBitcoin ScriptのHTLCとしてどのように実装するか見てみましょう。<a href="#received_htlc">HTLC implemented in Bitcoin Script (BOLT #3)</a>では、現在ライトニングネットワークで使われている HTLC Bitcoin Script を見ています。この定義は、<a href="https://github.com/lightningnetwork/lightning-rfc/blob/master/03-transactions.md#offered-htlc-outputs">BOLT #3 の Transactions</a> に記載されています。</p>
+</div>
+<div id="received_htlc" class="exampleblock">
+<div class="title">例1．ビットコインスクリプトに実装されたHTLC（BOLT #3）</div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre># リボケーションキーでリモートノードへ
+OP_DUP OP_HASH160 &lt;RIPEMD160(SHA256(revocationpubkey))&gt; OP_EQUAL
+OP_IF
+    OP_CHECKSIG
+OP_ELSE
+    &lt;remote_htlcpubkey&gt; OP_SWAP OP_SIZE 32 OP_EQUAL
+    OP_IF
+        # HTLC-successトランザクションでローカルノードへ。
+        OP_HASH160 &lt;RIPEMD160(payment_hash)&gt; OP_EQUALVERIFY
+        2 OP_SWAP &lt;local_htlcpubkey&gt; 2 OP_CHECKMULTISIG
+    OP_ELSE
+        # タイムアウト後にリモートノードへ
+        OP_DROP &lt;cltv_expiry&gt; OP_CHECKLOCKTIMEVERIFY OP_DROP
+        OP_CHECKSIG
+    OP_ENDIF
+OP_ENDIF</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>うわー、複雑そうでも心配しないでください、一歩ずつシンプルにしていきます。</p>
+</div>
+<div class="paragraph">
+<p>現在ライトニングネットワークで使われているビットコインスクリプトは、オンチェーンでのスペース効率に最適化されているため、非常にコンパクトですが読みづらく、かなり複雑なものとなっています。</p>
+</div>
+<div class="paragraph">
+<p>以下では、スクリプトの主要な要素に焦点を当て、実際にLightningで使用されているものとは若干異なる簡略化したスクリプトを紹介します。</p>
+</div>
+<div class="paragraph">
+<p><a href="#received_htlc">Bitcoin Scriptで実装した</a>HTLCの10行目<a href="#received_htlc">（BOLT #3</a>）にメインとなる部分があります。ゼロから作り上げよう!</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_payment_preimage_and_hash_verification">決済用プリ画像とハッシュ値検証</h4>
+<div class="paragraph">
+<p>HTLCの中核はハッシュであり、受取人が支払いプリミアを知っていれば、支払いを行うことができる。アリスは支払いを特定の支払いハッシュにロックし、ボブは資金を請求するために支払いプリイメージを提示しなければなりません。ビットコインのシステムは、ボブの支払画像が正しいことを、それをハッシュ化し、アリスが資金をロックするのに使った支払ハッシュとその結果を比較することで確認することができます。</p>
+</div>
+<div class="paragraph">
+<p>このHTLCの部分は、Bitcoin Scriptで以下のように実装することができます。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>op_sha256 &lt;h&gt; op_equal</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>アリスは上記のロックスクリプトで50,200サトシを支払うトランザクション出力を作成することができる。<code>&lt;H&gt;を</code>Dinaが提供したハッシュ値0575...f6b3に置き換える。それから、アリスはこの取引に署名し、ボブに提供することができる。</p>
+</div>
+<div class="listingblock">
+<div class="title">アリスはボブに50,200satoshiのHTLCを提供する。</div>
+<div class="content">
+<pre>OP_SHA256 0575...f6b3 OP_EQUAL</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>ボブはディナの秘密を知るまではこのHTLCを使うことができないので、HTLCを使うことはボブがディナへの支払いをすべて履行することが条件となる。</p>
+</div>
+<div class="paragraph">
+<p>BobはDinaの秘密を手に入れたら、この出力を秘密のプリ画像値<em>Rを</em>含むロック解除スクリプトで使うことができます。</p>
+</div>
+<div class="paragraph">
+<p>ロック解除スクリプトとロックスクリプトを組み合わせると、次のようになる。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>&lt;r&gt; op_sha256 &lt;h&gt; op_equal</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>ビットコインスクリプトエンジンは、このスクリプトを次のように評価します。</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Rがスタックにプッシュされる。</p>
+</li>
+<li>
+<p><code>OP_SHA256</code>演算子は、スタックから値 R を取り出してハッシュ化し、結果 H~R~ をスタックにプッシュします。</p>
+</li>
+<li>
+<p>H がスタックにプッシュされる。</p>
+</li>
+<li>
+<p><code>OP_EQUAL</code>演算子は、HとH~R~を比較します。もしそれらが等しければ、結果は TRUE となり、スクリプトは完了し、支払いは確認されます。</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_extending_htlcs_from_alice_to_dina">アリスからディナへ、HTLCを拡張する</h4>
+<div class="paragraph">
+<p>アリスは次に、HTLCをネットワーク上に拡張し、ディナに到達させる。</p>
+</div>
+<div class="paragraph">
+<p><a href="#alice_dina_htlc_1">HTLCのネットワークへの伝播では</a>、AliceからDinaにHTLCがネットワークに伝播している様子を見ることができる。アリスはボブに50,200satoshiのHTLCを渡した。ボブは50,100satoshiのHTLCを作成し、Chanに渡すことができる。</p>
+</div>
+<div class="paragraph">
+<p>ボブは、チャンが秘密をブロードキャストすることなくボブのHTLCを償還すること ができないことを知っており、その時点でボブもアリスのHTLCを償還するためにその 秘密を使用することができる。これは、HTLCのエンドツーエンドの<em>原子性を</em>保証するため、本当に重要なポイントである。HTLCを使うために、ある人は秘密を明かす必要があり、それによって他の人も自分のHTLCを使うことができるようになる。すべての HTLC が使用可能であるか、どの HTLC も使用不可能であるかのどちらかである。</p>
+</div>
+<div class="paragraph">
+<p>アリスのHTLCはボブがチャンに渡したHTLCより100サトシ多いので、この支払いが完了すれば、ボブはルーティングフィーとして100サトシを得ることになる。</p>
+</div>
+<div class="paragraph">
+<p>ボブはリスクを取らず、アリスやチャンを信頼していない。その代わり、ボブは秘密と共に署名された取引がビットコインのブロックチェーン上で換金可能であることを信頼しているのです。</p>
+</div>
+<div id="alice_dina_htlc_1" class="imageblock">
+<div class="content">
+<img src="images/mtln_0809.png" alt="Propagating the HTLC across the network" />
+</div>
+<div class="title">図 9.HTLCをネットワーク上で伝搬させる</div>
+</div>
+<div class="paragraph">
+<p>同様に、ChanはDinaに50,000 HTLCを提供することができます。彼は何も危険を冒していないし、ボブやディナを信じているわけでもない。HTLCを償還するために、Dinaは秘密をブロードキャストしなければならず、それを使ってChanはBobのHTLCを償還できる。チャンはまた、ルーティング料として100サトシを得ることになる。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_back_propagating_the_secret">秘密を逆伝播する</h4>
+<div class="paragraph">
+<p>DinaがChanから50,000 HTLCを受け取ると、今度は報酬を得ることができるようになる。DinaはこのHTLCをオンチェーンでコミットし、支出トランザクションで秘密を明かすことでそれを使うことができる。あるいは、DinaはChanに秘密を教えることで、Chanとのチャンネル残高を更新することができる。取引手数料を負担してまでオンチェーンに移行する理由はない。そこで、代わりにDinaはChanに秘密を送り、2人はDinaへの5万サトシのライトニング支払いを反映させるためにチャンネル残高を更新することに同意します。<a href="#alice_dina_htlc_redeem_1">Dina settles Chan's HTLC off-chain</a>には、Dina が Chan に秘密を渡し、それによって HTLC を達成したことが示されています。</p>
+</div>
+<div id="alice_dina_htlc_redeem_1" class="imageblock">
+<div class="content">
+<img src="images/mtln_0810.png" alt="Dina settles Chan&#8217;s HTLC off-chain" />
+</div>
+<div class="title">図10.DinaはChanのHTLCをオフチェーンで決済する。</div>
+</div>
+<div class="paragraph">
+<p>Dinaのチャンネル残高が50,000satoshiから100,000satoshiになったことに注意してください。Chanのチャネル残高は200,000 satoshiから150,000 satoshiに減ります。チャネルの容量は変わっていませんが、5万がChanのチャネル側からDinaのチャネル側に移動しています。</p>
+</div>
+<div class="paragraph">
+<p>Chanは今，秘密を手に入れ，Dinaに50,000 satoshiを支払った。彼は、秘密によってChanがBobから50,100 HTLCを引き換えることができるため、何のリスクもなくこれを行うことができる。Chanには、そのHTLCをオンチェーンでコミットし、ビットコインブロックチェーン上で秘密を明かすことでそれを使うという選択肢がある。しかし、Dinaと同様、彼は取引手数料を避けたいと考えている。そこで、彼はその秘密をボブに送り、ボブからチャンへの50,100サトシのライトニング支払いを反映させるため、両者のチャンネル残高を更新させる。<a href="#alice_dina_htlc_redeem_2">ChanがBobのHTLCをオフチェーンで</a>決済する場面では、ChanがBobに秘密を送り、その見返りとして支払いを受けているのがわかる。</p>
+</div>
+<div id="alice_dina_htlc_redeem_2" class="imageblock">
+<div class="content">
+<img src="images/mtln_0811.png" alt="Chan settles Bob&#8217;s HTLC off-chain" />
+</div>
+<div class="title">図11.チャンがボブのHTLCをオフチェーンで沈降させる</div>
+</div>
+<div class="paragraph">
+<p>ChanはDinaに50,000サトシを支払い、Bobから50,100サトシを受け取りました。つまり、Chanのチャンネル残高には、ルーティングフィーとして獲得した100サトシが追加されているのです。</p>
+</div>
+<div class="paragraph">
+<p>Bobは今、秘密も持っている。彼はそれを使ってアリスのHTLCをオンチェーンで使うことができる。あるいは、彼はアリスとのチャネルでHTLCを決済することで、取引手数料を避けることができる。<a href="#alice_dina_htlc_redeem_3">ボブがアリスのHTLCをオフチェーンで</a>決済する場合、ボブはアリスに秘密を送り、彼らはアリスからボブへの50,200satoshiライトニング支払いを反映するためにチャンネル残高を更新することがわかります。</p>
+</div>
+<div id="alice_dina_htlc_redeem_3" class="imageblock">
+<div class="content">
+<img src="images/mtln_0812.png" alt="Bob settles Alice&#8217;s HTLC off-chain" />
+</div>
+<div class="title">図12.ボブはアリスのHTLCをオフチェーンで決済する</div>
+</div>
+<div class="paragraph">
+<p>ボブはアリスから50,200サトシを受け取り、チャンに50,100サトシを支払ったので、チャンネル残高にはルーティングフィーで100サトシが追加されています。</p>
+</div>
+<div class="paragraph">
+<p>アリスはシークレットを受け取り、50,200 satoshi HTLCを決済した。この秘密は、Dinaがその特定の支払いハッシュに対して支払いを受けたことを証明する<em>領収書</em>として使用することができる。</p>
+</div>
+<div class="paragraph">
+<p>最終的なチャネルの残高には、AliceからDinaへの支払いと、各ホップで支払われたルーティングフィーが反映され、「<a href="#alice_dina_htlc_redeem_4">支払い後のチャネルの残高</a>」に示されています。</p>
+</div>
+<div id="alice_dina_htlc_redeem_4" class="imageblock">
+<div class="content">
+<img src="images/mtln_0813.png" alt="Channel balances after the payment" />
+</div>
+<div class="title">図13.支払い後のチャンネル残高</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="preventing_theft">シグネチャーバインディングHTLCの盗難防止</h4>
+<div class="paragraph">
+<p>キャッチがあるんです。気づきましたか？</p>
+</div>
+<div class="paragraph">
+<p>アリス，ボブ，チャンが<a href="#alice_dina_htlc_redeem_4">支払い後にチャンネル残高に</a>示すようなHTLCを作成した場合，わずかではあるが損失のリスクに直面することになる。それらのHTLCのどれでも、秘密を知っている人なら誰でも換金（使用）することができる。当初はディナだけがその秘密を知っていた。ディナはチャンからのHTLCだけを使うことになっている。しかし、ディナは3つのHTLCを同時に、あるいは1回の消費で使うことができるのです。何しろ、ディナは誰よりも早く秘密を知っているのですから。同様に、Chanが秘密を知ったら、Bobから提供されたHTLCだけを使うことになっている。しかし、もしChanがAliceの提供するHTLCも使ってしまったら？</p>
+</div>
+<div class="paragraph">
+<p>これは<em>トラストレスではない</em>！？最も重要なセキュリティ機能に失敗している。これを修正する必要があります。</p>
+</div>
+<div class="paragraph">
+<p>HTLCスクリプトは、各HTLCを特定の受信者に結びつける追加の条件を持たなければならない。これは、各受領者の公開鍵と一致する電子署名を要求することによって行われ、それによって他の誰もそのHTLCを使うことができないようにする。指定された受信者だけがその公開鍵に一致する電子署名を生成する能力を持っているので、指定された受信者だけがそのHTLCを使うことができます。</p>
+</div>
+<div class="paragraph">
+<p>この修正を念頭に置いて、スクリプトをもう一度見てみよう。アリスのBobに対するHTLCは、Bobの公開鍵とOP_CHECKSIG演算子を含むように変更されている。</p>
+</div>
+<div class="paragraph">
+<p>修正したHTLCのスクリプトはこちらです。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>OP_SHA256 &lt;H&gt; OP_EQUALVERIFY &lt;Bob's Pub&gt; OP_CHECKSIG</pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">チップ</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>OP_EQUALをOP_EQUALVERIFYに変更したことにも注目してください。演算子に VERIFY というサフィックスがつくと、スタック上に TRUE や FALSE を返しません。その代わり、結果が偽の場合は実行を<em>停止して</em>スクリプトを失敗させ、真の場合はスタックに何も出力せずに実行を継続します。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>このHTLCを利用するには、ボブの秘密鍵による署名と秘密の支払いプリ画像を含む、次のようなロック解除スクリプトを提示する必要があります。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>&lt;ボブのサイン＞ ＜Rのサイン</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>アンロックとロックのスクリプトは、以下のようにスクリプトエンジンで結合され、評価される。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>&lt;Bob's Sig&gt; &lt;R&gt; OP_SHA256 &lt;H&gt; OP_EQUALVERIFY &lt;Bob's Pub&gt; OP_CHECKSIG</pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>&lt;Bob's Sig&gt;がスタックにプッシュされる。</p>
+</li>
+<li>
+<p>Rがスタックにプッシュされる。</p>
+</li>
+<li>
+<p>OP_SHA256はスタックの先頭からRをポップしてハッシュ化し、H~R~をスタックにプッシュする。</p>
+</li>
+<li>
+<p>H がスタックにプッシュされる。</p>
+</li>
+<li>
+<p>OP_EQUALVERIFYはHとH~R~をポップし、それらを比較する。もしそれらが同じでなければ、実行は停止される。そうでなければ、スタックに出力することなく続行する。</p>
+</li>
+<li>
+<p>&lt;Bob's Pub&gt;キーがスタックにプッシュされる。</p>
+</li>
+<li>
+<p>OP_CHECKSIGは&lt;Bob's Sig&gt;と&lt;Bob's Pub&gt;をポップし、署名を検証する。結果<code>(TRUE/FALSE</code>)はスタックにプッシュされる。</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>このように、少し複雑になっていますが、これでHTLCを修正し、意図した受取人だけが使えるようにしました。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_hash_optimization">ハッシュの最適化</h4>
+<div class="paragraph">
+<p>ここまでのHTLCのスクリプトの最初の部分を見てみましょう。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>op_sha256 &lt;h&gt; op_equalverify</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>これを先の記号表現で見ると、OP_演算子が一番スペースを取っているように見えます。しかし、そうではありません。Bitcoin Scriptは2進数でエンコードされており、各オペレータは1バイトを表します。一方、決済ハッシュのプレースホルダーとして使っている&lt;H&gt;の値は、32バイト（256ビット）の値である。Bitcoin Scriptの全オペレータとそのバイナリおよび16進エンコーディングの一覧は、<a href="https://en.bitcoin.it/wiki/Script">Bitcoin Wikiに</a>掲載されています。<a href="https://en.bitcoin.it/wiki/Script">Script</a>、または<a href="https://github.com/bitcoinbook/bitcoinbook/blob/develop/appdx-scriptops.asciidoc">『<em>Mastering Bitcoin</em>』の付録D「Transaction Script Language Operators, Constants, and Symbols</a>」に記載されています。</p>
+</div>
+<div class="paragraph">
+<p>16進数で表すと、HTLCのスクリプトは次のようになります。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>a8 0575965b3b44be51e8057d551c4016d83cb1fba9ea8d6e986447ba33fe69f6b3 88</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>16進エンコーディングでは、OP_SHA256はa8で、OP_EQUALVERIFYは88です。このスクリプトの全長は34バイトであり、そのうち32バイトがハッシュである。</p>
+</div>
+<div class="paragraph">
+<p>前にも述べたように、ライトニング・ネットワークの参加者は、資金を要求する必要がある場合、保持しているオフチェーン取引をオンチェーンに取り込むことができるはずです。オンチェーン取引を行うには、採掘業者に取引手数料を支払う必要がありますが、この手数料は取引のサイズ（バイト単位）に比例しています。</p>
+</div>
+<div class="paragraph">
+<p>したがって、スクリプトを可能な限り最適化することによって、トランザクションのオンチェーン「重み」を最小化する方法を見つけたいのです。そのための1つの方法は、SHA-256アルゴリズムの上に、より小さなハッシュを生成する別のハッシュ関数を追加することです。ビットコインスクリプト言語は、プリイメージを「ダブルハッシュ」するOP_HASH160演算子を提供します。まずプリイメージがSHA-256でハッシュされ、次に結果のハッシュがRIPEMD160ハッシュアルゴリズムで再度ハッシュされます。RIPEMD160によるハッシュは160ビットまたは20バイトとなり、よりコンパクトになります。ビットコイン・スクリプトでは、これは非常に一般的な最適化であり、一般的なアドレス形式の多くで使用されています。</p>
+</div>
+<div class="paragraph">
+<p>そこで、代わりにその最適化を使ってみましょう。SHA-256ハッシュは057596...69f6b3です。これをRIPEMD160でもう一回ハッシュすると、次のような結果になります。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>R = "ディナス・シークレット"
+H256 = SHA256(R)
+H256 = 0575965b3b44be51e8057d551c4016d83cb1fba9ea8d6e986447ba33fe69f6b3
+H160 = RIPEMD160(H256)
+H160 = 9e017f6767971ed7cea17f98528d5f5c0ccb2c71</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>アリスはディナが提供した支払いハッシュのRIPEMD160ハッシュを計算し、ボブやチャンと同様に短いハッシュをHTLCで使用することができます！アリスは、ディナが提供した支払いハッシュのRIPEMD160ハッシュを計算し、ボブやチャンと同様に短いハッシュを自分のHTLCで使用することができます。</p>
+</div>
+<div class="paragraph pagebreak-before">
+<p>最適化」されたHTLCスクリプトは次のようになります。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>op_hash160 &lt;h160&gt; op_equalverify</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>16進数でエンコードすると、このようになります。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>A9 9E017F6767971ED7CEA17F98528D5F5C0CCB2C71 88</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>ここで、OP_HASH160はa9、OP_EQUALVERIFYは88です。このスクリプトはたった22バイトの長さです!HTLCをオンチェーンで交換するすべてのトランザクションから12バイトを保存しています。</p>
+</div>
+<div class="paragraph">
+<p>この最適化により、「<a href="#received_htlc">HTLC implemented in Bitcoin Script (BOLT #3</a>)」の10行目にあるHTLCスクリプトにたどり着いたことがお分かりいただけたかと思います。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>...
+    # HTLC-successトランザクションでローカルノードへ。
+    OP_HASH160 &lt;RIPEMD160(payment_hash)&gt; OP_EQUALVERIFY...</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_htlc_cooperative_and_timeout_failure">HTLCの協調動作とタイムアウトの不具合</h4>
+<div class="paragraph">
+<p>これまで、HTLCの「ハッシュ」の部分について、全員が協力し、支払い時にオンラインであれば、どのように機能するかを見てきました。</p>
+</div>
+<div class="paragraph">
+<p>誰かがオフラインになったり、協力しなかったりした場合はどうなりますか？決済が成功しない場合はどうなりますか？</p>
+</div>
+<div class="paragraph">
+<p>時々ルーティングに失敗することは避けられないので、「優雅に失敗する」方法を確保する必要があります。失敗には2つの方法がある：協調的な方法と、時間的にロックされた払い戻しを行う方法である。</p>
+</div>
+<div class="paragraph">
+<p>協力的な失敗は比較的単純である：HTLCはルートのすべての参加者によって巻き戻され、バランスを変えることなく彼らのコミットメントトランザクションからHTLC出力を削除します。それがどのように機能するかは、<a href="#channel_operation">[channel_operation]</a>で詳しく見ていきます。</p>
+</div>
+<div class="paragraph">
+<p>参加者の一人または複数の協力なしに HTLC を逆転させる方法について見てみよ う。参加者の1人が協力しない場合、資金が単に<em>永遠に</em>HTLCに固定されないようにする必要があります。これでは、誰かが他の参加者の資金を身代金として要求する機会を与えてしまうことになります。「身代金を払わないなら、あなたの資金を永遠に縛ったままにしてあげる"。</p>
+</div>
+<div class="paragraph">
+<p>これを防ぐために、すべてのHTLCスクリプトには、タイムロックに接続された返金条項が含まれています。私たちの最初のエスクロー契約を覚えていますか？"ボブは契約後24時間以内に秘密を提示しなければならない。もしボブがこの時間までに秘密を提供しなければ、アリスの預金は払い戻されます。"</p>
+</div>
+<div class="paragraph">
+<p>タイムロックされた払い戻しは、スクリプトの重要な部分で、<em>アトミック性を</em>確保し、エンドツーエンドの支払い全体が成功するか失敗するかを優雅に決定します。心配するような「半分払った」状態にはならない。失敗した場合、すべての参加者はチャネル・パートナーと協力して HTLC を解消するか、タイムロックされた払い戻しトランザクションを一方的にオンチェーンに置いてお金を取り戻すことができます。</p>
+</div>
+<div class="paragraph">
+<p>この払い戻しをBitcoin Scriptで実装するために、特別な演算子<code>OP_CHECKLOCKTIMEVERIFY略して</code>OP_CLTVとも呼ばれます。以前、<a href="#received_htlc">Bitcoin Scriptで実装したHTLCの</a>13行目<a href="#received_htlc">（BOLT #3</a>）で見たスクリプトがこちらです。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>...
+	OP_DROP &lt;cltv_expiry&gt; OP_CHECKLOCKTIMEVERIFY OP_DROP
+	OP_CHECKSIG
+...</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>OP_CLTV演算子は、このトランザクションが有効となるブロック高として定義された有効期限を取る。トランザクションのタイムロックが&lt;cltv_expiry&gt;と同じに設定されていない場合、スクリプトの評価は失敗し、トランザクションは無効となる。それ以外の場合、スクリプトはスタックに出力されることなく継続される。VERIFY接尾辞は、この演算子がTRUEまたはFALSEを出力しない代わりに、停止/失敗するか、スタック出力なしで継続することを意味することに留意してください。</p>
+</div>
+<div class="paragraph">
+<p>基本的に、OP_CLTVは、ビットコインブロックチェーン上で&lt;cltv_expiry&gt;ブロック高に達していない場合、スクリプトがそれ以上進むのを防ぐ「ゲートキーパー」として機能します。</p>
+</div>
+<div class="paragraph">
+<p>OP_DROP 演算子は、スクリプトスタックの一番上の項目を削除するだけです。これは、前のスクリプト行から「残った」項目があるため、最初のうちは必要です。OP_CLTVの<em>後では</em>、&lt;cltv_expiry&gt;項目が不要になったので、スタックの最上位から削除する必要があります。</p>
+</div>
+<div class="paragraph">
+<p>最後に、スタックが一掃されると、OP_CHECKSIGが検証できる公開鍵と署名が残るはずです。<a href="#preventing_theft">署名のバインディングで</a>見たように、これは HTLC の盗難を防ぐために必要である。<a href="#preventing_theft">HTLCの盗難防止で</a>見たように、これは、この出力を公開鍵にバインドし、署名を要求することによって、資金の正当な所有者だけがそれを請求できることを保証するために必要である。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_decrementing_timelocks">タイムロックのデクリメント</h4>
+<div class="paragraph">
+<p>HTLCはAliceからDinaまで拡張されているので、各HTLCのタイムロック還 元条項は<em>異なる</em>cltv_expiry値を持っている。これについては<a href="#onion_routing">[onion_routing]</a>で詳しく見ることにする。しかし、失敗した支払いを秩序立てて取り消すために、各ホップは払い戻しまで少し待つ必要があると言えば十分でしょう。各ホップのタイムロックの差は cltv_expiry_delta と呼ばれ、各ノードによって設定され、<a href="#gossip">[gossip]</a> で説明するようにネットワークにアドバタイズされます。</p>
+</div>
+<div class="paragraph">
+<p>例えば、アリスは、最初のHTLCの払い戻しタイムロックを、現在のブロックの高さ＋500ブロックに設定する（「現在」は現在のブロックの高さである）。ボブはChanへのHTLCのタイムロックcltv_expiryをcurrent + 450ブロックに設定する。Chanはタイムロックを現在のブロックの高さから現在＋400ブロックに設定する。こうすることで、ボブがチャンに提供したHTLCの払い戻しを受ける<em>前に</em>、チャンがディナに提供したHTLCの払い戻しを受けることができる。アリスがボブに提供したHTLCの払い戻しを受ける前に、ボブはチャンに提供したHTLCの払い戻しを受けることができる。デクリメントするタイムロックは、レースコンディションを防ぎ、HTLCチェーンがデスティネーションからオリジンに向かって、バックワードに巻き戻されることを確実にする。</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_conclusion">結論</h3>
+<div class="paragraph">
+<p>この章では、アリスがディナに直接の支払いチャネルを持っていなくても、 支払うことができる方法を見ました。アリスは自分とディナをつなぐ経路を見つけ、複数の支払い経路を経由してディナに届くように支払いをすることができます。</p>
+</div>
+<div class="paragraph">
+<p>複数のホップにわたって支払いがアトミックで信頼できないことを保証するために、アリスはパス内のすべての仲介ノードと協力して公正プロトコルを実装する必要があります。公平性プロトコルは現在HTLCとして実装されており、秘密の支払いプリ画像から得られる支払いハッシュに対して資金をコミットする。</p>
+</div>
+<div class="paragraph">
+<p>支払い経路の各参加者は、盗難や資金の滞留を心配することなく、次の参加者にHTLCを拡張することができます。HTLCは、秘密の支払い前画像を明らかにすることで償還できる。HTLCがDinaに届くと、Dinaはそのプリイメージを公開し、それが逆流することで差し出されたすべてのHTLCが解決される。</p>
+</div>
+<div class="paragraph">
+<p>最後に、タイムロックされた払い戻し条項がHTLCを完成させ、支払いが失敗しても、何らかの理由で参加者の1人がHTLCの巻き戻しに協力しなかった場合、すべての参加者が払い戻しを受けられることを保証する方法を見ました。払い戻しのためにオンチェーンに行くという選択肢を常に持つことで、HTLCは原子性と信頼性のある運用という公平性の目標を達成している。</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+最終更新 2022-10-29 15:50:16 +0400
+</div>
+</div>
+</body>
+</html>
